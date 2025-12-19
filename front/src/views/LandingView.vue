@@ -5,8 +5,8 @@
 
     <!-- 나머지 콘텐츠 (컨테이너 내부) -->
     <div class="landing-content">
-      <!-- 2. 개인화 추천 섹션 (로그인 사용자만) -->
-      <RecommendationSection v-if="isAuthenticated" />
+      <!-- 2. 개인화 추천 섹션 (항상 표시, 비로그인 시 블러 처리) -->
+      <RecommendationSection />
 
       <!-- 3. 전체 랭킹 섹션 -->
       <AllRankingSection />
