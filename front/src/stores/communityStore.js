@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import communityAPI from '@/api/community'
+import { useAuthStore } from './authStore'
 
 export const useCommunityStore = defineStore('community', () => {
   // State
@@ -9,6 +10,7 @@ export const useCommunityStore = defineStore('community', () => {
   const comments = ref([])
   const loading = ref(false)
   const error = ref(null)
+  const likeLoading = ref(false)
 
   // Getters
   const articleCount = computed(() => articles.value.length)
@@ -98,20 +100,58 @@ export const useCommunityStore = defineStore('community', () => {
   }
 
   const likeArticle = async (id) => {
+    const authStore = useAuthStore()
+
+    if (!authStore.isAuthenticated) {
+      throw new Error('로그인이 필요합니다.')
+    }
+
+    likeLoading.value = true
     try {
       const response = await communityAPI.likeArticle(id)
-      // 좋아요 상태 업데이트
-      const article = articles.value.find(r => r.id === id)
-      if (article) {
-        article.like_count = response.data.like_count
-      }
-      if (currentArticle.value?.id === id) {
-        currentArticle.value.like_count = response.data.like_count
-      }
+      console.log('API Response:', response.data)
+      const { is_liked, like_count } = response.data
+
+      // 모든 위치의 좋아요 상태 업데이트
+      console.log('Updating like status:', { id, is_liked, like_count })
+      updateLikeStatus(id, is_liked, like_count)
+
       return response.data
     } catch (err) {
       error.value = err.message
       throw err
+    } finally {
+      likeLoading.value = false
+    }
+  }
+
+  /**
+   * 게시글 ID로 모든 목록의 좋아요 상태 업데이트
+   * @private
+   */
+  const updateLikeStatus = (articleId, isLiked, likeCount) => {
+    console.log('updateLikeStatus called:', { articleId, isLiked, likeCount })
+
+    // ID를 숫자로 변환 (문자열과 숫자 비교 문제 해결)
+    const numericId = typeof articleId === 'string' ? parseInt(articleId) : articleId
+
+    // 1. articles 배열 업데이트
+    const articleIndex = articles.value.findIndex(a => a.id == numericId)
+    console.log('Article index in array:', articleIndex)
+    if (articleIndex !== -1) {
+      console.log('Before update (array):', articles.value[articleIndex].is_liked)
+      articles.value[articleIndex].is_liked = isLiked
+      articles.value[articleIndex].like_count = likeCount
+      console.log('After update (array):', articles.value[articleIndex].is_liked)
+    }
+
+    // 2. currentArticle 업데이트
+    console.log('Current article ID:', currentArticle.value?.id)
+    if (currentArticle.value && currentArticle.value.id == numericId) {
+      console.log('Before update (current):', currentArticle.value.is_liked)
+      currentArticle.value.is_liked = isLiked
+      currentArticle.value.like_count = likeCount
+      console.log('After update (current):', currentArticle.value.is_liked)
     }
   }
 
@@ -166,6 +206,7 @@ export const useCommunityStore = defineStore('community', () => {
     comments,
     loading,
     error,
+    likeLoading,
     // Getters
     articleCount,
     // Actions
