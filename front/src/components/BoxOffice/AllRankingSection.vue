@@ -76,11 +76,12 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import { useAllRanking } from '@/composables/useAllRanking'
-import { useUserTracking } from '@/composables/useUserTracking'
+import { usePerformanceStore } from '@/stores/performanceStore'
 import BoxOfficeCard from './BoxOfficeCard.vue'
 
 const { allRankings, loading, error, loadAllRankings } = useAllRanking()
-const { toggleLike, likeLoading } = useUserTracking()
+const performanceStore = usePerformanceStore()
+const { toggleLike, likeLoading } = performanceStore
 
 // 페이지네이션 상태
 const currentPage = ref(0) // 0: 1-5위, 1: 6-10위
@@ -113,17 +114,12 @@ const goToNextPage = () => {
   }
 }
 
-// 찜하기 토글
+// 찜하기 토글 (Store 사용 - 전역 상태 관리)
 const handleToggleLike = async (performanceId) => {
   try {
-    const result = await toggleLike(performanceId)
-    
-    // Update local ranking data
-    const perf = allRankings.value.find(p => p.mt20id === performanceId)
-    if (perf) {
-      perf.is_liked = result.is_liked
-      perf.like_count = result.like_count
-    }
+    await toggleLike(performanceId)
+    // Store가 자동으로 모든 목록의 상태를 업데이트하므로
+    // 별도의 로컬 상태 업데이트 불필요
   } catch (err) {
     if (err.message === '로그인이 필요합니다.') {
       alert('로그인이 필요한 기능입니다.')

@@ -92,7 +92,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import { useBoxOffice } from '@/composables/useBoxOffice'
-import { useUserTracking } from '@/composables/useUserTracking'
+import { usePerformanceStore } from '@/stores/performanceStore'
 import BoxOfficeCard from './BoxOfficeCard.vue'
 
 // 장르 목록 (기타 추가)
@@ -109,7 +109,8 @@ const genres = [
 const ETC_GENRES = ['서커스/마술', '한국음악(국악)', '복합', '오페라', '아동']
 
 const { genre: currentGenre, allPerformances, loading, error, load, changeGenre: changeGenreFunc } = useBoxOffice()
-const { toggleLike, likeLoading } = useUserTracking()
+const performanceStore = usePerformanceStore()
+const { toggleLike, likeLoading } = performanceStore
 
 // 페이지네이션 상태
 const currentPage = ref(0) // 0: 1-5위, 1: 6-10위
@@ -135,16 +136,11 @@ const totalPages = computed(() => Math.ceil(allPerformances.value.length / items
 const canGoPrev = computed(() => currentPage.value > 0)
 const canGoNext = computed(() => currentPage.value < totalPages.value - 1)
 
-// 찜하기 토글
+// 찜하기 토글 (Store 사용 - 전역 상태 관리)
 const handleToggleLike = async (performanceId) => {
   try {
-    const result = await toggleLike(performanceId)
-    
-    const perf = allPerformances.value.find(p => p.mt20id === performanceId)
-    if (perf) {
-      perf.is_liked = result.is_liked
-      perf.like_count = result.like_count
-    }
+    await toggleLike(performanceId)
+    // Store가 자동으로 모든 목록의 상태를 업데이트
   } catch (err) {
     if (err.message === '로그인이 필요합니다.') {
       alert('로그인이 필요한 기능입니다.')

@@ -271,4 +271,80 @@ const handleImageError = (event) => {
   font-size: 0.75rem;
   font-weight: 500;
 }
+
+/* 찜하기 버튼 */
+.card-like-button {
+  position: absolute;
+  bottom: 0.75rem;
+  right: 0.75rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.card-like-button:hover {
+  transform: scale(1.1);
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+}
+
+.card-like-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.card-like-button i {
+  font-size: 1.125rem;
+  color: #6b7280;
+  transition: color 0.3s;
+}
+
+.card-like-button.liked i {
+  color: #ef4444;
+  animation: heartBeat 0.3s ease;
+}
+
+.card-like-button:hover i {
+  color: #ef4444;
+}
+
+@keyframes heartBeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+/* 다크모드 */
+:root.dark .card-like-button {
+  background: rgba(31, 41, 55, 0.9);
+}
+
+:root.dark .card-like-button:hover {
+  background: rgba(31, 41, 55, 1);
+}
+
+:root.dark .card-like-button i {
+  color: #9ca3af;
+}
+
+:root.dark .card-like-button.liked i {
+  color: #f87171;
+}
+
+:root.dark .card-like-button:hover i {
+  color: #f87171;
+}
 </style>

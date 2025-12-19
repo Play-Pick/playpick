@@ -79,8 +79,8 @@ class PerformanceViewSet(viewsets.ReadOnlyModelViewSet):
             performance__genrenm=target_genrenm
         ).select_related('performance').order_by('-ranking_date', 'rank')[:10]
 
-        # 3. 시리얼라이징하고 플랫한 구조로 변환
-        serializer = BoxOfficeRankingSerializer(rankings, many=True)
+        # 3. 시리얼라이징하고 플랫한 구조로 변환 (context에 request 전달하여 is_liked 계산)
+        serializer = BoxOfficeRankingSerializer(rankings, many=True, context={'request': request})
 
         # 4. 프론트엔드가 기대하는 형식으로 데이터 변환 (performance 필드를 최상위로 병합)
         flattened_data = []
@@ -124,8 +124,8 @@ class PerformanceViewSet(viewsets.ReadOnlyModelViewSet):
             ranking_date=latest_date
         ).select_related('performance').order_by('-seat_count')[:10]
 
-        # 시리얼라이징
-        serializer = BoxOfficeRankingSerializer(rankings, many=True)
+        # 시리얼라이징 (context에 request 전달하여 is_liked 계산)
+        serializer = BoxOfficeRankingSerializer(rankings, many=True, context={'request': request})
 
         # 플랫한 구조로 변환
         flattened_data = []
@@ -168,8 +168,8 @@ class PerformanceViewSet(viewsets.ReadOnlyModelViewSet):
             ranking_date=latest_date
         ).select_related('performance').order_by('-seat_count')[:8]
 
-        # 시리얼라이징
-        serializer = BoxOfficeRankingSerializer(rankings, many=True)
+        # 시리얼라이징 (context에 request 전달하여 is_liked 계산)
+        serializer = BoxOfficeRankingSerializer(rankings, many=True, context={'request': request})
 
         # 플랫한 구조로 변환
         flattened_data = []

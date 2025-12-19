@@ -189,6 +189,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { usePerformanceDetail } from '@/composables/usePerformanceDetail'
 import { useKakaoMap } from '@/composables/useKakaoMap'
 import { useUserTracking } from '@/composables/useUserTracking'
+import { usePerformanceStore } from '@/stores/performanceStore'
 import HeaderSection from '@/components/PerformanceDetail/HeaderSection.vue'
 import MapModal from '@/components/PerformanceDetail/MapModal.vue'
 import RatingChart from '@/components/PerformanceDetail/RatingChart.vue'
@@ -199,7 +200,9 @@ const route = useRoute()
 const router = useRouter()
 const { currentPerformance, loading, error, goBack, goHome } = usePerformanceDetail()
 const { showMapModal, openMapModal, closeMapModal, initMap } = useKakaoMap()
-const { logView, toggleLike, likeLoading } = useUserTracking()
+const { logView } = useUserTracking()
+const performanceStore = usePerformanceStore()
+const { toggleLike, likeLoading } = performanceStore
 
 const reviews = ref([])
 
@@ -273,19 +276,20 @@ const handleOpenMap = async () => {
   }, 150)
 }
 
-// 찜하기 토글 핸들러
+// 찜하기 토글 핸들러 (Store 통해 전역 상태 관리)
 const handleToggleLike = async () => {
   if (!currentPerformance.value?.mt20id) return
 
   try {
-    const result = await toggleLike(currentPerformance.value.mt20id)
-
-    // UI 업데이트
-    currentPerformance.value.is_liked = result.is_liked
-    currentPerformance.value.like_count = result.like_count
+    await toggleLike(currentPerformance.value.mt20id)
+    // Store가 자동으로 모든 목록의 상태를 업데이트
   } catch (err) {
-    console.error('찜하기 토글 실패:', err)
-    alert(err.message || '찜하기 처리 중 오류가 발생했습니다.')
+    if (err.message === '로그인이 필요합니다.') {
+      alert('로그인이 필요한 기능입니다.')
+    } else {
+      console.error('찜하기 토글 실패:', err)
+      alert(err.message || '찜하기 처리 중 오류가 발생했습니다.')
+    }
   }
 }
 

@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import performanceAPI from '@/api/performances'
+import { useAuthStore } from './authStore'
 
 export const usePerformanceStore = defineStore('performance', () => {
   // State
@@ -10,6 +11,7 @@ export const usePerformanceStore = defineStore('performance', () => {
   const boxOfficeRankings = ref([])
   const loading = ref(false)
   const error = ref(null)
+  const likeLoading = ref(false)
 
   // Getters
   const performanceCount = computed(() => performances.value.length)
@@ -86,6 +88,93 @@ export const usePerformanceStore = defineStore('performance', () => {
     }
   }
 
+  /**
+   * 좋아요 토글 (전역 상태 관리)
+   * @param {string} performanceId - 공연 ID
+   * @returns {Promise<{is_liked: boolean, like_count: number}>}
+   */
+  const toggleLike = async (performanceId) => {
+    const authStore = useAuthStore()
+
+    if (!authStore.isAuthenticated) {
+      throw new Error('로그인이 필요합니다.')
+    }
+
+    likeLoading.value = true
+    error.value = null
+
+    try {
+      const response = await performanceAPI.toggleLike(performanceId)
+      const { is_liked, like_count } = response.data
+
+      // 모든 공연 목록에서 해당 공연의 좋아요 상태 업데이트
+      updateLikeStatus(performanceId, is_liked, like_count)
+
+      return response.data
+    } catch (err) {
+      error.value = err.message
+      throw err
+    } finally {
+      likeLoading.value = false
+    }
+  }
+
+  /**
+   * 공연 ID로 모든 목록의 좋아요 상태 업데이트
+   * @private
+   */
+  const updateLikeStatus = (performanceId, isLiked, likeCount) => {
+    // 헬퍼 함수: 배열의 공연 데이터 업데이트
+    const updateArray = (arr) => {
+      const index = arr.findIndex(item => {
+        // 직접 mt20id를 가진 경우
+        if (item.mt20id === performanceId) return true
+        // performance 객체 안에 있는 경우
+        if (item.performance?.mt20id === performanceId) return true
+        return false
+      })
+
+      if (index !== -1) {
+        const item = arr[index]
+        if (item.performance) {
+          item.performance.is_liked = isLiked
+          item.performance.like_count = likeCount
+        } else {
+          item.is_liked = isLiked
+          item.like_count = likeCount
+        }
+        return true
+      }
+      return false
+    }
+
+    // 1. performances 배열 업데이트
+    updateArray(performances.value)
+
+    // 2. boxOfficeRankings 배열 업데이트
+    updateArray(boxOfficeRankings.value)
+
+    // 3. currentPerformance 업데이트
+    if (currentPerformance.value?.mt20id === performanceId) {
+      currentPerformance.value.is_liked = isLiked
+      currentPerformance.value.like_count = likeCount
+    }
+
+    // 4. useAllRanking composable의 allRankings 업데이트
+    // 동적으로 import하여 상태 업데이트
+    import('@/composables/useAllRanking').then(module => {
+      const { allRankings, highlightPerformances } = module.useAllRanking()
+      updateArray(allRankings.value)
+      updateArray(highlightPerformances.value)
+    })
+
+    // 5. useBoxOffice composable의 allPerformances 업데이트
+    import('@/composables/useBoxOffice').then(module => {
+      const { allPerformances } = module.useBoxOffice()
+      updateArray(allPerformances.value)
+    })
+  }
+
   return {
     // State
     performances,
@@ -94,6 +183,7 @@ export const usePerformanceStore = defineStore('performance', () => {
     boxOfficeRankings,
     loading,
     error,
+    likeLoading,
     // Getters
     performanceCount,
     // Actions
@@ -101,6 +191,7 @@ export const usePerformanceStore = defineStore('performance', () => {
     fetchPerformance,
     fetchGenres,
     fetchBoxOffice,
-    fetchLatestBoxOfficeByGenre
+    fetchLatestBoxOfficeByGenre,
+    toggleLike
   }
 })

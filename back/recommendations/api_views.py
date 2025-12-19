@@ -12,6 +12,7 @@ from .serializers import (
 )
 from .engine import RecommendationEngine
 from performances.models import Performance
+from performances.serializers import PerformanceListSerializer
 
 
 class UserLogViewSet(viewsets.ModelViewSet):
@@ -161,26 +162,22 @@ class RecommendationViewSet(viewsets.ViewSet):
         performance_ids = [item['mt20id'] for item in raw_recommendations]
 
         # 공연 정보 bulk 조회 (성능 최적화)
-        performances = Performance.objects.filter(mt20id__in=performance_ids).in_bulk(field_name='mt20id')
+        performances_dict = Performance.objects.filter(mt20id__in=performance_ids).in_bulk(field_name='mt20id')
 
+        # Serializer를 사용하여 is_liked, like_count 포함
         for item in raw_recommendations:
-            performance = performances.get(item['mt20id'])
+            performance = performances_dict.get(item['mt20id'])
             if performance:
+                # PerformanceListSerializer를 사용하여 공연 정보 직렬화
+                serializer = PerformanceListSerializer(performance, context={'request': self.request})
+                performance_data = serializer.data
+
+                # 추천 메타 정보 + 공연 정보 병합
                 enriched.append({
-                    # 추천 메타 정보
-                    'mt20id': item['mt20id'],
+                    **performance_data,  # is_liked, like_count 포함
                     'score': item['score'],
                     'reason': item['reason'],
                     'reason_text': item['reason_text'],
-
-                    # 공연 기본 정보
-                    'prfnm': performance.prfnm,
-                    'poster': performance.poster,
-                    'prfpdfrom': performance.prfpdfrom,
-                    'prfpdto': performance.prfpdto,
-                    'fcltynm': performance.fcltynm,
-                    'genrenm': performance.genrenm,
-                    'area': performance.area,
                 })
 
         return enriched
