@@ -13,20 +13,15 @@ export const useArticleDetail = (articleId) => {
 
   // 좋아요 처리
   const handleLike = async () => {
-    if (!authStore.isAuthenticated) {
-      alert('로그인이 필요합니다.')
-      return
-    }
-
     likeLoading.value = true
     try {
       await communityStore.likeArticle(articleId)
-      // 좋아요 상태 토글
-      if (communityStore.currentArticle) {
-        communityStore.currentArticle.is_liked = !communityStore.currentArticle.is_liked
-      }
     } catch (err) {
-      console.error('좋아요 처리 실패:', err)
+      if (err.message === '로그인이 필요합니다.') {
+        alert('로그인이 필요합니다.')
+      } else {
+        console.error('좋아요 처리 실패:', err)
+      }
     } finally {
       likeLoading.value = false
     }

@@ -61,6 +61,7 @@ const formattedDate = computed(() => {
 })
 
 const handleLike = () => {
+  console.log('Before like:', props.article.is_liked)
   emit('like')
 }
 </script>
