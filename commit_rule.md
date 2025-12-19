@@ -36,6 +36,11 @@
 
 ## 3. `feat` 브랜치
 - **목적**: 새로운 기능 개발
-- **명명 규칙**: `feat/<app_name>` 또는 `feat/<feature-name>`
-  - 예시: `feature/jwt-auth`, `feature/performance-list`
+- **명명 규칙**: `feat/<feature-name>`
+  - `feat/performance-list`
 - **파생**: `develop` 브랜치에서 파생하여 개발 완료 후 `develop`에 병합
+
+## 4. `fix` 브랜치
+- **목적**: 기능 개선
+- **명명 규칙**: `fix/<feature-name>/개선 내용`
+  - 예시: `fix/performance-list`
