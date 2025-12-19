@@ -390,6 +390,11 @@ onMounted(() => {
   padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
+  transition: background 0.3s;
+}
+
+:root.dark .mypage-container {
+  background: linear-gradient(to bottom, #111827, #1f2937);
 }
 
 /* 로딩 & 에러 */
@@ -397,6 +402,13 @@ onMounted(() => {
 .error {
   text-align: center;
   padding: 5rem 2rem;
+  color: #1f2937;
+  transition: color 0.3s;
+}
+
+:root.dark .loading,
+:root.dark .error {
+  color: #f3f4f6;
 }
 
 .loading .spinner {
@@ -408,6 +420,11 @@ onMounted(() => {
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
   margin-bottom: 1rem;
+}
+
+:root.dark .loading .spinner {
+  border-color: #374151;
+  border-top-color: #818cf8;
 }
 
 @keyframes spin {
@@ -423,6 +440,12 @@ onMounted(() => {
   padding: 2rem;
   margin-bottom: 2rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+:root.dark .profile-section {
+  background: #1f2937;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .profile-header {
@@ -481,11 +504,21 @@ onMounted(() => {
   font-size: 2rem;
   margin-bottom: 0.5rem;
   color: #1f2937;
+  transition: color 0.3s;
+}
+
+:root.dark .profile-info h1 {
+  color: #f3f4f6;
 }
 
 .username {
   color: #6b7280;
   margin-bottom: 1rem;
+  transition: color 0.3s;
+}
+
+:root.dark .username {
+  color: #9ca3af;
 }
 
 .btn-edit {
@@ -502,6 +535,14 @@ onMounted(() => {
   background: #4f46e5;
 }
 
+:root.dark .btn-edit {
+  background: linear-gradient(to right, #6366f1, #9333ea);
+}
+
+:root.dark .btn-edit:hover {
+  background: linear-gradient(to right, #4f46e5, #7c3aed);
+}
+
 /* 편집 폼 */
 .edit-form {
   display: flex;
@@ -515,11 +556,24 @@ onMounted(() => {
   border-radius: 6px;
   font-size: 1rem;
   transition: all 0.3s;
+  background: white;
+  color: #1f2937;
+}
+
+:root.dark .input-nickname {
+  background: #374151;
+  border-color: #4b5563;
+  color: #f3f4f6;
 }
 
 .input-nickname:focus {
   outline: none;
   border-color: #6366f1;
+}
+
+:root.dark .input-nickname:focus {
+  border-color: #818cf8;
+  background: #4b5563;
 }
 
 .image-upload {
@@ -589,12 +643,22 @@ onMounted(() => {
   padding: 1.5rem;
   background: #f9fafb;
   border-radius: 8px;
+  transition: background-color 0.3s;
+}
+
+:root.dark .stat-item {
+  background: #111827;
 }
 
 .stat-item i {
   font-size: 2rem;
   color: #6366f1;
   margin-bottom: 0.5rem;
+  transition: color 0.3s;
+}
+
+:root.dark .stat-item i {
+  color: #818cf8;
 }
 
 .stat-value {
@@ -603,11 +667,21 @@ onMounted(() => {
   font-weight: bold;
   color: #1f2937;
   margin-bottom: 0.25rem;
+  transition: color 0.3s;
+}
+
+:root.dark .stat-value {
+  color: #f3f4f6;
 }
 
 .stat-label {
   color: #6b7280;
   font-size: 0.9rem;
+  transition: color 0.3s;
+}
+
+:root.dark .stat-label {
+  color: #9ca3af;
 }
 
 /* 찜한 공연 */
@@ -618,6 +692,13 @@ onMounted(() => {
   padding: 1.5rem;
   margin-bottom: 2rem;
   box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+  transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+
+:root.dark .wishlist-section {
+  background: #1f2937;
+  border-color: #374151;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .wishlist-header {
@@ -630,6 +711,11 @@ onMounted(() => {
 .wishlist-header h2 {
   font-size: 1.5rem;
   color: #0f172a;
+  transition: color 0.3s;
+}
+
+:root.dark .wishlist-header h2 {
+  color: #f3f4f6;
 }
 
 .wishlist-count {
@@ -639,6 +725,11 @@ onMounted(() => {
   border-radius: 9999px;
   padding: 0.25rem 0.75rem;
   font-size: 0.875rem;
+  transition: background-color 0.3s;
+}
+
+:root.dark .wishlist-count {
+  background: #14b8a6;
 }
 
 .wishlist-alert {
@@ -653,11 +744,24 @@ onMounted(() => {
   border-radius: 8px;
   margin-bottom: 1rem;
   font-size: 0.9rem;
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+}
+
+:root.dark .wishlist-alert {
+  background: #111827;
+  border-color: #374151;
+  border-left-color: #14b8a6;
+  color: #f3f4f6;
 }
 
 .wishlist-loading {
   text-align: center;
   color: #64748b;
+  transition: color 0.3s;
+}
+
+:root.dark .wishlist-loading {
+  color: #9ca3af;
 }
 
 .wishlist-skeleton {
@@ -688,12 +792,22 @@ onMounted(() => {
   text-align: center;
   padding: 2rem 1rem;
   color: #64748b;
+  transition: color 0.3s;
+}
+
+:root.dark .wishlist-empty {
+  color: #9ca3af;
 }
 
 .wishlist-empty i {
   font-size: 2.5rem;
   color: #94a3b8;
   margin-bottom: 0.75rem;
+  transition: color 0.3s;
+}
+
+:root.dark .wishlist-empty i {
+  color: #6b7280;
 }
 
 .wishlist-browse-btn {
@@ -725,6 +839,11 @@ onMounted(() => {
   gap: 1rem;
   margin-bottom: 2rem;
   border-bottom: 2px solid #e5e7eb;
+  transition: border-color 0.3s;
+}
+
+:root.dark .tabs {
+  border-bottom-color: #374151;
 }
 
 .tab {
@@ -739,13 +858,26 @@ onMounted(() => {
   font-weight: 500;
 }
 
+:root.dark .tab {
+  color: #9ca3af;
+}
+
 .tab:hover {
   color: #6366f1;
+}
+
+:root.dark .tab:hover {
+  color: #818cf8;
 }
 
 .tab.active {
   color: #6366f1;
   border-bottom-color: #6366f1;
+}
+
+:root.dark .tab.active {
+  color: #818cf8;
+  border-bottom-color: #818cf8;
 }
 
 /* 리스트 */
@@ -765,10 +897,21 @@ onMounted(() => {
   transition: all 0.3s;
 }
 
+:root.dark .article-card,
+:root.dark .comment-card {
+  background: #1f2937;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
 .article-card:hover,
 .comment-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+:root.dark .article-card:hover,
+:root.dark .comment-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .article-header {
@@ -781,6 +924,11 @@ onMounted(() => {
 .article-header h3 {
   font-size: 1.25rem;
   color: #1f2937;
+  transition: color 0.3s;
+}
+
+:root.dark .article-header h3 {
+  color: #f3f4f6;
 }
 
 .rating {
@@ -802,6 +950,12 @@ onMounted(() => {
   color: #4b5563;
   line-height: 1.6;
   margin-bottom: 1rem;
+  transition: color 0.3s;
+}
+
+:root.dark .article-content,
+:root.dark .comment-content {
+  color: #d1d5db;
 }
 
 .article-meta,
@@ -811,6 +965,12 @@ onMounted(() => {
   align-items: center;
   font-size: 0.875rem;
   color: #6b7280;
+  transition: color 0.3s;
+}
+
+:root.dark .article-meta,
+:root.dark .comment-meta {
+  color: #9ca3af;
 }
 
 .performance-name,
@@ -822,6 +982,11 @@ onMounted(() => {
   text-align: center;
   padding: 4rem 2rem;
   color: #9ca3af;
+  transition: color 0.3s;
+}
+
+:root.dark .empty-state {
+  color: #6b7280;
 }
 
 .empty-state i {

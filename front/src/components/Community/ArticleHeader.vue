@@ -68,53 +68,88 @@ const handleLike = () => {
 
 <style scoped>
 .article-header {
-  padding: 2rem;
+  padding: 2.5rem 2rem;
   border-bottom: 2px solid #f0f0f0;
+  background: transparent;
+  transition: border-color 0.3s, background-color 0.3s;
+}
+
+:root.dark .article-header {
+  border-bottom-color: #374151;
+  background: transparent;
 }
 
 .category-section {
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .badge {
   display: inline-block;
-  padding: 0.4rem 0.8rem;
+  padding: 0.5rem 1rem;
   color: white;
-  border-radius: 4px;
-  font-size: 0.85rem;
-  font-weight: bold;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .article-title {
-  margin: 0 0 1rem 0;
-  font-size: 2rem;
-  font-weight: 700;
+  margin: 0 0 1.5rem 0;
+  font-size: 2.25rem;
+  font-weight: 800;
   color: #2c3e50;
-  line-height: 1.4;
+  line-height: 1.3;
+  letter-spacing: -0.5px;
+  transition: color 0.3s;
+}
+
+:root.dark .article-title {
+  color: #f9fafb;
 }
 
 .article-meta {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.25rem;
   color: #666;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 }
 
 .author {
-  font-weight: 600;
+  font-weight: 700;
   color: #2c3e50;
+  font-size: 1.05rem;
+  transition: color 0.3s;
+}
+
+:root.dark .author {
+  color: #f3f4f6;
 }
 
 .date {
   color: #95a5a6;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+:root.dark .date {
+  color: #9ca3af;
 }
 
 .like-section {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.6rem;
   margin-left: auto;
+  padding: 0.5rem 0;
+  background: transparent;
+  transition: all 0.3s;
+}
+
+:root.dark .like-section {
+  background: transparent;
 }
 
 .like-button {
@@ -123,11 +158,12 @@ const handleLike = () => {
   font-size: 1.8rem;
   cursor: pointer;
   padding: 0;
-  transition: transform 0.2s;
+  transition: transform 0.2s, filter 0.2s;
 }
 
 .like-button:hover:not(:disabled) {
   transform: scale(1.2);
+  filter: brightness(1.1);
 }
 
 .like-button:disabled {
@@ -136,8 +172,13 @@ const handleLike = () => {
 }
 
 .like-count {
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 1.05rem;
+  font-weight: 700;
   color: #e74c3c;
+  transition: color 0.3s;
+}
+
+:root.dark .like-count {
+  color: #f87171;
 }
 </style>

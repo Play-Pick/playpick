@@ -122,22 +122,43 @@ watch(
   text-align: center;
   padding: 3rem;
   font-size: 1.2rem;
+  transition: color 0.3s;
+}
+
+:root.dark .loading {
+  color: #f3f4f6;
 }
 
 .error {
   color: #e74c3c;
 }
 
+:root.dark .error {
+  color: #fca5a5;
+}
+
 .article-content {
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+:root.dark .article-content {
+  background-color: #1f2937;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .performance-section {
   padding: 1.5rem 2rem;
   background-color: #f8f9fa;
   border-bottom: 1px solid #e0e0e0;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+:root.dark .performance-section {
+  background-color: #111827;
+  border-bottom-color: #374151;
 }
 
 .performance-section h3 {
@@ -145,6 +166,11 @@ watch(
   font-size: 0.9rem;
   color: #666;
   font-weight: 600;
+  transition: color 0.3s;
+}
+
+:root.dark .performance-section h3 {
+  color: #9ca3af;
 }
 
 .performance-info {
@@ -160,6 +186,11 @@ watch(
   color: #2c3e50;
   font-weight: 600;
   flex: 1;
+  transition: color 0.3s;
+}
+
+:root.dark .performance-title {
+  color: #f3f4f6;
 }
 
 .detail-button {
@@ -171,12 +202,20 @@ watch(
   font-size: 0.85rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: all 0.3s;
   white-space: nowrap;
 }
 
 .detail-button:hover {
   background-color: #2980b9;
+}
+
+:root.dark .detail-button {
+  background: linear-gradient(to right, #6366f1, #9333ea);
+}
+
+:root.dark .detail-button:hover {
+  background: linear-gradient(to right, #4f46e5, #7c3aed);
 }
 
 .rating {
@@ -193,11 +232,21 @@ watch(
   color: #333;
   white-space: pre-wrap;
   min-height: 200px;
+  transition: color 0.3s;
+}
+
+:root.dark .article-body {
+  color: #d1d5db;
 }
 
 .comments-section {
   padding: 2rem;
   border-top: 2px solid #f0f0f0;
+  transition: border-color 0.3s;
+}
+
+:root.dark .comments-section {
+  border-top-color: #374151;
 }
 
 .actions {
@@ -206,6 +255,11 @@ watch(
   justify-content: space-between;
   align-items: center;
   border-top: 1px solid #e0e0e0;
+  transition: border-color 0.3s;
+}
+
+:root.dark .actions {
+  border-top-color: #374151;
 }
 
 .back-button {
@@ -217,10 +271,19 @@ watch(
   cursor: pointer;
   font-size: 0.95rem;
   font-weight: 600;
+  transition: all 0.3s;
 }
 
 .back-button:hover {
   background-color: #7f8c8d;
+}
+
+:root.dark .back-button {
+  background-color: #4b5563;
+}
+
+:root.dark .back-button:hover {
+  background-color: #374151;
 }
 
 .owner-actions {
@@ -237,6 +300,7 @@ watch(
   cursor: pointer;
   font-size: 0.95rem;
   font-weight: 600;
+  transition: all 0.3s;
 }
 
 .edit-button {
@@ -247,11 +311,27 @@ watch(
   background-color: #2980b9;
 }
 
+:root.dark .edit-button {
+  background: linear-gradient(to right, #6366f1, #9333ea);
+}
+
+:root.dark .edit-button:hover {
+  background: linear-gradient(to right, #4f46e5, #7c3aed);
+}
+
 .actions .delete-button {
   background-color: #e74c3c;
 }
 
 .actions .delete-button:hover {
   background-color: #c0392b;
+}
+
+:root.dark .actions .delete-button {
+  background-color: #dc2626;
+}
+
+:root.dark .actions .delete-button:hover {
+  background-color: #b91c1c;
 }
 </style>
