@@ -113,12 +113,23 @@ const handleLogin = async () => {
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+:root.dark .login-container {
+  background: #1f2937;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 .login-container h1 {
   text-align: center;
   margin-bottom: 2rem;
   color: #2c3e50;
+  transition: color 0.3s;
+}
+
+:root.dark .login-container h1 {
+  color: #f3f4f6;
 }
 
 .login-form {
@@ -136,6 +147,11 @@ const handleLogin = async () => {
 .form-group label {
   font-weight: 500;
   color: #2c3e50;
+  transition: color 0.3s;
+}
+
+:root.dark .form-group label {
+  color: #e5e7eb;
 }
 
 .form-group input {
@@ -143,12 +159,33 @@ const handleLogin = async () => {
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 1rem;
-  transition: border-color 0.3s;
+  background: white;
+  color: #2c3e50;
+  transition: border-color 0.3s, background-color 0.3s, color 0.3s;
+}
+
+:root.dark .form-group input {
+  background: #374151;
+  border-color: #4b5563;
+  color: #f3f4f6;
 }
 
 .form-group input:focus {
   outline: none;
   border-color: #42b983;
+}
+
+:root.dark .form-group input:focus {
+  border-color: #6366f1;
+  background: #4b5563;
+}
+
+.form-group input::placeholder {
+  color: #9ca3af;
+}
+
+:root.dark .form-group input::placeholder {
+  color: #6b7280;
 }
 
 .error-message {
@@ -158,6 +195,13 @@ const handleLogin = async () => {
   border: 1px solid #fcc;
   border-radius: 4px;
   font-size: 0.875rem;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+:root.dark .error-message {
+  background-color: #7f1d1d;
+  color: #fca5a5;
+  border-color: #991b1b;
 }
 
 .btn-login {
@@ -169,16 +213,30 @@ const handleLogin = async () => {
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+:root.dark .btn-login {
+  background: linear-gradient(to right, #6366f1, #9333ea);
 }
 
 .btn-login:hover:not(:disabled) {
   background-color: #359268;
+  transform: translateY(-2px);
+}
+
+:root.dark .btn-login:hover:not(:disabled) {
+  background: linear-gradient(to right, #4f46e5, #7c3aed);
 }
 
 .btn-login:disabled {
   background-color: #95c9af;
   cursor: not-allowed;
+}
+
+:root.dark .btn-login:disabled {
+  background: #4b5563;
+  color: #9ca3af;
 }
 
 .footer-links {
@@ -189,15 +247,29 @@ const handleLogin = async () => {
 .footer-links p {
   color: #666;
   font-size: 0.875rem;
+  transition: color 0.3s;
+}
+
+:root.dark .footer-links p {
+  color: #9ca3af;
 }
 
 .footer-links a {
   color: #42b983;
   text-decoration: none;
   font-weight: 500;
+  transition: color 0.3s;
+}
+
+:root.dark .footer-links a {
+  color: #818cf8;
 }
 
 .footer-links a:hover {
   text-decoration: underline;
+}
+
+:root.dark .footer-links a:hover {
+  color: #a5b4fc;
 }
 </style>

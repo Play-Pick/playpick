@@ -322,6 +322,11 @@ const handleRegister = async () => {
   align-items: center;
   padding: 2rem;
   background: linear-gradient(to bottom, #f9fafb, #ffffff);
+  transition: background 0.3s;
+}
+
+:root.dark .register-view {
+  background: linear-gradient(to bottom, #111827, #1f2937);
 }
 
 .register-container {
@@ -331,6 +336,12 @@ const handleRegister = async () => {
   padding: 2.5rem;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+:root.dark .register-container {
+  background: #1f2937;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .register-container h1 {
@@ -338,12 +349,22 @@ const handleRegister = async () => {
   margin-bottom: 0.5rem;
   color: #1f2937;
   font-size: 2rem;
+  transition: color 0.3s;
+}
+
+:root.dark .register-container h1 {
+  color: #f3f4f6;
 }
 
 .subtitle {
   text-align: center;
   color: #6b7280;
   margin-bottom: 2rem;
+  transition: color 0.3s;
+}
+
+:root.dark .subtitle {
+  color: #9ca3af;
 }
 
 .register-form {
@@ -358,6 +379,12 @@ const handleRegister = async () => {
   background: #f9fafb;
   border-radius: 8px;
   border: 1px solid #e5e7eb;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+:root.dark .section {
+  background: #111827;
+  border-color: #374151;
 }
 
 .section-title {
@@ -367,16 +394,31 @@ const handleRegister = async () => {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  transition: color 0.3s;
+}
+
+:root.dark .section-title {
+  color: #f3f4f6;
 }
 
 .section-title i {
   color: #6366f1;
+  transition: color 0.3s;
+}
+
+:root.dark .section-title i {
+  color: #818cf8;
 }
 
 .section-description {
   color: #6b7280;
   font-size: 0.875rem;
   margin-bottom: 1rem;
+  transition: color 0.3s;
+}
+
+:root.dark .section-description {
+  color: #9ca3af;
 }
 
 /* 폼 그룹 */
@@ -401,6 +443,11 @@ const handleRegister = async () => {
   font-weight: 600;
   color: #374151;
   font-size: 0.875rem;
+  transition: color 0.3s;
+}
+
+:root.dark .form-group label {
+  color: #e5e7eb;
 }
 
 .form-group input,
@@ -411,6 +458,14 @@ const handleRegister = async () => {
   font-size: 1rem;
   transition: all 0.3s;
   background: white;
+  color: #1f2937;
+}
+
+:root.dark .form-group input,
+:root.dark .form-group select {
+  background: #374151;
+  border-color: #4b5563;
+  color: #f3f4f6;
 }
 
 .form-group input:focus,
@@ -420,12 +475,33 @@ const handleRegister = async () => {
   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
 }
 
+:root.dark .form-group input:focus,
+:root.dark .form-group select:focus {
+  border-color: #818cf8;
+  background: #4b5563;
+  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.1);
+}
+
+.form-group input::placeholder {
+  color: #9ca3af;
+  transition: color 0.3s;
+}
+
+:root.dark .form-group input::placeholder {
+  color: #6b7280;
+}
+
 .field-error {
   color: #ef4444;
   font-size: 0.875rem;
   display: flex;
   align-items: center;
   gap: 0.25rem;
+  transition: color 0.3s;
+}
+
+:root.dark .field-error {
+  color: #fca5a5;
 }
 
 .field-help {
@@ -434,10 +510,20 @@ const handleRegister = async () => {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  transition: color 0.3s;
+}
+
+:root.dark .field-help {
+  color: #9ca3af;
 }
 
 .field-help i {
   color: #9ca3af;
+  transition: color 0.3s;
+}
+
+:root.dark .field-help i {
+  color: #6b7280;
 }
 
 /* 태그 입력 */
@@ -449,9 +535,20 @@ const handleRegister = async () => {
   transition: all 0.3s;
 }
 
+:root.dark .tags-input-wrapper {
+  background: #374151;
+  border-color: #4b5563;
+}
+
 .tags-input-wrapper:focus-within {
   border-color: #6366f1;
   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+:root.dark .tags-input-wrapper:focus-within {
+  border-color: #818cf8;
+  background: #4b5563;
+  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.1);
 }
 
 .tags-list {
@@ -492,6 +589,13 @@ const handleRegister = async () => {
   outline: none;
   padding: 0.5rem;
   font-size: 1rem;
+  background: transparent;
+  color: #1f2937;
+  transition: color 0.3s;
+}
+
+:root.dark .tag-input {
+  color: #f3f4f6;
 }
 
 /* 에러 메시지 */
@@ -505,6 +609,13 @@ const handleRegister = async () => {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+:root.dark .error-message {
+  background-color: #7f1d1d;
+  color: #fca5a5;
+  border-color: #991b1b;
 }
 
 /* 버튼 */
@@ -525,15 +636,30 @@ const handleRegister = async () => {
   gap: 0.5rem;
 }
 
+:root.dark .btn-register {
+  background: linear-gradient(to right, #6366f1, #9333ea);
+}
+
 .btn-register:hover:not(:disabled) {
   transform: translateY(-2px);
   box-shadow: 0 8px 16px rgba(102, 126, 234, 0.4);
+}
+
+:root.dark .btn-register:hover:not(:disabled) {
+  background: linear-gradient(to right, #4f46e5, #7c3aed);
+  box-shadow: 0 8px 16px rgba(99, 102, 241, 0.4);
 }
 
 .btn-register:disabled {
   opacity: 0.6;
   cursor: not-allowed;
   transform: none;
+}
+
+:root.dark .btn-register:disabled {
+  background: #4b5563;
+  color: #9ca3af;
+  opacity: 1;
 }
 
 /* Footer */
@@ -545,16 +671,30 @@ const handleRegister = async () => {
 .footer-links p {
   color: #6b7280;
   font-size: 0.875rem;
+  transition: color 0.3s;
+}
+
+:root.dark .footer-links p {
+  color: #9ca3af;
 }
 
 .footer-links a {
   color: #6366f1;
   text-decoration: none;
   font-weight: 600;
+  transition: color 0.3s;
+}
+
+:root.dark .footer-links a {
+  color: #818cf8;
 }
 
 .footer-links a:hover {
   text-decoration: underline;
+}
+
+:root.dark .footer-links a:hover {
+  color: #a5b4fc;
 }
 
 /* 반응형 */
