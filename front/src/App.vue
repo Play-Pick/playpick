@@ -1,13 +1,20 @@
 <script setup>
 import { RouterLink, RouterView, useRouter } from 'vue-router'
-import { onMounted } from 'vue'
+import { onMounted, computed } from 'vue'
 import { useAuthStore } from '@/stores/authStore'
 import { useThemeStore } from '@/stores/themeStore'
 import FloatingActionButtons from '@/components/Common/FloatingActionButtons.vue'
+import logoLight from '@/assets/images/logo-light.png'
+import logoDark from '@/assets/images/logo-dark.png'
 
 const router = useRouter()
 const authStore = useAuthStore()
 const themeStore = useThemeStore()
+
+// 현재 테마에 맞는 로고 선택
+const currentLogo = computed(() => {
+  return themeStore.isDarkMode ? logoDark : logoLight
+})
 
 // 앱 초기화 시 인증 상태 확인
 onMounted(async () => {
@@ -25,7 +32,9 @@ const handleLogout = async () => {
   <div id="app">
     <nav class="navbar">
       <div class="nav-container">
-        <RouterLink to="/" class="nav-logo">공연 커뮤니티</RouterLink>
+        <RouterLink to="/" class="nav-logo">
+          <img :src="currentLogo" alt="공연 커뮤니티 로고" class="logo-image" />
+        </RouterLink>
         <div class="nav-menu">
           <RouterLink to="/" class="nav-link">홈</RouterLink>
           <RouterLink to="/performances" class="nav-link">공연</RouterLink>
@@ -74,7 +83,12 @@ const handleLogout = async () => {
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
-  background-color: #f5f5f5;
+  background-color: #ffffff;
+  transition: background-color 0.3s;
+}
+
+:root.dark body {
+  background-color: #1a1a1a;
 }
 
 #app {
@@ -87,7 +101,6 @@ body {
   background-color: #ffffff;
   color: #111827;
   padding: 1rem 0;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s, color 0.3s;
 }
 
@@ -106,15 +119,25 @@ body {
 }
 
 .nav-logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #111827;
+  display: flex;
+  align-items: center;
   text-decoration: none;
-  transition: color 0.3s;
+  transition: opacity 0.3s;
 }
 
-:root.dark .nav-logo {
-  color: #f3f4f6;
+.nav-logo:hover {
+  opacity: 0.8;
+}
+
+.logo-image {
+  height: 45px;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.3s;
+}
+
+.logo-image:hover {
+  transform: scale(1.05);
 }
 
 .nav-menu {

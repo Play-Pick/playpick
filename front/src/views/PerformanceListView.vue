@@ -62,13 +62,15 @@ const goToDetail = (id) => {
 <style scoped>
 .performance-list {
   min-height: 100vh;
-  background: linear-gradient(to bottom, #f9fafb, #ffffff);
+  background-color: #ffffff;
   padding: 2rem;
-  transition: background 0.3s;
+  max-width: 1400px;
+  margin: 0 auto;
+  transition: background-color 0.3s;
 }
 
 :root.dark .performance-list {
-  background: linear-gradient(to bottom, #1a1a1a, #0f0f0f);
+  background-color: #1a1a1a;
 }
 
 .header {
