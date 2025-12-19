@@ -1,0 +1,209 @@
+// ========================================
+// 1. Accounts (유저 및 프로필)
+// ========================================
+
+Table accounts_user {
+  id integer [primary key]
+  username varchar [unique, not null]
+  password varchar [not null]
+  email varchar
+  nickname varchar
+  profile_image varchar [note: '프로필 이미지 URL']
+  
+  // [f3] 위치 기반 추천
+  region_gu varchar(50) [note: '거주 구 (예: 강남구)']
+  region_dong varchar(50) [note: '거주 동 (예: 역삼동)']
+  
+  // [f2] 취향 매칭 (JSON)
+  preference_tags json [note: '선호 태그 ["뮤지컬", "신나는"]']
+  favorite_actors json [note: '선호 배우 ["조승우", "옥주현"]']
+  birth_date date [note: '연령대 계산용']
+
+  is_active boolean [default: true]
+  is_staff boolean [default: false]
+  is_superuser boolean [default: false]
+  date_joined timestamp
+  last_login timestamp
+}
+
+Table accounts_user_followings {
+  id integer [primary key]
+  from_user_id integer [not null]
+  to_user_id integer [not null]
+  created_at timestamp
+}
+
+// ========================================
+// 2. Performances (공연 정보 및 통계)
+// ========================================
+
+Table performances_performance {
+  mt20id varchar(20) [primary key, note: '공연 ID (예: PF279020)']
+  prfnm varchar(255) [not null, note: '공연명']
+  prfpdfrom date [note: '공연시작일']
+  prfpdto date [note: '공연종료일']
+  fcltynm varchar(100) [note: '공연시설명']
+  poster varchar(2048) [note: '포스터 URL']
+  area varchar(50) [note: '지역']
+  genrenm varchar(50) [note: '장르']
+  prfstate varchar(50) [note: '공연상태']
+  openrun varchar(5)
+  rnum varchar
+  
+  // [검색 최적화]
+  cast_search_text text [note: '출연진 텍스트 검색용']
+
+  indexes {
+    (prfstate) [name: 'idx_prfstate']
+    (genrenm) [name: 'idx_genrenm']
+    (prfpdfrom, prfpdto) [name: 'idx_prfdate']
+    (area) [name: 'idx_area']
+  }
+}
+
+Table performances_performancedetail {
+  performance_id varchar(20) [primary key, note: 'OneToOne with Performance']
+  prfcast text [note: '출연진']
+  prfcrew text [note: '제작진']
+  prfruntime varchar(50) [note: '공연시간']
+  prfage varchar(50) [note: '관람연령']
+  entrpsnm varchar(200) [note: '제작사']
+  pcseguidance text [note: '티켓가격']
+  sty text [note: '줄거리']
+  dtguidance text [note: '공연시간안내']
+  relates json [note: '예매처 목록']
+  collected_at timestamp
+  updated_at timestamp
+}
+
+// [New] 알고리즘 연산 캐시 테이블
+Table performances_performancemetric {
+  performance_id varchar(20) [primary key, note: 'OneToOne with Performance']
+  
+  // [f4] 대중성 점수
+  score_popularity float [default: 0.0]
+  
+  // [f5] 최신성 점수 (Time Decay)
+  score_recency float [default: 0.0]
+  
+  // [f6] 아이템 기반 협업 필터링 결과
+  similar_performances json [note: '유사 공연 ID 리스트 ["PF11", "PF22"]']
+  
+  updated_at timestamp
+}
+
+Table performances_boxofficeranking {
+  id integer [primary key]
+  performance_id varchar(20) [not null]
+  rank integer [not null]
+  genre_code varchar(10) [not null]
+  ranking_date date [not null]
+  period_type varchar(10) [default: 'week']
+  area varchar(50)
+  seat_count integer
+  performance_count integer
+  collected_at timestamp
+  updated_at timestamp
+}
+
+Table performances_performanceimage {
+  id integer [primary key]
+  performance_id varchar(20) [not null]
+  image_url varchar [not null]
+  order integer [default: 0]
+}
+
+// ========================================
+// 3. Community (게시글/댓글)
+// ========================================
+
+// [Changed] Review -> Article (확장성 고려)
+Table community_article {
+  id integer [primary key]
+  user_id integer [not null]
+  
+  // [Added] 어떤 공연에 대한 글인지 연결
+  performance_id varchar(20) [not null]
+  
+  category varchar(10) [note: 'REVIEW, QNA, FREE, INFO']
+  title varchar(100) [not null]
+  content text [not null]
+  
+  // [Changed] 질문글 등은 평점 없음 (Nullable)
+  rank integer [note: '평점 (1~5), Nullable']
+  
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table community_article_like_users {
+  id integer [primary key]
+  article_id integer [not null]
+  user_id integer [not null]
+}
+
+Table community_comment {
+  id integer [primary key]
+  content text [not null]
+  article_id integer [not null]
+  user_id integer [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+
+// ========================================
+// 4. Interactions (로그 및 추천 결과) - [Future Plan]
+// ========================================
+
+Table interactions_userlog {
+  id integer [primary key]
+  user_id integer [not null]
+  performance_id varchar(20) [not null]
+  
+  action_type varchar(10) [note: 'view, like, search']
+  timestamp timestamp [note: 'f1. Time Decay 계산의 핵심']
+  
+  indexes {
+    (user_id, timestamp)
+  }
+}
+
+Table interactions_recommendationresult {
+  id integer [primary key]
+  user_id integer [not null]
+  performance_id varchar(20) [not null]
+  
+  rank integer [note: '추천 순위 1~10']
+  score float [note: '최종 점수']
+  match_reason varchar(255) [note: 'UI 표시용 추천 사유']
+  
+  created_at timestamp
+}
+
+// ========================================
+// 관계 정의 (Relationships)
+// ========================================
+
+// User Relation
+Ref: accounts_user.id < accounts_user_followings.from_user_id
+Ref: accounts_user.id < accounts_user_followings.to_user_id
+
+// Performance Internal Relation
+Ref: performances_performance.mt20id - performances_performancedetail.performance_id
+Ref: performances_performance.mt20id - performances_performancemetric.performance_id // 1:1
+Ref: performances_performance.mt20id < performances_boxofficeranking.performance_id
+Ref: performances_performance.mt20id < performances_performanceimage.performance_id
+
+// Community Relation
+Ref: accounts_user.id < community_article.user_id
+Ref: performances_performance.mt20id < community_article.performance_id // [New] 공연-게시글 연결
+Ref: community_article.id < community_article_like_users.article_id
+Ref: accounts_user.id < community_article_like_users.user_id
+Ref: community_article.id < community_comment.article_id
+Ref: accounts_user.id < community_comment.user_id
+
+// Interactions Relation
+Ref: accounts_user.id < interactions_userlog.user_id
+Ref: performances_performance.mt20id < interactions_userlog.performance_id
+Ref: accounts_user.id < interactions_recommendationresult.user_id
+Ref: performances_performance.mt20id < interactions_recommendationresult.performance_id

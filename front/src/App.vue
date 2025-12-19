@@ -1,0 +1,250 @@
+<script setup>
+import { RouterLink, RouterView, useRouter } from 'vue-router'
+import { onMounted } from 'vue'
+import { useAuthStore } from '@/stores/authStore'
+import { useThemeStore } from '@/stores/themeStore'
+import FloatingActionButtons from '@/components/Common/FloatingActionButtons.vue'
+
+const router = useRouter()
+const authStore = useAuthStore()
+const themeStore = useThemeStore()
+
+// 앱 초기화 시 인증 상태 확인
+onMounted(async () => {
+  await authStore.initialize()
+  themeStore.initialize()
+})
+
+const handleLogout = async () => {
+  await authStore.logout()
+  router.push('/login')
+}
+</script>
+
+<template>
+  <div id="app">
+    <nav class="navbar">
+      <div class="nav-container">
+        <RouterLink to="/" class="nav-logo">공연 커뮤니티</RouterLink>
+        <div class="nav-menu">
+          <RouterLink to="/" class="nav-link">홈</RouterLink>
+          <RouterLink to="/performances" class="nav-link">공연</RouterLink>
+          <RouterLink to="/rankings" class="nav-link">랭킹</RouterLink>
+          <RouterLink to="/community" class="nav-link">커뮤니티</RouterLink>
+
+          <!-- 인증 상태에 따른 버튼 -->
+          <div class="auth-buttons">
+            <template v-if="authStore.isAuthenticated">
+              <RouterLink to="/mypage" class="nav-link mypage-link">
+                <i class="fas fa-user-circle"></i>
+                마이페이지
+              </RouterLink>
+              <span class="username">{{ authStore.username }}</span>
+              <button @click="handleLogout" class="nav-btn">로그아웃</button>
+            </template>
+            <template v-else>
+              <RouterLink to="/login" class="nav-btn">로그인</RouterLink>
+              <RouterLink to="/register" class="nav-btn btn-register">회원가입</RouterLink>
+            </template>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main class="main-content">
+      <RouterView />
+    </main>
+
+    <footer class="footer">
+      <p>&copy; 2025 공연 추천 커뮤니티</p>
+    </footer>
+
+    <!-- Floating Action Buttons -->
+    <FloatingActionButtons />
+  </div>
+</template>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+  background-color: #f5f5f5;
+}
+
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  background-color: #ffffff;
+  color: #111827;
+  padding: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+:root.dark .navbar {
+  background-color: #1a1a1a;
+  color: #f3f4f6;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #111827;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+:root.dark .nav-logo {
+  color: #f3f4f6;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.nav-link {
+  color: #111827;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+:root.dark .nav-link {
+  color: #f3f4f6;
+}
+
+.nav-link:hover,
+.nav-link.router-link-active {
+  color: #6366f1;
+}
+
+:root.dark .nav-link:hover,
+:root.dark .nav-link.router-link-active {
+  color: #818cf8;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-left: 1rem;
+}
+
+.username {
+  color: #6366f1;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+:root.dark .username {
+  color: #818cf8;
+}
+
+.nav-btn {
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+  color: #111827;
+  border: 1px solid #111827;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 0.875rem;
+}
+
+:root.dark .nav-btn {
+  color: #f3f4f6;
+  border-color: #f3f4f6;
+}
+
+.nav-btn:hover {
+  background-color: #111827;
+  color: #ffffff;
+}
+
+:root.dark .nav-btn:hover {
+  background-color: #f3f4f6;
+  color: #111827;
+}
+
+.btn-register {
+  background-color: #6366f1;
+  border-color: #6366f1;
+  color: white;
+}
+
+:root.dark .btn-register {
+  background-color: #818cf8;
+  border-color: #818cf8;
+}
+
+.btn-register:hover {
+  background-color: #4f46e5;
+  border-color: #4f46e5;
+  color: white;
+}
+
+:root.dark .btn-register:hover {
+  background-color: #6366f1;
+  border-color: #6366f1;
+  color: white;
+}
+
+.mypage-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 20px;
+  transition: all 0.3s;
+}
+
+.mypage-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(102, 126, 234, 0.4);
+}
+
+.mypage-link i {
+  font-size: 1.2rem;
+}
+
+.main-content {
+  flex: 1;
+  width: 100%;
+}
+
+.footer {
+  background-color: #f3f4f6;
+  color: #111827;
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: 2rem;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+:root.dark .footer {
+  background-color: #1a1a1a;
+  color: #f3f4f6;
+}
+</style>
