@@ -15,9 +15,9 @@
 ## 작성 예시
 
 ```
-#feat: 소셜 로그인(카카오) 기능 추가
-#fix: 게시글 작성 시 이미지 업로드 오류 수정
-#refactor: 추천 알고리즘 for문 최적화
+#feat: front/back 소셜 로그인(카카오) 기능 추가
+#fix: front/back 게시글 작성 시 이미지 업로드 오류 수정
+#refactor: front/back 추천 알고리즘 for문 최적화
 #docs: 프로젝트 실행 가이드(README) 작성
 #chore: requirements.txt 패키지 업데이트
 ```
