@@ -15,9 +15,27 @@
 ## 작성 예시
 
 ```
-feat: 소셜 로그인(카카오) 기능 추가
-fix: 게시글 작성 시 이미지 업로드 오류 수정
-refactor: 추천 알고리즘 for문 최적화
-docs: 프로젝트 실행 가이드(README) 작성
-chore: requirements.txt 패키지 업데이트
+#feat: 소셜 로그인(카카오) 기능 추가
+#fix: 게시글 작성 시 이미지 업로드 오류 수정
+#refactor: 추천 알고리즘 for문 최적화
+#docs: 프로젝트 실행 가이드(README) 작성
+#chore: requirements.txt 패키지 업데이트
 ```
+
+
+
+# Branch 규칙
+
+## 1. `master` 브랜치
+- **목적**: 최종 검증된 배포 버전 유지
+- **특징**: 항상 안정적이고 배포 가능한 상태 유지
+
+## 2. `develop` 브랜치
+- **목적**: 개발 브랜치로 기능 개발 및 버그 수정
+- **파생**: `master`에서 파생, 모든 `feature` 브랜치는 `develop`에 병합
+
+## 3. `feat` 브랜치
+- **목적**: 새로운 기능 개발
+- **명명 규칙**: `feat/<app_name>` 또는 `feat/<feature-name>`
+  - 예시: `feature/jwt-auth`, `feature/performance-list`
+- **파생**: `develop` 브랜치에서 파생하여 개발 완료 후 `develop`에 병합
