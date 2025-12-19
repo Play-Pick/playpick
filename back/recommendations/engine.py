@@ -195,21 +195,19 @@ class RecommendationEngine:
 
     def _f3_location_score(self, performance):
         """
-        [f3] 위치 근접성 점수 (텍스트 매칭 방식)
-        User의 region_gu와 Performance의 area 비교
+        [f3] 위치 근접성 점수 (광역시/도 단위 매칭)
+        User의 region과 Performance의 area 비교
         """
-        if not self.user.region_gu or not performance.area:
+        if not self.user.region or not performance.area:
             return 0.5  # 정보 없으면 중립 점수
 
-        # 1. 구(Gu) 완전 일치 -> 최고 점수
-        if self.user.region_gu in performance.area:
+        # 광역시/도 완전 일치 -> 최고 점수
+        if self.user.region == performance.area:
             return 1.0
 
-        # 2. 시/도 레벨 일치 (예: 둘 다 "서울")
-        # region_gu가 "강남구"라면 "서울"로 시작할 가능성 체크
-        user_city = self._extract_city(self.user.region_gu)
-        if user_city and user_city in performance.area:
-            return 0.6
+        # 부분 일치 (예: "서울" in "서울특별시")
+        if self.user.region in performance.area or performance.area in self.user.region:
+            return 0.8
 
         return 0.0
 
@@ -300,25 +298,6 @@ class RecommendationEngine:
 
         return 0.3
 
-    def _extract_city(self, region_gu):
-        """
-        구 이름에서 시/도 추출
-        예: "강남구" -> "서울", "수원시" -> "경기"
-        """
-        city_mapping = {
-            '서울': ['강남구', '강동구', '강북구', '강서구', '관악구', '광진구', '구로구', '금천구',
-                    '노원구', '도봉구', '동대문구', '동작구', '마포구', '서대문구', '서초구', '성동구',
-                    '성북구', '송파구', '양천구', '영등포구', '용산구', '은평구', '종로구', '중구', '중랑구'],
-            '경기': ['수원시', '성남시', '고양시', '용인시', '부천시', '안산시', '안양시', '남양주시'],
-            '인천': ['중구', '동구', '미추홀구', '연수구', '남동구', '부평구', '계양구', '서구'],
-        }
-
-        for city, districts in city_mapping.items():
-            if any(region_gu.startswith(d[:2]) for d in districts):
-                return city
-
-        return None
-
     def _get_top_reason(self, breakdown, performance):
         """
         추천 사유 결정 (가장 높은 점수를 기록한 요인)
@@ -342,7 +321,7 @@ class RecommendationEngine:
         reason_messages = {
             'click': f"👁️ 최근 {performance.genrenm} 장르를 자주 보셨어요!",
             'preference': "❤️ 취향 저격 공연이에요!",
-            'location': f"🏠 {self.user.region_gu} 근처에서 공연해요!",
+            'location': f"🏠 {self.user.region}에서 공연해요!",
             'popularity': "🔥 지금 가장 핫한 공연이에요!",
             'recency': "⏰ 곧 시작하는 공연이에요!",
             'collaborative': "👥 비슷한 취향의 사람들이 좋아해요!"

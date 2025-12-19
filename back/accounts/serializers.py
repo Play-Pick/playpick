@@ -46,15 +46,14 @@ class RegisterSerializer(serializers.ModelSerializer):
         model = User
         fields = [
             'username', 'email', 'password', 'password2',
-            'nickname', 'birth_date', 'region_gu', 'region_dong',
+            'nickname', 'birth_date', 'region',
             'preference_tags', 'favorite_actors'
         ]
         extra_kwargs = {
             'email': {'required': False},
             'nickname': {'required': False},
             'birth_date': {'required': False},
-            'region_gu': {'required': False},
-            'region_dong': {'required': False},
+            'region': {'required': False},
             'preference_tags': {'required': False},
             'favorite_actors': {'required': False},
         }

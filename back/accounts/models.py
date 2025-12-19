@@ -13,9 +13,9 @@ class User(AbstractUser):
     profile_image = models.ImageField(upload_to='profile/', blank=True, null=True, verbose_name="프로필 이미지")
 
     # 2. [f3] 위치 기반 추천을 위한 거주지 정보
-    # 예: '강남구', '역삼동' -> 공연장 주소와 매칭하여 거리 점수 계산
-    region_gu = models.CharField(max_length=50, blank=True, null=True, verbose_name="거주 구 (Gu)")
-    region_dong = models.CharField(max_length=50, blank=True, null=True, verbose_name="거주 동 (Dong)")
+    # KOPIS 데이터는 광역시/도 단위로 제공되므로 동일한 단위로 매칭
+    # 예: '서울특별시', '경기도', '부산광역시' -> Performance.area와 매칭
+    region = models.CharField(max_length=50, blank=True, null=True, verbose_name="거주 지역 (광역시/도)")
 
     # 3. [f2] 취향 매칭을 위한 선호 데이터 (JSON)
     # RDB(N:M) 대신 JSONField를 사용하여 조회 속도를 높이고 유연하게 저장
