@@ -16,3 +16,8 @@ six==1.17.0
 sqlparse==0.5.3
 tzdata==2025.2
 urllib3==2.5.0
+
+# AI 검색용 패키지
+openai>=1.0.0
+numpy>=1.24.0
+scikit-learn>=1.3.0

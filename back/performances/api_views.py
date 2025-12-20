@@ -10,6 +10,7 @@ from .serializers import (
     PerformanceDetailViewSerializer,
     BoxOfficeRankingSerializer
 )
+from .ai_search import AISearchEngine
 
 
 class PerformanceViewSet(viewsets.ReadOnlyModelViewSet):
@@ -226,6 +227,66 @@ class PerformanceViewSet(viewsets.ReadOnlyModelViewSet):
             'is_liked': is_liked,
             'like_count': performance.like_users.count()
         })
+
+    @action(detail=False, methods=['post'], url_path='ai-search')
+    def ai_search(self, request):
+        """
+        AI 의미 기반 검색
+        POST /api/performances/ai-search/
+        Body: { "query": "신나는 공연 추천해줘" }
+        """
+        query = request.data.get('query', '').strip()
+
+        if not query:
+            return Response({
+                'success': False,
+                'message': '검색어를 입력해주세요.'
+            }, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            # AI 검색 엔진 초기화
+            search_engine = AISearchEngine()
+
+            # 유사한 공연 검색 (Top 10)
+            results = search_engine.find_similar_performances(
+                user_query=query,
+                performances_qs=Performance.objects.all(),
+                top_k=10
+            )
+
+            if not results:
+                return Response({
+                    'success': False,
+                    'message': '검색 결과가 없습니다. 먼저 임베딩을 생성해주세요. (python manage.py generate_embeddings)'
+                })
+
+            # Top 1에 대한 AI 추천 사유 생성
+            top_performance, top_score = results[0]
+            ai_comment = search_engine.generate_recommendation_reason(
+                user_input=query,
+                performance=top_performance
+            )
+
+            # 시리얼라이징
+            serialized_results = []
+
+            for performance, score in results:
+                serializer = PerformanceListSerializer(performance, context={'request': request})
+                data = serializer.data
+                data['similarity_score'] = round(score, 4)
+                serialized_results.append(data)
+
+            return Response({
+                'success': True,
+                'ai_comment': ai_comment,
+                'results': serialized_results
+            })
+
+        except Exception as e:
+            return Response({
+                'success': False,
+                'message': f'검색 중 오류가 발생했습니다: {str(e)}'
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 class BoxOfficeRankingViewSet(viewsets.ReadOnlyModelViewSet):

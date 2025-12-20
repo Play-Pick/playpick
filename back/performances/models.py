@@ -49,6 +49,19 @@ class Performance(models.Model):
         verbose_name="찜한 사용자"
     )
 
+    # [AI 검색] 임베딩 벡터 저장 (OpenAI text-embedding-3-small: 1536차원)
+    embedding_vector = models.JSONField(
+        verbose_name="임베딩 벡터",
+        blank=True,
+        null=True,
+        help_text="OpenAI text-embedding-3-small 벡터 (1536차원)"
+    )
+    embedding_updated_at = models.DateTimeField(
+        verbose_name="임베딩 갱신일시",
+        blank=True,
+        null=True
+    )
+
     def __str__(self):
         return self.prfnm
 
