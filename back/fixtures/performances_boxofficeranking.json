@@ -1,0 +1,4002 @@
+[
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 51,
+    "fields": {
+      "performance": "PF278344",
+      "rank": 1,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 255,
+      "performance_count": 55,
+      "collected_at": "2025-12-19T00:00:47.216Z",
+      "updated_at": "2025-12-19T00:00:47.216Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 52,
+    "fields": {
+      "performance": "PF269871",
+      "rank": 2,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 627,
+      "performance_count": 33,
+      "collected_at": "2025-12-19T00:00:47.218Z",
+      "updated_at": "2025-12-19T00:00:47.218Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 53,
+    "fields": {
+      "performance": "PF277515",
+      "rank": 3,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 150,
+      "performance_count": 55,
+      "collected_at": "2025-12-19T00:00:47.219Z",
+      "updated_at": "2025-12-19T00:00:47.219Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 54,
+    "fields": {
+      "performance": "PF281317",
+      "rank": 4,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 528,
+      "performance_count": 20,
+      "collected_at": "2025-12-19T00:00:47.220Z",
+      "updated_at": "2025-12-19T00:00:47.220Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 55,
+    "fields": {
+      "performance": "PF274179",
+      "rank": 5,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 205,
+      "performance_count": 29,
+      "collected_at": "2025-12-19T00:00:47.221Z",
+      "updated_at": "2025-12-19T00:00:47.221Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 56,
+    "fields": {
+      "performance": "PF275519",
+      "rank": 6,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 365,
+      "performance_count": 20,
+      "collected_at": "2025-12-19T00:00:47.222Z",
+      "updated_at": "2025-12-19T00:00:47.222Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 57,
+    "fields": {
+      "performance": "PF269536",
+      "rank": 7,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 1221,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:47.223Z",
+      "updated_at": "2025-12-19T00:00:47.223Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 58,
+    "fields": {
+      "performance": "PF277387",
+      "rank": 8,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 320,
+      "performance_count": 42,
+      "collected_at": "2025-12-19T00:00:47.223Z",
+      "updated_at": "2025-12-19T00:00:47.223Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 59,
+    "fields": {
+      "performance": "PF281763",
+      "rank": 9,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 326,
+      "performance_count": 24,
+      "collected_at": "2025-12-19T00:00:47.225Z",
+      "updated_at": "2025-12-19T00:00:47.225Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 60,
+    "fields": {
+      "performance": "PF280583",
+      "rank": 10,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 365,
+      "performance_count": 20,
+      "collected_at": "2025-12-19T00:00:47.225Z",
+      "updated_at": "2025-12-19T00:00:47.225Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 61,
+    "fields": {
+      "performance": "PF278798",
+      "rank": 11,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 334,
+      "performance_count": 21,
+      "collected_at": "2025-12-19T00:00:47.226Z",
+      "updated_at": "2025-12-19T00:00:47.226Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 62,
+    "fields": {
+      "performance": "PF271914",
+      "rank": 12,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 160,
+      "performance_count": 14,
+      "collected_at": "2025-12-19T00:00:47.227Z",
+      "updated_at": "2025-12-19T00:00:47.227Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 63,
+    "fields": {
+      "performance": "PF270409",
+      "rank": 13,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 202,
+      "performance_count": 47,
+      "collected_at": "2025-12-19T00:00:47.228Z",
+      "updated_at": "2025-12-19T00:00:47.228Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 64,
+    "fields": {
+      "performance": "PF281743",
+      "rank": 14,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 200,
+      "performance_count": 24,
+      "collected_at": "2025-12-19T00:00:47.229Z",
+      "updated_at": "2025-12-19T00:00:47.230Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 65,
+    "fields": {
+      "performance": "PF278396",
+      "rank": 15,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 547,
+      "performance_count": 10,
+      "collected_at": "2025-12-19T00:00:47.231Z",
+      "updated_at": "2025-12-19T00:00:47.231Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 66,
+    "fields": {
+      "performance": "PF275694",
+      "rank": 16,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 560,
+      "performance_count": 14,
+      "collected_at": "2025-12-19T00:00:47.232Z",
+      "updated_at": "2025-12-19T00:00:47.232Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 67,
+    "fields": {
+      "performance": "PF275048",
+      "rank": 17,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 0,
+      "performance_count": 12,
+      "collected_at": "2025-12-19T00:00:47.233Z",
+      "updated_at": "2025-12-19T00:00:47.233Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 68,
+    "fields": {
+      "performance": "PF278262",
+      "rank": 18,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "광주",
+      "seat_count": 1722,
+      "performance_count": 3,
+      "collected_at": "2025-12-19T00:00:47.234Z",
+      "updated_at": "2025-12-19T00:00:47.234Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 69,
+    "fields": {
+      "performance": "PF278263",
+      "rank": 19,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "대전",
+      "seat_count": 1546,
+      "performance_count": 3,
+      "collected_at": "2025-12-19T00:00:47.235Z",
+      "updated_at": "2025-12-19T00:00:47.235Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 70,
+    "fields": {
+      "performance": "PF279234",
+      "rank": 20,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 510,
+      "performance_count": 25,
+      "collected_at": "2025-12-19T00:00:47.236Z",
+      "updated_at": "2025-12-19T00:00:47.236Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 71,
+    "fields": {
+      "performance": "PF276704",
+      "rank": 21,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 241,
+      "performance_count": 37,
+      "collected_at": "2025-12-19T00:00:47.237Z",
+      "updated_at": "2025-12-19T00:00:47.237Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 72,
+    "fields": {
+      "performance": "PF278358",
+      "rank": 22,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 264,
+      "performance_count": 36,
+      "collected_at": "2025-12-19T00:00:47.238Z",
+      "updated_at": "2025-12-19T00:00:47.238Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 73,
+    "fields": {
+      "performance": "PF272350",
+      "rank": 23,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 293,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:47.239Z",
+      "updated_at": "2025-12-19T00:00:47.239Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 74,
+    "fields": {
+      "performance": "PF275462",
+      "rank": 24,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "대구",
+      "seat_count": 260,
+      "performance_count": 18,
+      "collected_at": "2025-12-19T00:00:47.240Z",
+      "updated_at": "2025-12-19T00:00:47.240Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 75,
+    "fields": {
+      "performance": "PF277082",
+      "rank": 25,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "광주",
+      "seat_count": 220,
+      "performance_count": 13,
+      "collected_at": "2025-12-19T00:00:47.241Z",
+      "updated_at": "2025-12-19T00:00:47.241Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 76,
+    "fields": {
+      "performance": "PF278374",
+      "rank": 26,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 85,
+      "performance_count": 7,
+      "collected_at": "2025-12-19T00:00:47.242Z",
+      "updated_at": "2025-12-19T00:00:47.242Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 77,
+    "fields": {
+      "performance": "PF280227",
+      "rank": 27,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 220,
+      "performance_count": 8,
+      "collected_at": "2025-12-19T00:00:47.243Z",
+      "updated_at": "2025-12-19T00:00:47.243Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 78,
+    "fields": {
+      "performance": "PF274126",
+      "rank": 28,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "경기",
+      "seat_count": 1142,
+      "performance_count": 3,
+      "collected_at": "2025-12-19T00:00:47.244Z",
+      "updated_at": "2025-12-19T00:00:47.244Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 79,
+    "fields": {
+      "performance": "PF272356",
+      "rank": 29,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 702,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:47.245Z",
+      "updated_at": "2025-12-19T00:00:47.245Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 80,
+    "fields": {
+      "performance": "PF269118",
+      "rank": 30,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "광주",
+      "seat_count": 802,
+      "performance_count": 9,
+      "collected_at": "2025-12-19T00:00:47.246Z",
+      "updated_at": "2025-12-19T00:00:47.246Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 81,
+    "fields": {
+      "performance": "PF274432",
+      "rank": 31,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "대구",
+      "seat_count": 135,
+      "performance_count": 14,
+      "collected_at": "2025-12-19T00:00:47.247Z",
+      "updated_at": "2025-12-19T00:00:47.247Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 82,
+    "fields": {
+      "performance": "PF276486",
+      "rank": 32,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "대전",
+      "seat_count": 643,
+      "performance_count": 3,
+      "collected_at": "2025-12-19T00:00:47.248Z",
+      "updated_at": "2025-12-19T00:00:47.248Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 83,
+    "fields": {
+      "performance": "PF274410",
+      "rank": 33,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "대구",
+      "seat_count": 270,
+      "performance_count": 18,
+      "collected_at": "2025-12-19T00:00:47.249Z",
+      "updated_at": "2025-12-19T00:00:47.249Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 84,
+    "fields": {
+      "performance": "PF273989",
+      "rank": 34,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "대구",
+      "seat_count": 424,
+      "performance_count": 13,
+      "collected_at": "2025-12-19T00:00:47.250Z",
+      "updated_at": "2025-12-19T00:00:47.250Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 85,
+    "fields": {
+      "performance": "PF281839",
+      "rank": 35,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "경기",
+      "seat_count": 1318,
+      "performance_count": 3,
+      "collected_at": "2025-12-19T00:00:47.251Z",
+      "updated_at": "2025-12-19T00:00:47.251Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 86,
+    "fields": {
+      "performance": "PF272926",
+      "rank": 36,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 1004,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:47.252Z",
+      "updated_at": "2025-12-19T00:00:47.252Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 87,
+    "fields": {
+      "performance": "PF271990",
+      "rank": 37,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "부산",
+      "seat_count": 245,
+      "performance_count": 10,
+      "collected_at": "2025-12-19T00:00:47.253Z",
+      "updated_at": "2025-12-19T00:00:47.253Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 88,
+    "fields": {
+      "performance": "PF257901",
+      "rank": 38,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 330,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:47.254Z",
+      "updated_at": "2025-12-19T00:00:47.254Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 89,
+    "fields": {
+      "performance": "PF277447",
+      "rank": 39,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "경기",
+      "seat_count": 190,
+      "performance_count": 12,
+      "collected_at": "2025-12-19T00:00:47.255Z",
+      "updated_at": "2025-12-19T00:00:47.255Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 90,
+    "fields": {
+      "performance": "PF275056",
+      "rank": 40,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 260,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:47.256Z",
+      "updated_at": "2025-12-19T00:00:47.256Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 91,
+    "fields": {
+      "performance": "PF274742",
+      "rank": 41,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "경기",
+      "seat_count": 910,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:47.257Z",
+      "updated_at": "2025-12-19T00:00:47.257Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 92,
+    "fields": {
+      "performance": "PF280185",
+      "rank": 42,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "울산",
+      "seat_count": 188,
+      "performance_count": 11,
+      "collected_at": "2025-12-19T00:00:47.258Z",
+      "updated_at": "2025-12-19T00:00:47.258Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 93,
+    "fields": {
+      "performance": "PF269612",
+      "rank": 43,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 510,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:47.259Z",
+      "updated_at": "2025-12-19T00:00:47.259Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 94,
+    "fields": {
+      "performance": "PF279155",
+      "rank": 44,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 504,
+      "performance_count": 9,
+      "collected_at": "2025-12-19T00:00:47.260Z",
+      "updated_at": "2025-12-19T00:00:47.260Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 95,
+    "fields": {
+      "performance": "PF279728",
+      "rank": 45,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 128,
+      "performance_count": 13,
+      "collected_at": "2025-12-19T00:00:47.261Z",
+      "updated_at": "2025-12-19T00:00:47.261Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 96,
+    "fields": {
+      "performance": "PF274915",
+      "rank": 46,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 547,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:47.264Z",
+      "updated_at": "2025-12-19T00:00:47.264Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 97,
+    "fields": {
+      "performance": "PF272949",
+      "rank": 47,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "대구",
+      "seat_count": 156,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:47.266Z",
+      "updated_at": "2025-12-19T00:00:47.266Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 98,
+    "fields": {
+      "performance": "PF272278",
+      "rank": 48,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "부산",
+      "seat_count": 167,
+      "performance_count": 8,
+      "collected_at": "2025-12-19T00:00:47.267Z",
+      "updated_at": "2025-12-19T00:00:47.267Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 99,
+    "fields": {
+      "performance": "PF266584",
+      "rank": 49,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "대전",
+      "seat_count": 141,
+      "performance_count": 7,
+      "collected_at": "2025-12-19T00:00:47.268Z",
+      "updated_at": "2025-12-19T00:00:47.268Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 100,
+    "fields": {
+      "performance": "PF279193",
+      "rank": 50,
+      "genre_code": "AAAA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 70,
+      "performance_count": 5,
+      "collected_at": "2025-12-19T00:00:47.269Z",
+      "updated_at": "2025-12-19T00:00:47.269Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 1,
+    "fields": {
+      "performance": "PF276886",
+      "rank": 1,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 3022,
+      "performance_count": 17,
+      "collected_at": "2025-12-19T00:00:46.299Z",
+      "updated_at": "2025-12-19T00:00:46.299Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 2,
+    "fields": {
+      "performance": "PF279825",
+      "rank": 2,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 1221,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:46.301Z",
+      "updated_at": "2025-12-19T00:00:46.301Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 3,
+    "fields": {
+      "performance": "PF273441",
+      "rank": 3,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "대구",
+      "seat_count": 1490,
+      "performance_count": 4,
+      "collected_at": "2025-12-19T00:00:46.302Z",
+      "updated_at": "2025-12-19T00:00:46.302Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 4,
+    "fields": {
+      "performance": "PF277041",
+      "rank": 4,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 1004,
+      "performance_count": 6,
+      "collected_at": "2025-12-19T00:00:46.304Z",
+      "updated_at": "2025-12-19T00:00:46.304Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 5,
+    "fields": {
+      "performance": "PF275884",
+      "rank": 5,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 702,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:46.305Z",
+      "updated_at": "2025-12-19T00:00:46.305Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 6,
+    "fields": {
+      "performance": "PF281719",
+      "rank": 6,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "부산",
+      "seat_count": 1606,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:46.306Z",
+      "updated_at": "2025-12-19T00:00:46.306Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 7,
+    "fields": {
+      "performance": "PF281664",
+      "rank": 7,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "경기",
+      "seat_count": 1450,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:46.307Z",
+      "updated_at": "2025-12-19T00:00:46.307Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 8,
+    "fields": {
+      "performance": "PF278513",
+      "rank": 8,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "경기",
+      "seat_count": 911,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:46.308Z",
+      "updated_at": "2025-12-19T00:00:46.308Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 9,
+    "fields": {
+      "performance": "PF275120",
+      "rank": 9,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "전남",
+      "seat_count": 1021,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:46.309Z",
+      "updated_at": "2025-12-19T00:00:46.309Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 10,
+    "fields": {
+      "performance": "PF277664",
+      "rank": 10,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "경기",
+      "seat_count": 1804,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:46.310Z",
+      "updated_at": "2025-12-19T00:00:46.311Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 11,
+    "fields": {
+      "performance": "PF278076",
+      "rank": 11,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 618,
+      "performance_count": 4,
+      "collected_at": "2025-12-19T00:00:46.312Z",
+      "updated_at": "2025-12-19T00:00:46.312Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 12,
+    "fields": {
+      "performance": "PF277405",
+      "rank": 12,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "경기",
+      "seat_count": 548,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:46.313Z",
+      "updated_at": "2025-12-19T00:00:46.313Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 13,
+    "fields": {
+      "performance": "PF277741",
+      "rank": 13,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "경기",
+      "seat_count": 1025,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:46.314Z",
+      "updated_at": "2025-12-19T00:00:46.314Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 14,
+    "fields": {
+      "performance": "PF279809",
+      "rank": 14,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "경기",
+      "seat_count": 606,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:46.315Z",
+      "updated_at": "2025-12-19T00:00:46.315Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 15,
+    "fields": {
+      "performance": "PF279946",
+      "rank": 15,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 330,
+      "performance_count": 4,
+      "collected_at": "2025-12-19T00:00:46.316Z",
+      "updated_at": "2025-12-19T00:00:46.316Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 16,
+    "fields": {
+      "performance": "PF269558",
+      "rank": 16,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 1221,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:46.317Z",
+      "updated_at": "2025-12-19T00:00:46.317Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 17,
+    "fields": {
+      "performance": "PF279708",
+      "rank": 17,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 520,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:46.318Z",
+      "updated_at": "2025-12-19T00:00:46.318Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 18,
+    "fields": {
+      "performance": "PF279517",
+      "rank": 18,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "인천",
+      "seat_count": 951,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:46.319Z",
+      "updated_at": "2025-12-19T00:00:46.319Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 19,
+    "fields": {
+      "performance": "PF262691",
+      "rank": 19,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "부산",
+      "seat_count": 1606,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:46.320Z",
+      "updated_at": "2025-12-19T00:00:46.320Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 20,
+    "fields": {
+      "performance": "PF269631",
+      "rank": 20,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 1221,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:46.321Z",
+      "updated_at": "2025-12-19T00:00:46.321Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 21,
+    "fields": {
+      "performance": "PF279797",
+      "rank": 21,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 600,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:46.323Z",
+      "updated_at": "2025-12-19T00:00:46.323Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 22,
+    "fields": {
+      "performance": "PF278423",
+      "rank": 22,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "인천",
+      "seat_count": 1310,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:46.323Z",
+      "updated_at": "2025-12-19T00:00:46.323Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 23,
+    "fields": {
+      "performance": "PF274288",
+      "rank": 23,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "충남",
+      "seat_count": 1642,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:46.324Z",
+      "updated_at": "2025-12-19T00:00:46.324Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 24,
+    "fields": {
+      "performance": "PF279326",
+      "rank": 24,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 627,
+      "performance_count": 4,
+      "collected_at": "2025-12-19T00:00:46.327Z",
+      "updated_at": "2025-12-19T00:00:46.327Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 25,
+    "fields": {
+      "performance": "PF281287",
+      "rank": 25,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "경북",
+      "seat_count": 822,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:46.327Z",
+      "updated_at": "2025-12-19T00:00:46.327Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 26,
+    "fields": {
+      "performance": "PF278438",
+      "rank": 26,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "부산",
+      "seat_count": 880,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:46.328Z",
+      "updated_at": "2025-12-19T00:00:46.328Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 27,
+    "fields": {
+      "performance": "PF280238",
+      "rank": 27,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 600,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:46.331Z",
+      "updated_at": "2025-12-19T00:00:46.331Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 28,
+    "fields": {
+      "performance": "PF277296",
+      "rank": 28,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 1004,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:46.331Z",
+      "updated_at": "2025-12-19T00:00:46.331Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 29,
+    "fields": {
+      "performance": "PF270365",
+      "rank": 29,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "경기",
+      "seat_count": 1573,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:46.333Z",
+      "updated_at": "2025-12-19T00:00:46.333Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 30,
+    "fields": {
+      "performance": "PF281327",
+      "rank": 30,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 600,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:46.333Z",
+      "updated_at": "2025-12-19T00:00:46.333Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 31,
+    "fields": {
+      "performance": "PF279529",
+      "rank": 31,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "강원",
+      "seat_count": 972,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:46.334Z",
+      "updated_at": "2025-12-19T00:00:46.335Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 32,
+    "fields": {
+      "performance": "PF279813",
+      "rank": 32,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 372,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:46.336Z",
+      "updated_at": "2025-12-19T00:00:46.336Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 33,
+    "fields": {
+      "performance": "PF279096",
+      "rank": 33,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "제주",
+      "seat_count": 802,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:46.337Z",
+      "updated_at": "2025-12-19T00:00:46.337Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 34,
+    "fields": {
+      "performance": "PF280641",
+      "rank": 34,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 230,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:46.339Z",
+      "updated_at": "2025-12-19T00:00:46.339Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 35,
+    "fields": {
+      "performance": "PF280077",
+      "rank": 35,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 428,
+      "performance_count": 3,
+      "collected_at": "2025-12-19T00:00:46.340Z",
+      "updated_at": "2025-12-19T00:00:46.340Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 36,
+    "fields": {
+      "performance": "PF280705",
+      "rank": 36,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "부산",
+      "seat_count": 717,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:46.341Z",
+      "updated_at": "2025-12-19T00:00:46.341Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 37,
+    "fields": {
+      "performance": "PF262707",
+      "rank": 37,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "부산",
+      "seat_count": 1417,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:46.343Z",
+      "updated_at": "2025-12-19T00:00:46.343Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 38,
+    "fields": {
+      "performance": "PF279396",
+      "rank": 38,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 302,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:46.344Z",
+      "updated_at": "2025-12-19T00:00:46.344Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 39,
+    "fields": {
+      "performance": "PF281097",
+      "rank": 39,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 428,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:46.346Z",
+      "updated_at": "2025-12-19T00:00:46.346Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 40,
+    "fields": {
+      "performance": "PF281834",
+      "rank": 40,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "경기",
+      "seat_count": 503,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:46.347Z",
+      "updated_at": "2025-12-19T00:00:46.347Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 41,
+    "fields": {
+      "performance": "PF275053",
+      "rank": 41,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "경기",
+      "seat_count": 1200,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:46.349Z",
+      "updated_at": "2025-12-19T00:00:46.349Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 42,
+    "fields": {
+      "performance": "PF278456",
+      "rank": 42,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 110,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:46.350Z",
+      "updated_at": "2025-12-19T00:00:46.350Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 43,
+    "fields": {
+      "performance": "PF280315",
+      "rank": 43,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 100,
+      "performance_count": 3,
+      "collected_at": "2025-12-19T00:00:46.352Z",
+      "updated_at": "2025-12-19T00:00:46.352Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 44,
+    "fields": {
+      "performance": "PF280772",
+      "rank": 44,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 428,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:46.353Z",
+      "updated_at": "2025-12-19T00:00:46.353Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 45,
+    "fields": {
+      "performance": "PF279560",
+      "rank": 45,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "경기",
+      "seat_count": 388,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:46.354Z",
+      "updated_at": "2025-12-19T00:00:46.354Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 46,
+    "fields": {
+      "performance": "PF279818",
+      "rank": 46,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 504,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:46.356Z",
+      "updated_at": "2025-12-19T00:00:46.356Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 47,
+    "fields": {
+      "performance": "PF279395",
+      "rank": 47,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 352,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:46.357Z",
+      "updated_at": "2025-12-19T00:00:46.357Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 48,
+    "fields": {
+      "performance": "PF281443",
+      "rank": 48,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "대구",
+      "seat_count": 1490,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:46.358Z",
+      "updated_at": "2025-12-19T00:00:46.358Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 49,
+    "fields": {
+      "performance": "PF281133",
+      "rank": 49,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 190,
+      "performance_count": 4,
+      "collected_at": "2025-12-19T00:00:46.360Z",
+      "updated_at": "2025-12-19T00:00:46.360Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 50,
+    "fields": {
+      "performance": "PF278078",
+      "rank": 50,
+      "genre_code": "BBBC",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "인천",
+      "seat_count": 703,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:46.361Z",
+      "updated_at": "2025-12-19T00:00:46.361Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 101,
+    "fields": {
+      "performance": "PF281737",
+      "rank": 1,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 2036,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:48.152Z",
+      "updated_at": "2025-12-19T00:00:48.152Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 102,
+    "fields": {
+      "performance": "PF278593",
+      "rank": 2,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 2036,
+      "performance_count": 3,
+      "collected_at": "2025-12-19T00:00:48.154Z",
+      "updated_at": "2025-12-19T00:00:48.154Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 103,
+    "fields": {
+      "performance": "PF280880",
+      "rank": 3,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "부산",
+      "seat_count": 2011,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:48.155Z",
+      "updated_at": "2025-12-19T00:00:48.155Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 104,
+    "fields": {
+      "performance": "PF279724",
+      "rank": 4,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 2900,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:48.156Z",
+      "updated_at": "2025-12-19T00:00:48.156Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 105,
+    "fields": {
+      "performance": "PF279119",
+      "rank": 5,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 1627,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:48.157Z",
+      "updated_at": "2025-12-19T00:00:48.157Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 106,
+    "fields": {
+      "performance": "PF279516",
+      "rank": 6,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "충남",
+      "seat_count": 1642,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:48.158Z",
+      "updated_at": "2025-12-19T00:00:48.158Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 107,
+    "fields": {
+      "performance": "PF281025",
+      "rank": 7,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "부산",
+      "seat_count": 2011,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:48.159Z",
+      "updated_at": "2025-12-19T00:00:48.159Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 108,
+    "fields": {
+      "performance": "PF276107",
+      "rank": 8,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 2036,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:48.160Z",
+      "updated_at": "2025-12-19T00:00:48.160Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 109,
+    "fields": {
+      "performance": "PF278502",
+      "rank": 9,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 2036,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:48.161Z",
+      "updated_at": "2025-12-19T00:00:48.161Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 110,
+    "fields": {
+      "performance": "PF278800",
+      "rank": 10,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 3022,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:48.162Z",
+      "updated_at": "2025-12-19T00:00:48.162Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 111,
+    "fields": {
+      "performance": "PF280495",
+      "rank": 11,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 2036,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:48.163Z",
+      "updated_at": "2025-12-19T00:00:48.163Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 112,
+    "fields": {
+      "performance": "PF277145",
+      "rank": 12,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "인천",
+      "seat_count": 1727,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:48.164Z",
+      "updated_at": "2025-12-19T00:00:48.164Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 113,
+    "fields": {
+      "performance": "PF274849",
+      "rank": 13,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 2505,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:48.165Z",
+      "updated_at": "2025-12-19T00:00:48.165Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 114,
+    "fields": {
+      "performance": "PF274397",
+      "rank": 14,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 3022,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:48.166Z",
+      "updated_at": "2025-12-19T00:00:48.166Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 115,
+    "fields": {
+      "performance": "PF281426",
+      "rank": 15,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 3022,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:48.167Z",
+      "updated_at": "2025-12-19T00:00:48.167Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 116,
+    "fields": {
+      "performance": "PF281679",
+      "rank": 16,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "경기",
+      "seat_count": 1450,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:48.168Z",
+      "updated_at": "2025-12-19T00:00:48.168Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 117,
+    "fields": {
+      "performance": "PF280928",
+      "rank": 17,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 2505,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:48.169Z",
+      "updated_at": "2025-12-19T00:00:48.169Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 118,
+    "fields": {
+      "performance": "PF277633",
+      "rank": 18,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "부산",
+      "seat_count": 2011,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:48.170Z",
+      "updated_at": "2025-12-19T00:00:48.170Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 119,
+    "fields": {
+      "performance": "PF279941",
+      "rank": 19,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 1627,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:48.171Z",
+      "updated_at": "2025-12-19T00:00:48.171Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 120,
+    "fields": {
+      "performance": "PF275417",
+      "rank": 20,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 2505,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:48.172Z",
+      "updated_at": "2025-12-19T00:00:48.172Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 121,
+    "fields": {
+      "performance": "PF277872",
+      "rank": 21,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 2036,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:48.173Z",
+      "updated_at": "2025-12-19T00:00:48.173Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 122,
+    "fields": {
+      "performance": "PF280374",
+      "rank": 22,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 2700,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:48.174Z",
+      "updated_at": "2025-12-19T00:00:48.174Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 123,
+    "fields": {
+      "performance": "PF274907",
+      "rank": 23,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 4500,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:48.175Z",
+      "updated_at": "2025-12-19T00:00:48.175Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 124,
+    "fields": {
+      "performance": "PF277908",
+      "rank": 24,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 2036,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:48.176Z",
+      "updated_at": "2025-12-19T00:00:48.176Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 125,
+    "fields": {
+      "performance": "PF277157",
+      "rank": 25,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 2036,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:48.177Z",
+      "updated_at": "2025-12-19T00:00:48.177Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 126,
+    "fields": {
+      "performance": "PF274940",
+      "rank": 26,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "부산",
+      "seat_count": 2011,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:48.178Z",
+      "updated_at": "2025-12-19T00:00:48.178Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 127,
+    "fields": {
+      "performance": "PF279036",
+      "rank": 27,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "대전",
+      "seat_count": 1546,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:48.179Z",
+      "updated_at": "2025-12-19T00:00:48.179Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 128,
+    "fields": {
+      "performance": "PF279587",
+      "rank": 28,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "대구",
+      "seat_count": 1284,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:48.180Z",
+      "updated_at": "2025-12-19T00:00:48.180Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 129,
+    "fields": {
+      "performance": "PF277440",
+      "rank": 29,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 2505,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:48.181Z",
+      "updated_at": "2025-12-19T00:00:48.181Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 130,
+    "fields": {
+      "performance": "PF258352",
+      "rank": 30,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 2283,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:48.182Z",
+      "updated_at": "2025-12-19T00:00:48.182Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 131,
+    "fields": {
+      "performance": "PF274783",
+      "rank": 31,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "인천",
+      "seat_count": 1727,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:48.183Z",
+      "updated_at": "2025-12-19T00:00:48.183Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 132,
+    "fields": {
+      "performance": "PF281236",
+      "rank": 32,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 2505,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:48.184Z",
+      "updated_at": "2025-12-19T00:00:48.184Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 133,
+    "fields": {
+      "performance": "PF281445",
+      "rank": 33,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "경북",
+      "seat_count": 1183,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:48.185Z",
+      "updated_at": "2025-12-19T00:00:48.185Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 134,
+    "fields": {
+      "performance": "PF277010",
+      "rank": 34,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "부산",
+      "seat_count": 1417,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:48.186Z",
+      "updated_at": "2025-12-19T00:00:48.186Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 135,
+    "fields": {
+      "performance": "PF280303",
+      "rank": 35,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 2700,
+      "performance_count": 3,
+      "collected_at": "2025-12-19T00:00:48.187Z",
+      "updated_at": "2025-12-19T00:00:48.187Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 136,
+    "fields": {
+      "performance": "PF275658",
+      "rank": 36,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "대구",
+      "seat_count": 1490,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:48.189Z",
+      "updated_at": "2025-12-19T00:00:48.189Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 137,
+    "fields": {
+      "performance": "PF278701",
+      "rank": 37,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "인천",
+      "seat_count": 1727,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:48.190Z",
+      "updated_at": "2025-12-19T00:00:48.190Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 138,
+    "fields": {
+      "performance": "PF275357",
+      "rank": 38,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "부산",
+      "seat_count": 841,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:48.191Z",
+      "updated_at": "2025-12-19T00:00:48.191Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 139,
+    "fields": {
+      "performance": "PF270996",
+      "rank": 39,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "강원",
+      "seat_count": 940,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:48.191Z",
+      "updated_at": "2025-12-19T00:00:48.191Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 140,
+    "fields": {
+      "performance": "PF278165",
+      "rank": 40,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 2505,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:48.193Z",
+      "updated_at": "2025-12-19T00:00:48.193Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 141,
+    "fields": {
+      "performance": "PF278068",
+      "rank": 41,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 4500,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:48.194Z",
+      "updated_at": "2025-12-19T00:00:48.194Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 142,
+    "fields": {
+      "performance": "PF279740",
+      "rank": 42,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 2505,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:48.194Z",
+      "updated_at": "2025-12-19T00:00:48.194Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 143,
+    "fields": {
+      "performance": "PF275145",
+      "rank": 43,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "경기",
+      "seat_count": 1544,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:48.196Z",
+      "updated_at": "2025-12-19T00:00:48.196Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 144,
+    "fields": {
+      "performance": "PF281129",
+      "rank": 44,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "경기",
+      "seat_count": 1887,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:48.197Z",
+      "updated_at": "2025-12-19T00:00:48.197Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 145,
+    "fields": {
+      "performance": "PF280225",
+      "rank": 45,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "경남",
+      "seat_count": 796,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:48.198Z",
+      "updated_at": "2025-12-19T00:00:48.198Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 146,
+    "fields": {
+      "performance": "PF275741",
+      "rank": 46,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 2036,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:48.199Z",
+      "updated_at": "2025-12-19T00:00:48.199Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 147,
+    "fields": {
+      "performance": "PF277771",
+      "rank": 47,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 2036,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:48.200Z",
+      "updated_at": "2025-12-19T00:00:48.200Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 148,
+    "fields": {
+      "performance": "PF276777",
+      "rank": 48,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 2036,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:48.201Z",
+      "updated_at": "2025-12-19T00:00:48.201Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 149,
+    "fields": {
+      "performance": "PF281482",
+      "rank": 49,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "경북",
+      "seat_count": 998,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:48.202Z",
+      "updated_at": "2025-12-19T00:00:48.202Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 150,
+    "fields": {
+      "performance": "PF272861",
+      "rank": 50,
+      "genre_code": "CCCA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "경기",
+      "seat_count": 1573,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:48.203Z",
+      "updated_at": "2025-12-19T00:00:48.203Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 201,
+    "fields": {
+      "performance": "PF281027",
+      "rank": 1,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 16744,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:50.372Z",
+      "updated_at": "2025-12-19T00:00:50.372Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 202,
+    "fields": {
+      "performance": "PF279159",
+      "rank": 2,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 15000,
+      "performance_count": 4,
+      "collected_at": "2025-12-19T00:00:50.374Z",
+      "updated_at": "2025-12-19T00:00:50.374Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 203,
+    "fields": {
+      "performance": "PF281467",
+      "rank": 3,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "부산",
+      "seat_count": 18000,
+      "performance_count": 3,
+      "collected_at": "2025-12-19T00:00:50.375Z",
+      "updated_at": "2025-12-19T00:00:50.375Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 204,
+    "fields": {
+      "performance": "PF281637",
+      "rank": 4,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "인천",
+      "seat_count": 14483,
+      "performance_count": 3,
+      "collected_at": "2025-12-19T00:00:50.377Z",
+      "updated_at": "2025-12-19T00:00:50.377Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 205,
+    "fields": {
+      "performance": "PF279882",
+      "rank": 5,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 15000,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:50.378Z",
+      "updated_at": "2025-12-19T00:00:50.378Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 206,
+    "fields": {
+      "performance": "PF281306",
+      "rank": 6,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 15000,
+      "performance_count": 3,
+      "collected_at": "2025-12-19T00:00:50.381Z",
+      "updated_at": "2025-12-19T00:00:50.381Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 207,
+    "fields": {
+      "performance": "PF280473",
+      "rank": 7,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 11032,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:50.383Z",
+      "updated_at": "2025-12-19T00:00:50.383Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 208,
+    "fields": {
+      "performance": "PF280472",
+      "rank": 8,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "부산",
+      "seat_count": 6000,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:50.385Z",
+      "updated_at": "2025-12-19T00:00:50.385Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 209,
+    "fields": {
+      "performance": "PF278277",
+      "rank": 9,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 16744,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:50.386Z",
+      "updated_at": "2025-12-19T00:00:50.386Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 210,
+    "fields": {
+      "performance": "PF281710",
+      "rank": 10,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 15000,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:50.387Z",
+      "updated_at": "2025-12-19T00:00:50.387Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 211,
+    "fields": {
+      "performance": "PF281772",
+      "rank": 11,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 11032,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:50.389Z",
+      "updated_at": "2025-12-19T00:00:50.389Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 212,
+    "fields": {
+      "performance": "PF280152",
+      "rank": 12,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 7000,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:50.390Z",
+      "updated_at": "2025-12-19T00:00:50.390Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 213,
+    "fields": {
+      "performance": "PF280262",
+      "rank": 13,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 702,
+      "performance_count": 11,
+      "collected_at": "2025-12-19T00:00:50.392Z",
+      "updated_at": "2025-12-19T00:00:50.392Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 214,
+    "fields": {
+      "performance": "PF280467",
+      "rank": 14,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 5003,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:50.394Z",
+      "updated_at": "2025-12-19T00:00:50.394Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 215,
+    "fields": {
+      "performance": "PF280650",
+      "rank": 15,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 5003,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:50.397Z",
+      "updated_at": "2025-12-19T00:00:50.397Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 216,
+    "fields": {
+      "performance": "PF279578",
+      "rank": 16,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 11032,
+      "performance_count": 3,
+      "collected_at": "2025-12-19T00:00:50.399Z",
+      "updated_at": "2025-12-19T00:00:50.399Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 217,
+    "fields": {
+      "performance": "PF280416",
+      "rank": 17,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "부산",
+      "seat_count": 6000,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:50.400Z",
+      "updated_at": "2025-12-19T00:00:50.400Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 218,
+    "fields": {
+      "performance": "PF280637",
+      "rank": 18,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 4500,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:50.401Z",
+      "updated_at": "2025-12-19T00:00:50.401Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 219,
+    "fields": {
+      "performance": "PF280014",
+      "rank": 19,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 11032,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:50.403Z",
+      "updated_at": "2025-12-19T00:00:50.403Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 220,
+    "fields": {
+      "performance": "PF280934",
+      "rank": 20,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 2452,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:50.404Z",
+      "updated_at": "2025-12-19T00:00:50.404Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 221,
+    "fields": {
+      "performance": "PF280673",
+      "rank": 21,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 2452,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:50.405Z",
+      "updated_at": "2025-12-19T00:00:50.405Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 222,
+    "fields": {
+      "performance": "PF280805",
+      "rank": 22,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "인천",
+      "seat_count": 14483,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:50.407Z",
+      "updated_at": "2025-12-19T00:00:50.407Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 223,
+    "fields": {
+      "performance": "PF281240",
+      "rank": 23,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 1373,
+      "performance_count": 3,
+      "collected_at": "2025-12-19T00:00:50.408Z",
+      "updated_at": "2025-12-19T00:00:50.408Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 224,
+    "fields": {
+      "performance": "PF281711",
+      "rank": 24,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 4500,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:50.409Z",
+      "updated_at": "2025-12-19T00:00:50.409Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 225,
+    "fields": {
+      "performance": "PF280990",
+      "rank": 25,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "경남",
+      "seat_count": 5184,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:50.411Z",
+      "updated_at": "2025-12-19T00:00:50.411Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 226,
+    "fields": {
+      "performance": "PF280092",
+      "rank": 26,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 16744,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:50.414Z",
+      "updated_at": "2025-12-19T00:00:50.414Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 227,
+    "fields": {
+      "performance": "PF279741",
+      "rank": 27,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "대구",
+      "seat_count": 9000,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:50.416Z",
+      "updated_at": "2025-12-19T00:00:50.416Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 228,
+    "fields": {
+      "performance": "PF280918",
+      "rank": 28,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "대전",
+      "seat_count": 0,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:50.417Z",
+      "updated_at": "2025-12-19T00:00:50.417Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 229,
+    "fields": {
+      "performance": "PF280351",
+      "rank": 29,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 962,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:50.418Z",
+      "updated_at": "2025-12-19T00:00:50.418Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 230,
+    "fields": {
+      "performance": "PF281695",
+      "rank": 30,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 2452,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:50.419Z",
+      "updated_at": "2025-12-19T00:00:50.419Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 231,
+    "fields": {
+      "performance": "PF273749",
+      "rank": 31,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 15000,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:50.420Z",
+      "updated_at": "2025-12-19T00:00:50.420Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 232,
+    "fields": {
+      "performance": "PF275008",
+      "rank": 32,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "부산",
+      "seat_count": 18000,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:50.422Z",
+      "updated_at": "2025-12-19T00:00:50.422Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 233,
+    "fields": {
+      "performance": "PF279402",
+      "rank": 33,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 8057,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:50.423Z",
+      "updated_at": "2025-12-19T00:00:50.423Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 234,
+    "fields": {
+      "performance": "PF279907",
+      "rank": 34,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 5003,
+      "performance_count": 3,
+      "collected_at": "2025-12-19T00:00:50.426Z",
+      "updated_at": "2025-12-19T00:00:50.426Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 235,
+    "fields": {
+      "performance": "PF279733",
+      "rank": 35,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "인천",
+      "seat_count": 8828,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:50.428Z",
+      "updated_at": "2025-12-19T00:00:50.428Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 236,
+    "fields": {
+      "performance": "PF280329",
+      "rank": 36,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "인천",
+      "seat_count": 14483,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:50.430Z",
+      "updated_at": "2025-12-19T00:00:50.430Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 237,
+    "fields": {
+      "performance": "PF280151",
+      "rank": 37,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "인천",
+      "seat_count": 0,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:50.432Z",
+      "updated_at": "2025-12-19T00:00:50.432Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 238,
+    "fields": {
+      "performance": "PF279665",
+      "rank": 38,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 625,
+      "performance_count": 3,
+      "collected_at": "2025-12-19T00:00:50.433Z",
+      "updated_at": "2025-12-19T00:00:50.433Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 239,
+    "fields": {
+      "performance": "PF279731",
+      "rank": 39,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "대전",
+      "seat_count": 0,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:50.435Z",
+      "updated_at": "2025-12-19T00:00:50.435Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 240,
+    "fields": {
+      "performance": "PF275646",
+      "rank": 40,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "부산",
+      "seat_count": 18000,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:50.436Z",
+      "updated_at": "2025-12-19T00:00:50.436Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 241,
+    "fields": {
+      "performance": "PF281609",
+      "rank": 41,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 2452,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:50.437Z",
+      "updated_at": "2025-12-19T00:00:50.437Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 242,
+    "fields": {
+      "performance": "PF279800",
+      "rank": 42,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "경기",
+      "seat_count": 1025,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:50.438Z",
+      "updated_at": "2025-12-19T00:00:50.438Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 243,
+    "fields": {
+      "performance": "PF275538",
+      "rank": 43,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 7000,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:50.439Z",
+      "updated_at": "2025-12-19T00:00:50.439Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 244,
+    "fields": {
+      "performance": "PF280932",
+      "rank": 44,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 1464,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:50.440Z",
+      "updated_at": "2025-12-19T00:00:50.440Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 245,
+    "fields": {
+      "performance": "PF281425",
+      "rank": 45,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "경기",
+      "seat_count": 0,
+      "performance_count": 3,
+      "collected_at": "2025-12-19T00:00:50.441Z",
+      "updated_at": "2025-12-19T00:00:50.441Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 246,
+    "fields": {
+      "performance": "PF279852",
+      "rank": 46,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "광주",
+      "seat_count": 8337,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:50.442Z",
+      "updated_at": "2025-12-19T00:00:50.442Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 247,
+    "fields": {
+      "performance": "PF279675",
+      "rank": 47,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 4507,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:50.443Z",
+      "updated_at": "2025-12-19T00:00:50.443Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 248,
+    "fields": {
+      "performance": "PF279993",
+      "rank": 48,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "대구",
+      "seat_count": 1304,
+      "performance_count": 2,
+      "collected_at": "2025-12-19T00:00:50.444Z",
+      "updated_at": "2025-12-19T00:00:50.444Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 249,
+    "fields": {
+      "performance": "PF279770",
+      "rank": 49,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 2222,
+      "performance_count": 1,
+      "collected_at": "2025-12-19T00:00:50.447Z",
+      "updated_at": "2025-12-19T00:00:50.447Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 250,
+    "fields": {
+      "performance": "PF278272",
+      "rank": 50,
+      "genre_code": "CCCD",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 11032,
+      "performance_count": 3,
+      "collected_at": "2025-12-19T00:00:50.449Z",
+      "updated_at": "2025-12-19T00:00:50.449Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 151,
+    "fields": {
+      "performance": "PF277594",
+      "rank": 1,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 2283,
+      "performance_count": 48,
+      "collected_at": "2025-12-19T00:00:49.150Z",
+      "updated_at": "2025-12-19T00:00:49.150Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 152,
+    "fields": {
+      "performance": "PF274266",
+      "rank": 2,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 1766,
+      "performance_count": 69,
+      "collected_at": "2025-12-19T00:00:49.152Z",
+      "updated_at": "2025-12-19T00:00:49.152Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 153,
+    "fields": {
+      "performance": "PF273019",
+      "rank": 3,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 1242,
+      "performance_count": 54,
+      "collected_at": "2025-12-19T00:00:49.153Z",
+      "updated_at": "2025-12-19T00:00:49.153Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 154,
+    "fields": {
+      "performance": "PF274745",
+      "rank": 4,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 1211,
+      "performance_count": 46,
+      "collected_at": "2025-12-19T00:00:49.154Z",
+      "updated_at": "2025-12-19T00:00:49.154Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 155,
+    "fields": {
+      "performance": "PF276569",
+      "rank": 5,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 1230,
+      "performance_count": 65,
+      "collected_at": "2025-12-19T00:00:49.156Z",
+      "updated_at": "2025-12-19T00:00:49.156Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 156,
+    "fields": {
+      "performance": "PF276168",
+      "rank": 6,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 1335,
+      "performance_count": 48,
+      "collected_at": "2025-12-19T00:00:49.157Z",
+      "updated_at": "2025-12-19T00:00:49.157Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 157,
+    "fields": {
+      "performance": "PF275178",
+      "rank": 7,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 1250,
+      "performance_count": 61,
+      "collected_at": "2025-12-19T00:00:49.158Z",
+      "updated_at": "2025-12-19T00:00:49.158Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 158,
+    "fields": {
+      "performance": "PF267104",
+      "rank": 8,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 0,
+      "performance_count": 40,
+      "collected_at": "2025-12-19T00:00:49.160Z",
+      "updated_at": "2025-12-19T00:00:49.160Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 159,
+    "fields": {
+      "performance": "PF276996",
+      "rank": 9,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 1004,
+      "performance_count": 61,
+      "collected_at": "2025-12-19T00:00:49.162Z",
+      "updated_at": "2025-12-19T00:00:49.162Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 160,
+    "fields": {
+      "performance": "PF274238",
+      "rank": 10,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 1004,
+      "performance_count": 80,
+      "collected_at": "2025-12-19T00:00:49.164Z",
+      "updated_at": "2025-12-19T00:00:49.164Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 161,
+    "fields": {
+      "performance": "PF273937",
+      "rank": 11,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "부산",
+      "seat_count": 1727,
+      "performance_count": 36,
+      "collected_at": "2025-12-19T00:00:49.166Z",
+      "updated_at": "2025-12-19T00:00:49.166Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 162,
+    "fields": {
+      "performance": "PF275043",
+      "rank": 12,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 620,
+      "performance_count": 45,
+      "collected_at": "2025-12-19T00:00:49.167Z",
+      "updated_at": "2025-12-19T00:00:49.167Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 163,
+    "fields": {
+      "performance": "PF274663",
+      "rank": 13,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 998,
+      "performance_count": 30,
+      "collected_at": "2025-12-19T00:00:49.168Z",
+      "updated_at": "2025-12-19T00:00:49.168Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 164,
+    "fields": {
+      "performance": "PF280411",
+      "rank": 14,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "대구",
+      "seat_count": 1954,
+      "performance_count": 25,
+      "collected_at": "2025-12-19T00:00:49.170Z",
+      "updated_at": "2025-12-19T00:00:49.170Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 165,
+    "fields": {
+      "performance": "PF275203",
+      "rank": 15,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 314,
+      "performance_count": 70,
+      "collected_at": "2025-12-19T00:00:49.170Z",
+      "updated_at": "2025-12-19T00:00:49.170Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 166,
+    "fields": {
+      "performance": "PF277092",
+      "rank": 16,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 999,
+      "performance_count": 52,
+      "collected_at": "2025-12-19T00:00:49.172Z",
+      "updated_at": "2025-12-19T00:00:49.172Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 167,
+    "fields": {
+      "performance": "PF277616",
+      "rank": 17,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 702,
+      "performance_count": 45,
+      "collected_at": "2025-12-19T00:00:49.173Z",
+      "updated_at": "2025-12-19T00:00:49.173Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 168,
+    "fields": {
+      "performance": "PF271160",
+      "rank": 18,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 1230,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:49.174Z",
+      "updated_at": "2025-12-19T00:00:49.174Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 169,
+    "fields": {
+      "performance": "PF274117",
+      "rank": 19,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 352,
+      "performance_count": 33,
+      "collected_at": "2025-12-19T00:00:49.175Z",
+      "updated_at": "2025-12-19T00:00:49.175Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 170,
+    "fields": {
+      "performance": "PF271506",
+      "rank": 20,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 1052,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:49.176Z",
+      "updated_at": "2025-12-19T00:00:49.176Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 171,
+    "fields": {
+      "performance": "PF273451",
+      "rank": 21,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 269,
+      "performance_count": 43,
+      "collected_at": "2025-12-19T00:00:49.177Z",
+      "updated_at": "2025-12-19T00:00:49.177Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 172,
+    "fields": {
+      "performance": "PF274467",
+      "rank": 22,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 211,
+      "performance_count": 44,
+      "collected_at": "2025-12-19T00:00:49.178Z",
+      "updated_at": "2025-12-19T00:00:49.178Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 173,
+    "fields": {
+      "performance": "PF277959",
+      "rank": 23,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "경기",
+      "seat_count": 1544,
+      "performance_count": 4,
+      "collected_at": "2025-12-19T00:00:49.179Z",
+      "updated_at": "2025-12-19T00:00:49.179Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 174,
+    "fields": {
+      "performance": "PF279790",
+      "rank": 24,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 599,
+      "performance_count": 42,
+      "collected_at": "2025-12-19T00:00:49.180Z",
+      "updated_at": "2025-12-19T00:00:49.180Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 175,
+    "fields": {
+      "performance": "PF273043",
+      "rank": 25,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 220,
+      "performance_count": 28,
+      "collected_at": "2025-12-19T00:00:49.181Z",
+      "updated_at": "2025-12-19T00:00:49.181Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 176,
+    "fields": {
+      "performance": "PF279784",
+      "rank": 26,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 406,
+      "performance_count": 22,
+      "collected_at": "2025-12-19T00:00:49.182Z",
+      "updated_at": "2025-12-19T00:00:49.182Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 177,
+    "fields": {
+      "performance": "PF278514",
+      "rank": 27,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "인천",
+      "seat_count": 1310,
+      "performance_count": 4,
+      "collected_at": "2025-12-19T00:00:49.183Z",
+      "updated_at": "2025-12-19T00:00:49.183Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 178,
+    "fields": {
+      "performance": "PF278326",
+      "rank": 28,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 470,
+      "performance_count": 33,
+      "collected_at": "2025-12-19T00:00:49.184Z",
+      "updated_at": "2025-12-19T00:00:49.184Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 179,
+    "fields": {
+      "performance": "PF281022",
+      "rank": 29,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "경남",
+      "seat_count": 1528,
+      "performance_count": 3,
+      "collected_at": "2025-12-19T00:00:49.185Z",
+      "updated_at": "2025-12-19T00:00:49.185Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 180,
+    "fields": {
+      "performance": "PF278506",
+      "rank": 30,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 393,
+      "performance_count": 53,
+      "collected_at": "2025-12-19T00:00:49.186Z",
+      "updated_at": "2025-12-19T00:00:49.186Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 181,
+    "fields": {
+      "performance": "PF279591",
+      "rank": 31,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "전남",
+      "seat_count": 1021,
+      "performance_count": 4,
+      "collected_at": "2025-12-19T00:00:49.187Z",
+      "updated_at": "2025-12-19T00:00:49.187Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 182,
+    "fields": {
+      "performance": "PF277176",
+      "rank": 32,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "대전",
+      "seat_count": 1546,
+      "performance_count": 4,
+      "collected_at": "2025-12-19T00:00:49.188Z",
+      "updated_at": "2025-12-19T00:00:49.188Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 183,
+    "fields": {
+      "performance": "PF277826",
+      "rank": 33,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "대구",
+      "seat_count": 1490,
+      "performance_count": 4,
+      "collected_at": "2025-12-19T00:00:49.190Z",
+      "updated_at": "2025-12-19T00:00:49.190Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 184,
+    "fields": {
+      "performance": "PF277225",
+      "rank": 34,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "충남",
+      "seat_count": 1642,
+      "performance_count": 4,
+      "collected_at": "2025-12-19T00:00:49.191Z",
+      "updated_at": "2025-12-19T00:00:49.191Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 185,
+    "fields": {
+      "performance": "PF274845",
+      "rank": 35,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 320,
+      "performance_count": 41,
+      "collected_at": "2025-12-19T00:00:49.191Z",
+      "updated_at": "2025-12-19T00:00:49.191Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 186,
+    "fields": {
+      "performance": "PF277096",
+      "rank": 36,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "광주",
+      "seat_count": 1722,
+      "performance_count": 4,
+      "collected_at": "2025-12-19T00:00:49.193Z",
+      "updated_at": "2025-12-19T00:00:49.193Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 187,
+    "fields": {
+      "performance": "PF276238",
+      "rank": 37,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 335,
+      "performance_count": 45,
+      "collected_at": "2025-12-19T00:00:49.194Z",
+      "updated_at": "2025-12-19T00:00:49.194Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 188,
+    "fields": {
+      "performance": "PF274339",
+      "rank": 38,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 211,
+      "performance_count": 33,
+      "collected_at": "2025-12-19T00:00:49.194Z",
+      "updated_at": "2025-12-19T00:00:49.195Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 189,
+    "fields": {
+      "performance": "PF271339",
+      "rank": 39,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 406,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:49.196Z",
+      "updated_at": "2025-12-19T00:00:49.196Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 190,
+    "fields": {
+      "performance": "PF275323",
+      "rank": 40,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "대구",
+      "seat_count": 1490,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:49.197Z",
+      "updated_at": "2025-12-19T00:00:49.197Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 191,
+    "fields": {
+      "performance": "PF264855",
+      "rank": 41,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 294,
+      "performance_count": 45,
+      "collected_at": "2025-12-19T00:00:49.198Z",
+      "updated_at": "2025-12-19T00:00:49.198Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 192,
+    "fields": {
+      "performance": "PF279912",
+      "rank": 42,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "세종",
+      "seat_count": 1071,
+      "performance_count": 4,
+      "collected_at": "2025-12-19T00:00:49.199Z",
+      "updated_at": "2025-12-19T00:00:49.199Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 193,
+    "fields": {
+      "performance": "PF271548",
+      "rank": 43,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 599,
+      "performance_count": 0,
+      "collected_at": "2025-12-19T00:00:49.200Z",
+      "updated_at": "2025-12-19T00:00:49.200Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 194,
+    "fields": {
+      "performance": "PF281142",
+      "rank": 44,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 1221,
+      "performance_count": 13,
+      "collected_at": "2025-12-19T00:00:49.201Z",
+      "updated_at": "2025-12-19T00:00:49.201Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 195,
+    "fields": {
+      "performance": "PF277380",
+      "rank": 45,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "세종",
+      "seat_count": 1071,
+      "performance_count": 4,
+      "collected_at": "2025-12-19T00:00:49.202Z",
+      "updated_at": "2025-12-19T00:00:49.202Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 196,
+    "fields": {
+      "performance": "PF277588",
+      "rank": 46,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 390,
+      "performance_count": 40,
+      "collected_at": "2025-12-19T00:00:49.203Z",
+      "updated_at": "2025-12-19T00:00:49.203Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 197,
+    "fields": {
+      "performance": "PF281676",
+      "rank": 47,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 0,
+      "performance_count": 20,
+      "collected_at": "2025-12-19T00:00:49.204Z",
+      "updated_at": "2025-12-19T00:00:49.204Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 198,
+    "fields": {
+      "performance": "PF279586",
+      "rank": 48,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 293,
+      "performance_count": 33,
+      "collected_at": "2025-12-19T00:00:49.205Z",
+      "updated_at": "2025-12-19T00:00:49.205Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 199,
+    "fields": {
+      "performance": "PF216231",
+      "rank": 49,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "서울",
+      "seat_count": 390,
+      "performance_count": 36,
+      "collected_at": "2025-12-19T00:00:49.206Z",
+      "updated_at": "2025-12-19T00:00:49.206Z"
+    }
+  },
+  {
+    "model": "performances.boxofficeranking",
+    "pk": 200,
+    "fields": {
+      "performance": "PF280885",
+      "rank": 50,
+      "genre_code": "GGGA",
+      "ranking_date": "2025-12-19",
+      "period_type": "week",
+      "area": "강원",
+      "seat_count": 972,
+      "performance_count": 4,
+      "collected_at": "2025-12-19T00:00:49.208Z",
+      "updated_at": "2025-12-19T00:00:49.208Z"
+    }
+  }
+]

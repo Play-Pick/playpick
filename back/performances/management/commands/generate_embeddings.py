@@ -7,7 +7,7 @@ import os
 import time
 from django.core.management.base import BaseCommand
 from django.utils import timezone
-from performances.models import Performance
+from performances.models import Performance, PerformanceEmbedding
 from dotenv import load_dotenv
 from openai import OpenAI
 
@@ -89,7 +89,8 @@ class Command(BaseCommand):
         if force:
             queryset = Performance.objects.all()
         else:
-            queryset = Performance.objects.filter(embedding_vector__isnull=True)
+            # PerformanceEmbedding이 없는 공연들만 선택
+            queryset = Performance.objects.filter(embedding__isnull=True)
 
         queryset = queryset.select_related('detail')
         total_count = queryset.count()
@@ -116,19 +117,22 @@ class Command(BaseCommand):
                         input=text
                     )
 
-                    # 벡터 추출 및 저장
-                    embedding = response.data[0].embedding
-                    performance.embedding_vector = embedding
-                    performance.embedding_updated_at = timezone.now()
-                    performance.save(update_fields=['embedding_vector', 'embedding_updated_at'])
+                    # 벡터 추출 및 PerformanceEmbedding 테이블에 저장
+                    embedding_vector = response.data[0].embedding
+
+                    # update_or_create로 이미 있으면 업데이트, 없으면 생성
+                    PerformanceEmbedding.objects.update_or_create(
+                        performance=performance,
+                        defaults={'vector': embedding_vector}
+                    )
 
                     success_count += 1
-                    self.stdout.write(f"  ✅ {performance.mt20id} - {performance.prfnm}")
+                    self.stdout.write(f"  [OK] {performance.mt20id} - {performance.prfnm}")
 
                 except Exception as e:
                     error_count += 1
                     self.stdout.write(
-                        self.style.ERROR(f"  ❌ {performance.mt20id} - {performance.prfnm}: {e}")
+                        self.style.ERROR(f"  [ERROR] {performance.mt20id} - {performance.prfnm}: {e}")
                     )
 
                 # API Rate Limit 방지 (0.05초 대기)
@@ -136,6 +140,6 @@ class Command(BaseCommand):
 
         # 결과 출력
         self.stdout.write("\n" + "=" * 80)
-        self.stdout.write(self.style.SUCCESS(f"✅ 성공: {success_count}개"))
-        self.stdout.write(self.style.ERROR(f"❌ 실패: {error_count}개"))
+        self.stdout.write(self.style.SUCCESS(f"[OK] 성공: {success_count}개"))
+        self.stdout.write(self.style.ERROR(f"[ERROR] 실패: {error_count}개"))
         self.stdout.write("=" * 80)

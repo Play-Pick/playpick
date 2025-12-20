@@ -45,14 +45,17 @@ class AISearchEngine:
         # 1. 사용자 쿼리 임베딩
         user_vector = np.array(self.get_embedding(user_query)).reshape(1, -1)
 
-        # 2. 임베딩이 있는 공연만 필터링
-        performances = list(performances_qs.filter(embedding_vector__isnull=False))
+        # 2. 임베딩이 있는 공연만 필터링 (PerformanceEmbedding 테이블 조인)
+        performances = list(
+            performances_qs.filter(embedding__isnull=False)
+            .select_related('embedding')
+        )
 
         if not performances:
             return []
 
-        # 3. 모든 공연의 임베딩 벡터 추출
-        all_vectors = np.array([p.embedding_vector for p in performances])
+        # 3. 모든 공연의 임베딩 벡터 추출 (새 테이블에서)
+        all_vectors = np.array([p.embedding.vector for p in performances])
 
         # 4. 코사인 유사도 계산
         similarities = cosine_similarity(user_vector, all_vectors)[0]
