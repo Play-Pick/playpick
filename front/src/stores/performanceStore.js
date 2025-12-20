@@ -173,6 +173,12 @@ export const usePerformanceStore = defineStore('performance', () => {
       const { allPerformances } = module.useBoxOffice()
       updateArray(allPerformances.value)
     })
+
+    // 6. aiSearchStore의 searchResults 업데이트
+    import('@/stores/aiSearchStore').then(module => {
+      const aiSearchStore = module.useAISearchStore()
+      updateArray(aiSearchStore.searchResults)
+    })
   }
 
   return {

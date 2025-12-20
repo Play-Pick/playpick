@@ -77,6 +77,11 @@ const router = createRouter({
       name: 'ranking-genre',
       component: () => import('@/views/RankingGenreView.vue'),
     },
+    {
+      path: '/recommands',
+      name: 'recommands',
+      component: () => import('@/views/RecommandsView.vue'),
+    },
   ],
 })
 

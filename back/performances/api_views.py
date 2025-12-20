@@ -228,7 +228,7 @@ class PerformanceViewSet(viewsets.ReadOnlyModelViewSet):
             'like_count': performance.like_users.count()
         })
 
-    @action(detail=False, methods=['post'], url_path='ai-search')
+    @action(detail=False, methods=['post'], url_path='ai-search', permission_classes=[])
     def ai_search(self, request):
         """
         AI 의미 기반 검색
