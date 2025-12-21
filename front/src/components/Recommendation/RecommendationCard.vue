@@ -107,6 +107,7 @@ const handleImageError = (event) => {
   display: flex;
   flex-direction: column;
   height: 100%;
+  min-height: 520px; /* 고정된 카드 높이로 레이아웃 균일화 */
   border: 1px solid var(--card-border);
 }
 
@@ -203,6 +204,7 @@ const handleImageError = (event) => {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  min-height: 3.2rem; /* 두 줄 공간 확보해 정보 섹션 위치를 고정 */
 }
 
 .recommendation-card:hover .performance-title {

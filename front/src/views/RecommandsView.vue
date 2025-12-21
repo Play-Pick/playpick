@@ -389,6 +389,7 @@ const handleToggleLike = async (performanceId) => {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 1.5rem;
+  grid-auto-rows: 1fr;
 }
 
 /* Skeleton Loading */

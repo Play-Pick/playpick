@@ -92,6 +92,9 @@ const getRankClass = (rank) => {
   padding: 1rem;
   transition: all 0.3s;
   background: var(--card-surface);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .ai-search-card:hover {
@@ -226,6 +229,9 @@ const getRankClass = (rank) => {
 /* Card Info */
 .card-info {
   padding: 0.25rem 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 120px;
 }
 
 .title {
@@ -235,7 +241,11 @@ const getRankClass = (rank) => {
   color: var(--card-text-primary);
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-height: 1.4;
+  min-height: 2.8rem;
 }
 
 .venue,
@@ -246,10 +256,12 @@ const getRankClass = (rank) => {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  min-height: 1.25rem;
 }
 
 .date {
   font-size: 0.75rem;
+  min-height: 1.125rem;
 }
 
 /* Dark mode adjustments */
