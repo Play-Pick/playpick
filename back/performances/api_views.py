@@ -196,6 +196,16 @@ class PerformanceViewSet(viewsets.ReadOnlyModelViewSet):
         genres = Performance.objects.values_list('genrenm', flat=True).distinct().order_by('genrenm')
         return Response({'genres': list(genres)})
 
+    @action(detail=False, methods=['get'], permission_classes=[IsAuthenticated], url_path='liked')
+    def liked(self, request):
+        """
+        내가 찜한 공연 목록 조회
+        GET /api/performances/liked/
+        """
+        queryset = Performance.objects.filter(like_users=request.user).select_related('detail')
+        serializer = PerformanceListSerializer(queryset, many=True, context={'request': request})
+        return Response(serializer.data)
+
     @action(detail=True, methods=['post'], permission_classes=[IsAuthenticated])
     def like(self, request, pk=None):
         """
