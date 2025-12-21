@@ -65,7 +65,7 @@
         </div>
       </div>
 
-      <!-- 찜하기 버튼 -->
+      <!-- 찜하기 및 관람함 버튼 -->
       <div class="action-buttons">
         <button
           @click="emit('toggle-like')"
@@ -78,6 +78,16 @@
           <span v-if="performance.like_count > 0" class="like-count">
             {{ performance.like_count }}
           </span>
+        </button>
+
+        <button
+          @click="emit('toggle-watched')"
+          :disabled="watchedLoading"
+          :class="{ watched: performance.is_watched }"
+          class="watched-button"
+        >
+          <i :class="performance.is_watched ? 'fas fa-check-circle' : 'far fa-check-circle'"></i>
+          {{ performance.is_watched ? '관람함' : '봤어요' }}
         </button>
       </div>
 
@@ -110,10 +120,14 @@ const props = defineProps({
   likeLoading: {
     type: Boolean,
     default: false
+  },
+  watchedLoading: {
+    type: Boolean,
+    default: false
   }
 })
 
-const emit = defineEmits(['open-map', 'toggle-like'])
+const emit = defineEmits(['open-map', 'toggle-like', 'toggle-watched'])
 
 const handleImageError = (event) => {
   event.target.src = 'https://via.placeholder.com/400x560?text=No+Poster'
@@ -370,9 +384,13 @@ const handleImageError = (event) => {
 .action-buttons {
   margin-top: 1.5rem;
   margin-bottom: 1rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
-.like-button {
+.like-button,
+.watched-button {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -442,6 +460,41 @@ const handleImageError = (event) => {
 :root.dark .like-button:not(.liked) .like-count {
   background: #374151;
   color: #9ca3af;
+}
+
+/* 봤어요 버튼 스타일 */
+:root.dark .watched-button {
+  border-color: #374151;
+  background: #2c2c2c;
+  color: #9ca3af;
+}
+
+.watched-button:hover:not(:disabled) {
+  border-color: #6366f1;
+  color: #6366f1;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+}
+
+.watched-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.watched-button.watched {
+  border-color: #6366f1;
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  color: white;
+}
+
+.watched-button.watched:hover:not(:disabled) {
+  background: linear-gradient(135deg, #4f46e5, #4338ca);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+}
+
+.watched-button i {
+  font-size: 1.1rem;
 }
 
 @media (max-width: 768px) {

@@ -51,6 +51,12 @@ const router = createRouter({
       component: () => import('@/views/RegisterView.vue'),
     },
     {
+      path: '/onboarding',
+      name: 'onboarding',
+      component: () => import('@/views/OnboardingView.vue'),
+      meta: { requiresAuth: true },
+    },
+    {
       path: '/mypage',
       name: 'mypage',
       component: () => import('@/views/MyPageView.vue'),
@@ -86,11 +92,27 @@ const router = createRouter({
 })
 
 // 인증이 필요한 라우트 보호
-router.beforeEach((to, from, next) => {
-  const token = localStorage.getItem('access_token')
+router.beforeEach(async (to, from, next) => {
+  const { useAuthStore } = await import('@/stores/authStore')
+  const authStore = useAuthStore()
 
-  if (to.meta.requiresAuth && !token) {
-    next({ name: 'login' })
+  // Initialize auth if needed
+  if (!authStore.isInitialized) {
+    await authStore.initialize()
+  }
+
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
+  const isAuthenticated = authStore.isAuthenticated
+
+  if (requiresAuth && !isAuthenticated) {
+    // Not logged in, redirect to login
+    next({ name: 'login', query: { redirect: to.fullPath } })
+  } else if (isAuthenticated && !authStore.user?.has_onboarded && to.name !== 'onboarding') {
+    // Logged in but not onboarded, force onboarding
+    next({ name: 'onboarding' })
+  } else if (to.name === 'onboarding' && authStore.user?.has_onboarded) {
+    // Already onboarded, redirect to home
+    next({ name: 'home' })
   } else {
     next()
   }

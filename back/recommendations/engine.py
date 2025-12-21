@@ -16,12 +16,13 @@ class RecommendationEngine:
 
     # 가중치 설정 (총합 = 1.0)
     WEIGHTS = {
-        'f1_click': 0.25,      # 클릭/관심 로그 기반
-        'f2_preference': 0.20,  # 취향 매칭
-        'f3_location': 0.15,    # 위치 근접성
-        'f4_popularity': 0.15,  # 대중성
-        'f5_recency': 0.10,     # 최신성
-        'f6_collaborative': 0.15  # 협업 필터링
+        'f1_click': 0.20,         # 클릭/관심 로그 기반 (감소)
+        'f2_preference': 0.15,    # 취향 매칭 (감소)
+        'f3_location': 0.10,      # 위치 근접성 (감소)
+        'f4_popularity': 0.15,    # 대중성
+        'f5_recency': 0.10,       # 최신성
+        'f6_collaborative': 0.10, # 협업 필터링 (감소)
+        'f7_embedding': 0.20      # 임베딩 유사도 (NEW)
     }
 
     # 행동 유형별 점수 (f1 계산용)
@@ -61,7 +62,7 @@ class RecommendationEngine:
         # 1. 후보군 필터링 (현재 공연 중이거나 예정인 공연)
         candidates = Performance.objects.filter(
             Q(prfstate='공연중') | Q(prfstate='공연예정')
-        ).select_related('metric')
+        ).select_related('metric', 'embedding')
 
         # 2. 각 공연에 대해 점수 계산
         scored_performances = []
@@ -115,6 +116,7 @@ class RecommendationEngine:
         f4 = self._f4_popularity_score(performance)
         f5 = self._f5_recency_score(performance)
         f6 = self._f6_collaborative_score(performance)
+        f7 = self._f7_embedding_score(performance)
 
         total = (
             self.WEIGHTS['f1_click'] * f1 +
@@ -122,7 +124,8 @@ class RecommendationEngine:
             self.WEIGHTS['f3_location'] * f3 +
             self.WEIGHTS['f4_popularity'] * f4 +
             self.WEIGHTS['f5_recency'] * f5 +
-            self.WEIGHTS['f6_collaborative'] * f6
+            self.WEIGHTS['f6_collaborative'] * f6 +
+            self.WEIGHTS['f7_embedding'] * f7
         )
 
         return {
@@ -132,7 +135,8 @@ class RecommendationEngine:
             'f3': f3,
             'f4': f4,
             'f5': f5,
-            'f6': f6
+            'f6': f6,
+            'f7': f7
         }
 
     def _f1_click_score(self, performance):
@@ -298,6 +302,56 @@ class RecommendationEngine:
 
         return 0.3
 
+    def _f7_embedding_score(self, performance):
+        """
+        [f7] 임베딩 유사도 점수
+        사용자 선호도 벡터와 공연 임베딩 벡터 간의 코사인 유사도 계산
+        """
+        # 사용자가 온보딩을 완료하지 않았으면 중립 점수 반환
+        try:
+            user_preference = self.user.preference
+            if not user_preference or not user_preference.preference_vector:
+                return 0.5
+        except:
+            return 0.5
+
+        # 공연에 임베딩이 없으면 중립 점수 반환
+        try:
+            if not hasattr(performance, 'embedding') or not performance.embedding:
+                return 0.5
+
+            performance_vector = performance.embedding.vector
+            if not performance_vector:
+                return 0.5
+        except:
+            return 0.5
+
+        # 코사인 유사도 계산
+        try:
+            import numpy as np
+
+            user_vec = np.array(user_preference.preference_vector, dtype=np.float32)
+            perf_vec = np.array(performance_vector, dtype=np.float32)
+
+            # 벡터 정규화 확인
+            user_norm = np.linalg.norm(user_vec)
+            perf_norm = np.linalg.norm(perf_vec)
+
+            if user_norm == 0 or perf_norm == 0:
+                return 0.5
+
+            # 코사인 유사도 계산
+            similarity = np.dot(user_vec, perf_vec) / (user_norm * perf_norm)
+
+            # -1~1 범위를 0~1 범위로 변환
+            score = (similarity + 1) / 2
+
+            return float(score)
+
+        except Exception as e:
+            # 에러 발생 시 중립 점수 반환
+            return 0.5
+
     def _get_top_reason(self, breakdown, performance):
         """
         추천 사유 결정 (가장 높은 점수를 기록한 요인)
@@ -305,14 +359,15 @@ class RecommendationEngine:
         Returns:
             tuple: (reason_code, reason_text)
         """
-        # f1~f6 중 가장 높은 점수 찾기
+        # f1~f7 중 가장 높은 점수 찾기
         scores = {
             'click': breakdown['f1'],
             'preference': breakdown['f2'],
             'location': breakdown['f3'],
             'popularity': breakdown['f4'],
             'recency': breakdown['f5'],
-            'collaborative': breakdown['f6']
+            'collaborative': breakdown['f6'],
+            'embedding': breakdown['f7']
         }
 
         top_reason = max(scores, key=scores.get)
@@ -324,7 +379,8 @@ class RecommendationEngine:
             'location': f"🏠 {self.user.region}에서 공연해요!",
             'popularity': "🔥 지금 가장 핫한 공연이에요!",
             'recency': "⏰ 곧 시작하는 공연이에요!",
-            'collaborative': "👥 비슷한 취향의 사람들이 좋아해요!"
+            'collaborative': "👥 비슷한 취향의 사람들이 좋아해요!",
+            'embedding': "✨ AI가 선택한 당신의 완벽한 공연!"
         }
 
         return top_reason, reason_messages.get(top_reason, "추천 공연입니다!")
