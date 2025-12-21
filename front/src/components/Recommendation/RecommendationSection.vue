@@ -4,7 +4,7 @@
     <div class="section-header">
       <h2>
         <i class="fas fa-magic"></i>
-        {{ isAuthenticated ? `${username}님을 위한` : '당신을 위한' }} 추천 공연
+        {{ isAuthenticated ? `${displayName}님을 위한` : '당신을 위한' }} 추천 공연
       </h2>
       <p class="subtitle">
         {{ isAuthenticated
@@ -130,7 +130,7 @@ const authStore = useAuthStore()
 const { toggleLike, likeLoading } = useUserTracking()
 
 const { recommendations, loading, hasRecommendations } = storeToRefs(recommendationStore)
-const { username, isAuthenticated } = storeToRefs(authStore)
+const { displayName, isAuthenticated } = storeToRefs(authStore)
 
 // 플레이스홀더 데이터 (비로그인 사용자용)
 const placeholderRecommendations = [

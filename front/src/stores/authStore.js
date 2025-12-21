@@ -14,6 +14,8 @@ export const useAuthStore = defineStore('auth', () => {
   // Getters
   const isAuthenticated = computed(() => !!accessToken.value)
   const username = computed(() => user.value?.username)
+  const nickname = computed(() => user.value?.nickname || user.value?.username)
+  const displayName = computed(() => user.value?.nickname || user.value?.username || '회원')
   const userId = computed(() => user.value?.id)
   const isAdmin = computed(() => user.value?.is_staff || user.value?.is_superuser || false)
 
@@ -146,6 +148,8 @@ export const useAuthStore = defineStore('auth', () => {
     // Getters
     isAuthenticated,
     username,
+    nickname,
+    displayName,
     userId,
     isAdmin,
     // Actions
