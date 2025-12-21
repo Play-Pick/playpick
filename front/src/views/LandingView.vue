@@ -8,7 +8,10 @@
       <!-- 2. 개인화 추천 섹션 (항상 표시, 비로그인 시 블러 처리) -->
       <RecommendationSection />
 
-      <!-- 3. 전체 랭킹 섹션 -->
+      <!-- 3. YouTube 공연 영상 섹션 -->
+      <YouTubePlaylistSection />
+
+      <!-- 4. 전체 랭킹 섹션 -->
       <AllRankingSection />
 
       <!-- 4. 장르별 랭킹 섹션 -->
@@ -32,6 +35,7 @@ import HighlightCarousel from '@/components/BoxOffice/HighlightCarousel.vue'
 import AllRankingSection from '@/components/BoxOffice/AllRankingSection.vue'
 import GenreRankingSection from '@/components/BoxOffice/GenreRankingSection.vue'
 import RecommendationSection from '@/components/Recommendation/RecommendationSection.vue'
+import YouTubePlaylistSection from '@/components/YouTube/YouTubePlaylistSection.vue'
 
 const authStore = useAuthStore()
 const { isAuthenticated } = storeToRefs(authStore)

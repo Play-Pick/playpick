@@ -87,6 +87,9 @@
             />
           </div>
         </div>
+
+        <!-- YouTube 관련 영상 -->
+        <YouTubeVideoSection :performanceId="route.params.id" />
           </div>
 
           <div v-else class="no-detail">
@@ -194,6 +197,7 @@ import HeaderSection from '@/components/PerformanceDetail/HeaderSection.vue'
 import MapModal from '@/components/PerformanceDetail/MapModal.vue'
 import RatingChart from '@/components/PerformanceDetail/RatingChart.vue'
 import ReviewList from '@/components/PerformanceDetail/ReviewList.vue'
+import YouTubeVideoSection from '@/components/PerformanceDetail/YouTubeVideoSection.vue'
 import apiClient from '@/api/axios'
 
 const route = useRoute()

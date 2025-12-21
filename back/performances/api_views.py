@@ -299,6 +299,35 @@ class PerformanceViewSet(viewsets.ReadOnlyModelViewSet):
             }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
+
+    @action(detail=False, methods=['get'], url_path='youtube/playlist')
+    def youtube_playlist(self, request):
+        """
+        Get YouTube playlist videos for main page
+        GET /api/performances/youtube/playlist/
+        """
+        from .youtube_service import get_playlist_videos
+
+        videos = get_playlist_videos(max_results=6)
+
+        return Response({
+            'success': True,
+            'videos': videos,
+            'count': len(videos)
+        })
+
+    @action(detail=True, methods=['get'], url_path='youtube')
+    def youtube_video(self, request, pk=None):
+        """
+        Get performance-related YouTube video
+        GET /api/performances/{id}/youtube/
+        """
+        from .youtube_service import get_performance_video
+
+        result = get_performance_video(pk)
+        return Response(result)
+
+
 class BoxOfficeRankingViewSet(viewsets.ReadOnlyModelViewSet):
     """박스오피스 랭킹 ViewSet (읽기 전용)"""
     queryset = BoxOfficeRanking.objects.all()
@@ -330,3 +359,4 @@ class BoxOfficeRankingViewSet(viewsets.ReadOnlyModelViewSet):
 
         serializer = self.get_serializer(rankings, many=True)
         return Response(serializer.data)
+

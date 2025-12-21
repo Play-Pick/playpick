@@ -244,3 +244,77 @@ class PerformanceEmbedding(models.Model):
 
     def __str__(self):
         return f"{self.performance.prfnm} - 임베딩"
+
+
+class YouTubeVideoCache(models.Model):
+    """YouTube video cache for performances and playlists"""
+
+    # For performance-specific videos (nullable)
+    performance = models.OneToOneField(
+        Performance,
+        on_delete=models.CASCADE,
+        related_name='youtube_cache',
+        null=True,
+        blank=True,
+        verbose_name="공연"
+    )
+
+    # For playlist or other cached queries (e.g., "playlist:main")
+    cache_key = models.CharField(
+        max_length=100,
+        unique=True,
+        null=True,
+        blank=True,
+        verbose_name="캐시 키"
+    )
+
+    # Video status: FOUND or NONE
+    status = models.CharField(
+        max_length=10,
+        choices=[('FOUND', '발견'), ('NONE', '없음')],
+        verbose_name="상태"
+    )
+
+    # Video data JSON (for FOUND status)
+    # Structure: {"videos": [{"videoId": "...", "title": "...", ...}]}
+    # or single: {"videoId": "...", "title": "...", ...}
+    video_data = models.JSONField(
+        verbose_name="영상 데이터",
+        help_text="List of videos or single video object"
+    )
+
+    # Fallback data for NONE status
+    fallback_data = models.JSONField(
+        null=True,
+        blank=True,
+        verbose_name="대체 데이터"
+    )
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "YouTube 영상 캐시"
+        verbose_name_plural = "YouTube 영상 캐시 목록"
+        indexes = [
+            models.Index(fields=['cache_key']),
+            models.Index(fields=['updated_at']),
+        ]
+        constraints = [
+            models.CheckConstraint(
+                check=models.Q(performance__isnull=False) | models.Q(cache_key__isnull=False),
+                name='either_performance_or_cache_key'
+            )
+        ]
+
+    def is_fresh(self, max_age_hours=24):
+        """Check if cache is still valid"""
+        from django.utils import timezone
+        from datetime import timedelta
+        age = timezone.now() - self.updated_at
+        return age < timedelta(hours=max_age_hours)
+
+    def __str__(self):
+        if self.performance:
+            return f"{self.performance.prfnm} - YouTube 캐시"
+        return f"캐시: {self.cache_key}"
