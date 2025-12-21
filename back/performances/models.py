@@ -213,3 +213,34 @@ class PerformanceMetric(models.Model):
 
     def __str__(self):
         return f"{self.performance.prfnm} - 지표"
+
+
+class PerformanceEmbedding(models.Model):
+    """
+    AI 검색용 임베딩 벡터 저장 테이블
+    Performance 테이블과 분리하여 성능 최적화 및 확장성 확보
+    """
+    performance = models.OneToOneField(
+        Performance,
+        on_delete=models.CASCADE,
+        related_name='embedding',
+        primary_key=True,
+        verbose_name="공연"
+    )
+    vector = models.JSONField(
+        verbose_name="임베딩 벡터",
+        help_text="OpenAI text-embedding-3-small (1536차원)"
+    )
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="생성일시")
+    updated_at = models.DateTimeField(auto_now=True, verbose_name="갱신일시")
+
+    class Meta:
+        db_table = 'performance_embeddings'
+        verbose_name = "공연 임베딩"
+        verbose_name_plural = "공연 임베딩 목록"
+        indexes = [
+            models.Index(fields=['updated_at']),
+        ]
+
+    def __str__(self):
+        return f"{self.performance.prfnm} - 임베딩"

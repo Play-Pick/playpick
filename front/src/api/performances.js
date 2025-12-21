@@ -48,5 +48,10 @@ export default {
   // 공연 찜하기/취소 토글
   toggleLike(performanceId) {
     return apiClient.post(`/performances/${performanceId}/like/`)
+  },
+
+  // AI 의미 기반 검색
+  aiSearch(query) {
+    return apiClient.post('/performances/ai-search/', { query })
   }
 }
