@@ -1,6 +1,6 @@
 <script setup>
 import { RouterLink, RouterView, useRouter } from 'vue-router'
-import { onMounted, computed } from 'vue'
+import { onMounted, computed, ref } from 'vue'
 import { useAuthStore } from '@/stores/authStore'
 import { useThemeStore } from '@/stores/themeStore'
 import FloatingActionButtons from '@/components/Common/FloatingActionButtons.vue'
@@ -10,6 +10,7 @@ import logoDark from '@/assets/images/logo-dark.png'
 const router = useRouter()
 const authStore = useAuthStore()
 const themeStore = useThemeStore()
+const isMenuOpen = ref(false)
 
 // 현재 테마에 맞는 로고 선택
 const currentLogo = computed(() => {
@@ -24,7 +25,12 @@ onMounted(async () => {
 
 const handleLogout = async () => {
   await authStore.logout()
+  isMenuOpen.value = false
   router.push('/login')
+}
+
+const closeMenu = () => {
+  isMenuOpen.value = false
 }
 </script>
 
@@ -32,19 +38,22 @@ const handleLogout = async () => {
   <div id="app">
     <nav class="navbar">
       <div class="nav-container">
-        <RouterLink to="/" class="nav-logo">
+        <RouterLink to="/" class="nav-logo" @click="closeMenu">
           <img :src="currentLogo" alt="공연 커뮤니티 로고" class="logo-image" />
         </RouterLink>
-        <div class="nav-menu">
-          <RouterLink to="/" class="nav-link">홈</RouterLink>
-          <RouterLink to="/performances" class="nav-link">공연</RouterLink>
-          <RouterLink to="/rankings" class="nav-link">랭킹</RouterLink>
-          <RouterLink to="/community" class="nav-link">커뮤니티</RouterLink>
+        <button class="menu-toggle" @click="isMenuOpen = !isMenuOpen" aria-label="메뉴 열기/닫기">
+          <i class="fas" :class="isMenuOpen ? 'fa-times' : 'fa-bars'"></i>
+        </button>
+        <div class="nav-menu" :class="{ open: isMenuOpen }">
+          <RouterLink to="/" class="nav-link" @click="closeMenu">홈</RouterLink>
+          <RouterLink to="/performances" class="nav-link" @click="closeMenu">공연</RouterLink>
+          <RouterLink to="/rankings" class="nav-link" @click="closeMenu">랭킹</RouterLink>
+          <RouterLink to="/community" class="nav-link" @click="closeMenu">커뮤니티</RouterLink>
 
           <!-- 인증 상태에 따른 버튼 -->
           <div class="auth-buttons">
             <template v-if="authStore.isAuthenticated">
-              <RouterLink to="/mypage" class="nav-link mypage-link">
+              <RouterLink to="/mypage" class="nav-link mypage-link" @click="closeMenu">
                 <i class="fas fa-user-circle"></i>
                 마이페이지
               </RouterLink>
@@ -52,8 +61,8 @@ const handleLogout = async () => {
               <button @click="handleLogout" class="nav-btn">로그아웃</button>
             </template>
             <template v-else>
-              <RouterLink to="/login" class="nav-btn">로그인</RouterLink>
-              <RouterLink to="/register" class="nav-btn btn-register">회원가입</RouterLink>
+              <RouterLink to="/login" class="nav-btn" @click="closeMenu">로그인</RouterLink>
+              <RouterLink to="/register" class="nav-btn btn-register" @click="closeMenu">회원가입</RouterLink>
             </template>
           </div>
         </div>
@@ -116,6 +125,15 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: inherit;
+  cursor: pointer;
 }
 
 .nav-logo {
@@ -269,5 +287,63 @@ body {
 :root.dark .footer {
   background-color: #1a1a1a;
   color: #f3f4f6;
+}
+
+/* Responsive: Offcanvas nav */
+@media (max-width: 900px) {
+  .nav-container {
+    padding: 0 1rem;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-menu {
+    position: fixed;
+    inset: 0;
+    top: 64px;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(6px);
+    display: none;
+    flex-direction: column;
+    padding: 1rem;
+    z-index: 50;
+    gap: 0.75rem;
+  }
+
+  .nav-menu.open {
+    display: flex;
+  }
+
+  .nav-menu > .nav-link,
+  .nav-menu > .auth-buttons {
+    background: #ffffff;
+    color: #111827;
+    width: 100%;
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  :root.dark .nav-menu > .nav-link,
+  :root.dark .nav-menu > .auth-buttons {
+    background: #1f2937;
+    color: #f3f4f6;
+  }
+
+  .nav-menu > .nav-link {
+    text-align: center;
+  }
+
+  .auth-buttons {
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-left: 0;
+  }
+
+  .nav-logo img {
+    height: 40px;
+  }
 }
 </style>
