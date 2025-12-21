@@ -11,10 +11,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = [
-            'id', 'username', 'email',
-            'followers_count', 'followings_count'
-        ]
+        fields = ['id', 'username', 'email', 'nickname', 'followers_count', 'followings_count']
 
 
 class UserDetailSerializer(serializers.ModelSerializer):
@@ -26,8 +23,8 @@ class UserDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = [
-            'id', 'username', 'email', 'date_joined',
-            'is_staff', 'is_superuser',  # 관리자 권한 필드 (UI 표시용)
+            'id', 'username', 'email', 'nickname', 'date_joined',
+            'is_staff', 'is_superuser',
             'followers', 'followings',
             'followers_count', 'followings_count'
         ]
@@ -71,11 +68,10 @@ class RegisterSerializer(serializers.ModelSerializer):
         validated_data.pop('password2')
         password = validated_data.pop('password')
 
-        # 사용자 생성
         user = User.objects.create_user(
             username=validated_data.pop('username'),
             email=validated_data.get('email', ''),
             password=password,
-            **validated_data  # 나머지 필드들
+            **validated_data
         )
         return user
