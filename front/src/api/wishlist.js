@@ -11,13 +11,16 @@ const normalizeResponse = (response) => {
 
 export default {
   fetchWishlist() {
-    return apiClient.get('/wishlist/')
+    // 백엔드: GET /api/performances/liked/
+    return apiClient.get('/performances/liked/')
   },
   removeWishlist(performanceId) {
-    return apiClient.delete(`/wishlist/${performanceId}/`)
+    // 백엔드: POST /api/performances/{mt20id}/like/ 토글 방식
+    return apiClient.post(`/performances/${performanceId}/like/`)
   },
   toggleWishlist(performanceId) {
-    return apiClient.post(`/wishlist/${performanceId}/`)
+    // 동일 토글 엔드포인트 사용
+    return apiClient.post(`/performances/${performanceId}/like/`)
   },
   normalizeResponse,
 }

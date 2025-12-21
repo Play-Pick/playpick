@@ -40,7 +40,7 @@ export const useWishlistStore = defineStore('wishlist', () => {
         items.value = []
         return items.value
       }
-      errorMessage.value = err?.response?.data?.detail || err?.message || '찜 목록을 불러오지 못했습니다.'
+      errorMessage.value = err?.response?.data?.detail || err?.message || '찜 목록을 불러오지 못했어요.'
       throw err
     } finally {
       loading.value = false
@@ -60,7 +60,7 @@ export const useWishlistStore = defineStore('wishlist', () => {
           items.value = []
           return
         }
-        errorMessage.value = err?.response?.data?.detail || err?.message || '찜 해제에 실패했습니다.'
+        errorMessage.value = err?.response?.data?.detail || err?.message || '찜 삭제에 실패했습니다.'
         throw err
       }
     }
