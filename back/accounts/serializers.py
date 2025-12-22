@@ -44,7 +44,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         fields = [
             'username', 'email', 'password', 'password2',
             'nickname', 'birth_date', 'region',
-            'preference_tags', 'favorite_actors'
+            'preference_tags'
         ]
         extra_kwargs = {
             'email': {'required': False},
@@ -52,7 +52,6 @@ class RegisterSerializer(serializers.ModelSerializer):
             'birth_date': {'required': False},
             'region': {'required': False},
             'preference_tags': {'required': False},
-            'favorite_actors': {'required': False},
         }
 
     def validate(self, attrs):
@@ -95,7 +94,7 @@ class UserUpdateSerializer(serializers.ModelSerializer):
         model = User
         fields = [
             'email', 'nickname', 'birth_date', 'region',
-            'preference_tags', 'favorite_actors', 'profile_image',
+            'preference_tags', 'profile_image',
             'password', 'password2'
         ]
         extra_kwargs = {
@@ -104,7 +103,6 @@ class UserUpdateSerializer(serializers.ModelSerializer):
             'birth_date': {'required': False},
             'region': {'required': False},
             'preference_tags': {'required': False},
-            'favorite_actors': {'required': False},
             'profile_image': {'required': False},
         }
 
