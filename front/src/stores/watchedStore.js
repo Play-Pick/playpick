@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import watchedAPI from '@/api/watched'
 
 const normalizePerformance = (item) => {
@@ -116,9 +116,20 @@ export const useWatchedStore = defineStore('watched', () => {
     })
   }
 
+//   const isWatched = computed(() => {
+//   const targetId = String(performanceId) // 현재 보고 있는 공연 ID
+  
+//   // 스토어 안에 있는 목록(watchedItems)을 뒤져서 확인
+//   return userStore.watchedItems.some(item => {
+//     // mt20id나 id 중 있는 걸로 비교 (문자열로 변환해서 안전하게 비교)
+//     const itemId = String(item.mt20id || item.id || '')
+//     return itemId === currentId
+//   })
+// })
+
   return {
     items,
-    loading,
+    loading, // 너 누가 쓰냐
     errorMessage,
     fetchWatched,
     addToWatched,

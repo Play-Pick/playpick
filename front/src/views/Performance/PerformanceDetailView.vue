@@ -307,7 +307,7 @@ const handleToggleWatched = async () => {
 
   watchedLoading.value = true
   try {
-    const isCurrentlyWatched = watchedStore.isWatched(currentPerformance.value.mt20id)
+    const isCurrentlyWatched = currentPerformance.value.is_watched
 
     if (isCurrentlyWatched) {
       await watchedStore.removeFromWatched(currentPerformance.value.mt20id)
