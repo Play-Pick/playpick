@@ -2,7 +2,7 @@
   <div class="review-list">
     <h3 class="list-title">
       <i class="fas fa-comments"></i>
-      리뷰 목록
+      <span>{{ props.category===''? '글': props.category}} 목록</span>
       <span class="count">({{ reviews.length }})</span>
     </h3>
 
@@ -128,14 +128,20 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { useAuthStore } from '@/stores/authStore'
-import apiClient from '@/api/axios'
+import communityAPI from '@/api/community'
 
 const props = defineProps({
   reviews: {
     type: Array,
     default: () => [],
   },
+  category: {
+    type: String,
+    default: ()=> '',
+  },
 })
+
+
 
 const emit = defineEmits(['review-updated'])
 
@@ -189,7 +195,7 @@ const toggleLike = async (review) => {
   }
 
   try {
-    await apiClient.post(`/articles/${review.id}/like/`)
+    await communityAPI.likeArticle(review.id)
     emit('review-updated')
   } catch (error) {
     console.error('좋아요 실패:', error)

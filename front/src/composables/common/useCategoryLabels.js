@@ -20,7 +20,7 @@ export const useCategoryLabels = () => {
       'QNA': '#e74c3c',
       'FREE': '#2ecc71',
       'INFO': '#f39c12',
-      'EXPECTATION': '#f7cc23ff'
+      'EXPECTATION': '#fad842ff'
     }
     return colors[category] || '#95a5a6'
   }

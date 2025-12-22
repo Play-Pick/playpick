@@ -119,7 +119,8 @@
 
           <ReviewList
             :reviews="filteredReviews('관람 후기')"
-            @review-updated="loadReviews('REVIEW')"
+            category="관람 후기"
+            @review-updated="loadReviews()"
           />
         </div>
 
@@ -141,7 +142,8 @@
 
           <ReviewList
             :reviews="filteredReviews('기대평')"
-            @review-updated="loadReviews('EXPECTAION')"
+            category="기대평"
+            @review-updated="loadReviews()"
           />
         </div>
 
@@ -163,7 +165,8 @@
 
           <ReviewList
             :reviews="filteredReviews('질문')"
-            @review-updated="loadReviews('QNA')"
+            category="질문"
+            @review-updated="loadReviews()"
           />
         </div>
       </div>
@@ -253,12 +256,12 @@ const filteredReviews = (category) => {
 }
 
 // 리뷰 데이터 로드
-const loadReviews = async (category) => {
+const loadReviews = async () => {
   try {
     const response = await communityAPI.getArticles({
         performance_mt20id: route.params.id,
         board_type: 'PERFORMANCE',
-        category: category
+        // category: category
     })
     reviews.value = response.data.results || response.data
   } catch (err) {
