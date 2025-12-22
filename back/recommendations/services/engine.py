@@ -144,7 +144,7 @@ class RecommendationEngine:
         [f1] 클릭/관심 로그 기반 점수 (Time Decay 적용)
         사용자가 과거에 본 공연과 유사한 장르/배우가 있으면 점수 부여
         """
-        from recommendations.models import UserLog
+        from ..models import UserLog
 
         # 최근 30일간의 로그만 고려
         recent_date = timezone.now() - timedelta(days=30)
@@ -268,7 +268,7 @@ class RecommendationEngine:
         [f6] 협업 필터링 점수
         사용자가 좋아한 공연과 유사한 공연 추천
         """
-        from recommendations.models import UserLog
+        from ..models import UserLog
 
         # 사용자가 'like'한 공연들 조회
         liked_performances = UserLog.objects.filter(

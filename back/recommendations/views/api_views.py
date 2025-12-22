@@ -4,13 +4,13 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from django.utils import timezone
 
-from .models import UserLog, RecommendationCache
-from .serializers import (
+from ..models import UserLog, RecommendationCache
+from ..serializers import (
     UserLogSerializer,
     RecommendationListSerializer,
     RecommendationItemSerializer
 )
-from .engine import RecommendationEngine
+from ..services.engine import RecommendationEngine
 from performances.models import Performance
 from performances.serializers import PerformanceListSerializer
 
