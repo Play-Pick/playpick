@@ -26,18 +26,6 @@
           />
         </div>
 
-        <!-- 닉네임 -->
-        <div class="form-group">
-          <label for="nickname">닉네임</label>
-          <input
-            id="nickname"
-            v-model="formData.nickname"
-            type="text"
-            placeholder="닉네임"
-            class="form-input"
-          />
-        </div>
-
         <!-- 생년월일 -->
         <div class="form-group">
           <label for="birth_date">생년월일</label>
@@ -187,7 +175,6 @@ const successMessage = ref('')
 
 const formData = ref({
   email: '',
-  nickname: '',
   birth_date: '',
   region: '',
   password: '',
@@ -208,7 +195,6 @@ const loadUserData = async () => {
     const user = response.data
 
     formData.value.email = user.email || ''
-    formData.value.nickname = user.nickname || ''
     formData.value.birth_date = user.birth_date || ''
     formData.value.region = user.region || ''
   } catch (err) {
@@ -234,12 +220,12 @@ const updateAccount = async () => {
       }
     }
 
-    const updateData = {
-      email: formData.value.email,
-      nickname: formData.value.nickname,
-      birth_date: formData.value.birth_date,
-      region: formData.value.region
-    }
+    const updateData = {}
+
+    // 값이 있는 필드만 추가
+    if (formData.value.email) updateData.email = formData.value.email
+    if (formData.value.birth_date) updateData.birth_date = formData.value.birth_date
+    if (formData.value.region) updateData.region = formData.value.region
 
     // 비밀번호가 입력된 경우에만 추가
     if (formData.value.password) {

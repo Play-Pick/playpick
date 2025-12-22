@@ -25,13 +25,27 @@
           </div>
 
           <div class="form-group">
-            <label for="nickname">닉네임</label>
+            <label for="nickname">닉네임 *</label>
             <input
               id="nickname"
               v-model="formData.nickname"
               type="text"
-              placeholder="닉네임을 입력하세요 (선택사항)"
+              required
+              placeholder="닉네임을 입력하세요"
+              @blur="checkNicknameDuplicate"
             />
+            <span v-if="nicknameCheckResult === 'checking'" class="field-help">
+              <i class="fas fa-spinner fa-spin"></i>
+              중복 확인 중...
+            </span>
+            <span v-else-if="nicknameCheckResult === 'available'" class="field-success">
+              <i class="fas fa-check-circle"></i>
+              사용 가능한 닉네임입니다
+            </span>
+            <span v-else-if="nicknameCheckResult === 'duplicate'" class="field-error">
+              <i class="fas fa-times-circle"></i>
+              이미 사용 중인 닉네임입니다
+            </span>
             <span v-if="errors.nickname" class="field-error">{{ errors.nickname }}</span>
           </div>
 
@@ -78,7 +92,6 @@
               type="date"
               placeholder="생년월일을 선택하세요"
             />
-            <span class="field-help">공연 추천 알고리즘에 활용됩니다</span>
           </div>
         </div>
 
@@ -122,61 +135,29 @@
         <div class="section">
           <h3 class="section-title">
             <i class="fas fa-heart"></i>
-            선호 정보 (선택사항)
+            선호 장르 (선택사항)
           </h3>
           <p class="section-description">맞춤 공연을 추천받을 수 있습니다</p>
 
           <div class="form-group">
-            <label for="preference_tags">선호 장르/분위기</label>
-            <div class="tags-input-wrapper">
-              <div class="tags-list">
-                <span
-                  v-for="(tag, index) in formData.preference_tags"
-                  :key="index"
-                  class="tag"
-                >
-                  {{ tag }}
-                  <i class="fas fa-times" @click="removeTag('preference_tags', index)"></i>
-                </span>
-              </div>
-              <input
-                v-model="preferenceTagInput"
-                type="text"
-                placeholder="태그 입력 후 Enter (예: 뮤지컬, 로맨틱)"
-                @keypress.enter.prevent="addTag('preference_tags')"
-                class="tag-input"
-              />
+            <label>선호 장르 선택</label>
+            <div class="genre-grid">
+              <label
+                v-for="genre in availableGenres"
+                :key="genre.code"
+                class="genre-checkbox"
+              >
+                <input
+                  type="checkbox"
+                  :value="genre.name"
+                  v-model="formData.preference_tags"
+                />
+                <span class="genre-label">{{ genre.name }}</span>
+              </label>
             </div>
             <span class="field-help">
               <i class="fas fa-info-circle"></i>
-              태그를 입력하고 Enter를 누르세요
-            </span>
-          </div>
-
-          <div class="form-group">
-            <label for="favorite_actors">선호 배우</label>
-            <div class="tags-input-wrapper">
-              <div class="tags-list">
-                <span
-                  v-for="(actor, index) in formData.favorite_actors"
-                  :key="index"
-                  class="tag actor-tag"
-                >
-                  {{ actor }}
-                  <i class="fas fa-times" @click="removeTag('favorite_actors', index)"></i>
-                </span>
-              </div>
-              <input
-                v-model="actorInput"
-                type="text"
-                placeholder="배우 이름 입력 후 Enter (예: 조승우)"
-                @keypress.enter.prevent="addTag('favorite_actors')"
-                class="tag-input"
-              />
-            </div>
-            <span class="field-help">
-              <i class="fas fa-info-circle"></i>
-              좋아하는 배우를 추가하세요
+              선호하는 장르를 선택해주세요 (중복 선택 가능)
             </span>
           </div>
         </div>
@@ -206,9 +187,23 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/authStore'
+import apiClient from '@/api/axios'
 
 const router = useRouter()
 const authStore = useAuthStore()
+
+// 사용 가능한 장르 목록
+const availableGenres = [
+  { code: 'BBBC', name: '뮤지컬' },
+  { code: 'AAAA', name: '연극' },
+  { code: 'CCCA', name: '클래식' },
+  { code: 'CCCC', name: '오페라' },
+  { code: 'CCCD', name: '무용' },
+  { code: 'EEEA', name: '복합' },
+  { code: 'EEEB', name: '서커스/마술' },
+  { code: 'GGGA', name: '대중음악' },
+  { code: 'KID', name: '아동' },
+]
 
 const formData = ref({
   username: '',
@@ -219,31 +214,42 @@ const formData = ref({
   birth_date: '',
   region: '',
   preference_tags: [],
-  favorite_actors: [],
 })
 
 const loading = ref(false)
 const errorMessage = ref('')
 const errors = ref({})
 
-// 태그 입력
-const preferenceTagInput = ref('')
-const actorInput = ref('')
+// 닉네임 중복 확인
+const nicknameCheckResult = ref('') // '', 'checking', 'available', 'duplicate'
+let nicknameCheckTimeout = null
 
-// 태그 추가
-const addTag = (field) => {
-  const input = field === 'preference_tags' ? preferenceTagInput : actorInput
-  const value = input.value.trim()
+const checkNicknameDuplicate = async () => {
+  const nickname = formData.value.nickname.trim()
 
-  if (value && !formData.value[field].includes(value)) {
-    formData.value[field].push(value)
-    input.value = ''
+  if (!nickname) {
+    nicknameCheckResult.value = ''
+    return
   }
-}
 
-// 태그 제거
-const removeTag = (field, index) => {
-  formData.value[field].splice(index, 1)
+  // 디바운싱
+  clearTimeout(nicknameCheckTimeout)
+  nicknameCheckTimeout = setTimeout(async () => {
+    try {
+      nicknameCheckResult.value = 'checking'
+
+      // 모든 사용자 조회하여 닉네임 중복 확인
+      const response = await apiClient.get('/users/')
+      const users = response.data.results || response.data
+
+      const isDuplicate = users.some(user => user.nickname === nickname)
+
+      nicknameCheckResult.value = isDuplicate ? 'duplicate' : 'available'
+    } catch (error) {
+      console.error('닉네임 중복 확인 실패:', error)
+      nicknameCheckResult.value = ''
+    }
+  }, 500)
 }
 
 const handleRegister = async () => {
@@ -252,6 +258,18 @@ const handleRegister = async () => {
   errors.value = {}
 
   // 클라이언트 측 유효성 검사
+  if (!formData.value.nickname.trim()) {
+    errors.value.nickname = '닉네임은 필수 입력 항목입니다.'
+    loading.value = false
+    return
+  }
+
+  if (nicknameCheckResult.value === 'duplicate') {
+    errors.value.nickname = '이미 사용 중인 닉네임입니다.'
+    loading.value = false
+    return
+  }
+
   if (formData.value.password !== formData.value.password2) {
     errors.value.password2 = '비밀번호가 일치하지 않습니다.'
     loading.value = false
@@ -262,20 +280,17 @@ const handleRegister = async () => {
     // 빈 값 제거 및 데이터 정리
     const submitData = {
       username: formData.value.username,
+      nickname: formData.value.nickname,
       password: formData.value.password,
       password2: formData.value.password2,
     }
 
     // 선택 필드는 값이 있을 때만 포함
-    if (formData.value.nickname) submitData.nickname = formData.value.nickname
     if (formData.value.email) submitData.email = formData.value.email
     if (formData.value.birth_date) submitData.birth_date = formData.value.birth_date
     if (formData.value.region) submitData.region = formData.value.region
     if (formData.value.preference_tags.length > 0) {
       submitData.preference_tags = formData.value.preference_tags
-    }
-    if (formData.value.favorite_actors.length > 0) {
-      submitData.favorite_actors = formData.value.favorite_actors
     }
 
     await authStore.register(submitData)
@@ -504,6 +519,19 @@ const handleRegister = async () => {
   color: #fca5a5;
 }
 
+.field-success {
+  color: #10b981;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: color 0.3s;
+}
+
+:root.dark .field-success {
+  color: #6ee7b7;
+}
+
 .field-help {
   color: #6b7280;
   font-size: 0.875rem;
@@ -526,76 +554,71 @@ const handleRegister = async () => {
   color: #6b7280;
 }
 
-/* 태그 입력 */
-.tags-input-wrapper {
-  border: 2px solid #e5e7eb;
-  border-radius: 6px;
-  padding: 0.5rem;
+/* 장르 선택 그리드 */
+.genre-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.genre-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
   background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  cursor: pointer;
   transition: all 0.3s;
 }
 
-:root.dark .tags-input-wrapper {
+:root.dark .genre-checkbox {
   background: #374151;
   border-color: #4b5563;
 }
 
-.tags-input-wrapper:focus-within {
+.genre-checkbox:hover {
   border-color: #6366f1;
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+  background: #f9fafb;
 }
 
-:root.dark .tags-input-wrapper:focus-within {
+:root.dark .genre-checkbox:hover {
   border-color: #818cf8;
   background: #4b5563;
-  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.1);
 }
 
-.tags-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.375rem 0.75rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border-radius: 16px;
-  font-size: 0.875rem;
-  font-weight: 500;
-}
-
-.actor-tag {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-}
-
-.tag i {
+.genre-checkbox input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
   cursor: pointer;
-  transition: transform 0.2s;
+  accent-color: #6366f1;
 }
 
-.tag i:hover {
-  transform: scale(1.2);
+.genre-checkbox input[type="checkbox"]:checked + .genre-label {
+  color: #6366f1;
+  font-weight: 600;
 }
 
-.tag-input {
-  width: 100%;
-  border: none;
-  outline: none;
-  padding: 0.5rem;
-  font-size: 1rem;
-  background: transparent;
-  color: #1f2937;
-  transition: color 0.3s;
+:root.dark .genre-checkbox input[type="checkbox"]:checked + .genre-label {
+  color: #818cf8;
 }
 
-:root.dark .tag-input {
-  color: #f3f4f6;
+.genre-label {
+  font-size: 0.875rem;
+  color: #374151;
+  transition: all 0.3s;
+}
+
+:root.dark .genre-label {
+  color: #e5e7eb;
+}
+
+@media (max-width: 640px) {
+  .genre-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /* 에러 메시지 */
