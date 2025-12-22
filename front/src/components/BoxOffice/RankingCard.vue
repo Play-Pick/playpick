@@ -331,6 +331,58 @@ const handleImageError = (event) => {
   font-weight: 600;
 }
 
+/* Like button */
+.card-like-button {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 10;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.95);
+  color: #9ca3af;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.card-like-button:hover {
+  background: #fef2f2;
+  color: #ef4444;
+  transform: scale(1.1);
+}
+
+.card-like-button.liked {
+  background: #fef2f2;
+  color: #ef4444;
+}
+
+.card-like-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.card-like-button i {
+  font-size: 1.25rem;
+  transition: transform 0.3s;
+}
+
+.card-like-button.liked i {
+  animation: heartBeat 0.3s ease-in-out;
+}
+
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.3); }
+  50% { transform: scale(1.1); }
+  75% { transform: scale(1.2); }
+}
+
 /* 반응형 */
 @media (max-width: 768px) {
   .rank-badge-large {

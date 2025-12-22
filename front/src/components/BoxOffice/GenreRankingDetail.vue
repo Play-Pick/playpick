@@ -20,6 +20,8 @@
           v-for="perf in topThree"
           :key="perf.mt20id"
           :perf="perf"
+          :like-loading="likeLoading"
+          @toggle-like="handleToggleLike"
         />
       </div>
 
@@ -29,6 +31,8 @@
           v-for="perf in restPerformances"
           :key="perf.mt20id"
           :perf="perf"
+          :like-loading="likeLoading"
+          @toggle-like="handleToggleLike"
         />
       </div>
     </div>
@@ -44,6 +48,7 @@
 <script setup>
 import { computed, watch } from 'vue'
 import { useBoxOffice } from '@/composables/useBoxOffice'
+import { useUserTracking } from '@/composables/useUserTracking'
 import RankingCard from './RankingCard.vue'
 import RankingListItem from './RankingListItem.vue'
 
@@ -59,12 +64,33 @@ const props = defineProps({
 })
 
 const { allPerformances: performances, loading, error, changeGenre } = useBoxOffice()
+const { toggleLike, likeLoading } = useUserTracking()
 
 // Top 1-3
 const topThree = computed(() => performances.value.slice(0, 3))
 
 // 4-10
 const restPerformances = computed(() => performances.value.slice(3, 10))
+
+// 찜하기 토글 핸들러
+const handleToggleLike = async (performanceId) => {
+  try {
+    const result = await toggleLike(performanceId)
+
+    // Update local performance data
+    const performance = performances.value.find(p => p.mt20id === performanceId)
+    if (performance) {
+      performance.is_liked = result.is_liked
+      performance.like_count = result.like_count
+    }
+  } catch (err) {
+    if (err.message === '로그인이 필요합니다.') {
+      alert('로그인이 필요한 기능입니다.')
+    } else {
+      console.error('찜하기 실패:', err)
+    }
+  }
+}
 
 // 장르 변경 시 데이터 로드
 watch(() => props.genreCode, async (newGenre) => {
