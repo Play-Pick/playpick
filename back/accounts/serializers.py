@@ -26,8 +26,12 @@ class UserDetailSerializer(serializers.ModelSerializer):
             'id', 'username', 'email', 'nickname', 'date_joined',
             'is_staff', 'is_superuser',
             'followers', 'followings',
-            'followers_count', 'followings_count'
+            'followers_count', 'followings_count',
+            'has_onboarded', 'onboarded_at',
+            'profile_image', 'region', 'birth_date',
+            'preference_tags', 'favorite_actors'
         ]
+        read_only_fields = ['id', 'date_joined', 'has_onboarded', 'onboarded_at']
 
 
 class RegisterSerializer(serializers.ModelSerializer):

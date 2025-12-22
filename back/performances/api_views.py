@@ -238,6 +238,69 @@ class PerformanceViewSet(viewsets.ReadOnlyModelViewSet):
             'like_count': performance.like_users.count()
         })
 
+    @action(detail=False, methods=['get'], permission_classes=[IsAuthenticated], url_path='watched')
+    def watched(self, request):
+        """
+        내가 관람한 공연 목록 조회
+        GET /api/performances/watched/
+        """
+        from accounts.models import WatchedPerformance
+
+        watched_records = WatchedPerformance.objects.filter(
+            user=request.user
+        ).select_related('performance', 'performance__detail').order_by('-watched_at')
+
+        performances = [record.performance for record in watched_records]
+        serializer = PerformanceListSerializer(performances, many=True, context={'request': request})
+        return Response(serializer.data)
+
+    @action(detail=True, methods=['post', 'delete'], permission_classes=[IsAuthenticated], url_path='watch')
+    def watch(self, request, pk=None):
+        """
+        공연 관람함 추가/해제
+        POST /api/performances/{mt20id}/watch/ - 추가
+        DELETE /api/performances/{mt20id}/watch/ - 해제
+        """
+        from accounts.models import WatchedPerformance
+
+        performance = self.get_object()
+        user = request.user
+
+        if request.method == 'POST':
+            # 관람함 추가
+            watched_record, created = WatchedPerformance.objects.get_or_create(
+                user=user,
+                performance=performance
+            )
+
+            # 추천 시스템 로그 저장 (새로 생성된 경우만)
+            if created:
+                from recommendations.models import UserLog
+                UserLog.objects.create(
+                    user=user,
+                    performance=performance,
+                    action_type='view'
+                )
+
+            return Response({
+                'success': True,
+                'is_watched': True,
+                'watched_at': watched_record.watched_at
+            })
+
+        elif request.method == 'DELETE':
+            # 관람함 해제
+            deleted_count, _ = WatchedPerformance.objects.filter(
+                user=user,
+                performance=performance
+            ).delete()
+
+            return Response({
+                'success': True,
+                'is_watched': False,
+                'deleted': deleted_count > 0
+            })
+
     @action(detail=False, methods=['post'], url_path='ai-search', permission_classes=[])
     def ai_search(self, request):
         """

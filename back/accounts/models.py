@@ -45,6 +45,17 @@ class User(AbstractUser):
         verbose_name="팔로잉"
     )
 
+    # 6. 온보딩 추적
+    has_onboarded = models.BooleanField(
+        default=False,
+        verbose_name="온보딩 완료 여부"
+    )
+    onboarded_at = models.DateTimeField(
+        null=True,
+        blank=True,
+        verbose_name="온보딩 완료 시각"
+    )
+
     def __str__(self):
         return self.username
 
@@ -56,3 +67,126 @@ class User(AbstractUser):
             today = datetime.date.today()
             return today.year - self.birth_date.year
         return 0
+
+
+class UserPreference(models.Model):
+    """User preference vector derived from onboarding selections"""
+
+    user = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+        related_name='preference',
+        primary_key=True,
+        verbose_name="사용자"
+    )
+
+    # 1536-dim vector (same as PerformanceEmbedding)
+    preference_vector = models.JSONField(
+        verbose_name="선호도 벡터",
+        help_text="1536차원 사용자 선호 벡터 (normalized)"
+    )
+
+    # Metadata
+    signal_count = models.IntegerField(
+        default=0,
+        verbose_name="시그널 개수",
+        help_text="온보딩 시 선택한 공연 개수"
+    )
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "사용자 선호도"
+        verbose_name_plural = "사용자 선호도 목록"
+
+    def __str__(self):
+        return f"{self.user.username}의 선호도 벡터 ({self.signal_count}개 신호)"
+
+
+class UserPerformanceSignal(models.Model):
+    """Records user reactions to performances during onboarding"""
+
+    SIGNAL_CHOICES = [
+        (1.5, '보고싶어요'),
+        (0.0, '모르겠어요'),
+        (-1.0, '안보고싶어요'),
+    ]
+
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='performance_signals',
+        verbose_name="사용자"
+    )
+
+    performance = models.ForeignKey(
+        'performances.Performance',
+        on_delete=models.CASCADE,
+        related_name='user_signals',
+        verbose_name="공연"
+    )
+
+    signal = models.FloatField(
+        choices=SIGNAL_CHOICES,
+        verbose_name="반응"
+    )
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "사용자 공연 시그널"
+        verbose_name_plural = "사용자 공연 시그널 목록"
+        unique_together = [['user', 'performance']]
+        indexes = [
+            models.Index(fields=['user', 'created_at']),
+        ]
+
+    def __str__(self):
+        signal_label = dict(self.SIGNAL_CHOICES).get(self.signal, '알 수 없음')
+        return f"{self.user.username} → {self.performance.prfnm} ({signal_label})"
+
+
+class WatchedPerformance(models.Model):
+    """User watched performances tracking"""
+
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='watched_performances',
+        verbose_name="사용자"
+    )
+
+    performance = models.ForeignKey(
+        'performances.Performance',
+        on_delete=models.CASCADE,
+        to_field='mt20id',
+        related_name='watched_by_users',
+        verbose_name="공연"
+    )
+
+    watched_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name="관람 등록 시각"
+    )
+
+    # Optional: 향후 별점 기능 확장용
+    rating = models.SmallIntegerField(
+        null=True,
+        blank=True,
+        verbose_name="별점 (1-5)",
+        help_text="1~5점 별점 (선택사항)"
+    )
+
+    class Meta:
+        verbose_name = "관람한 공연"
+        verbose_name_plural = "관람한 공연 목록"
+        unique_together = [['user', 'performance']]
+        indexes = [
+            models.Index(fields=['user', 'watched_at']),
+            models.Index(fields=['-watched_at']),
+        ]
+        ordering = ['-watched_at']
+
+    def __str__(self):
+        return f"{self.user.username} → {self.performance.prfnm} (관람함)"
