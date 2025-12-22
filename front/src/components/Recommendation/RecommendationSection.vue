@@ -71,8 +71,8 @@
 
         <!-- 더보기 버튼 -->
         <div class="view-more-container">
-          <router-link to="/recommendations" class="view-more-button">
-            <span>추천 공연 더보기</span>
+          <router-link to="/recommands" class="view-more-button">
+            <span>AI에게 추천받기</span>
             <i class="fas fa-arrow-right"></i>
           </router-link>
         </div>
