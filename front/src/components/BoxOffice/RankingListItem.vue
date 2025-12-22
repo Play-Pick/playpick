@@ -48,6 +48,19 @@
       </div>
     </div>
 
+    <!-- Like button -->
+    <button
+      v-if="showLikeButton"
+      @click.stop.prevent="handleLikeClick"
+      :disabled="likeLoading"
+      :class="['list-like-button', { liked: perf.is_liked }]"
+      :title="perf.is_liked ? '찜 취소' : '찜하기'"
+      :aria-label="perf.is_liked ? `${perf.prfnm} 찜 취소` : `${perf.prfnm} 찜하기`"
+      :aria-pressed="perf.is_liked"
+    >
+      <i :class="perf.is_liked ? 'fas fa-heart' : 'far fa-heart'"></i>
+    </button>
+
     <!-- 화살표 아이콘 -->
     <div class="arrow-icon">
       <i class="fas fa-chevron-right"></i>
@@ -60,8 +73,22 @@ const props = defineProps({
   perf: {
     type: Object,
     required: true
+  },
+  showLikeButton: {
+    type: Boolean,
+    default: true
+  },
+  likeLoading: {
+    type: Boolean,
+    default: false
   }
 })
+
+const emit = defineEmits(['toggle-like'])
+
+const handleLikeClick = () => {
+  emit('toggle-like', props.perf.mt20id)
+}
 
 // 날짜 포맷
 const formatDate = (dateStr) => {
@@ -227,6 +254,55 @@ const handleImageError = (event) => {
   color: #374151;
 }
 
+/* Like button */
+.list-like-button {
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: none;
+  background: #f3f4f6;
+  color: #9ca3af;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  margin-right: 0.5rem;
+}
+
+.list-like-button:hover {
+  background: #fef2f2;
+  color: #ef4444;
+  transform: scale(1.1);
+}
+
+.list-like-button.liked {
+  background: #fef2f2;
+  color: #ef4444;
+}
+
+.list-like-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.list-like-button i {
+  font-size: 1rem;
+  transition: transform 0.3s;
+}
+
+.list-like-button.liked i {
+  animation: heartBeat 0.3s ease-in-out;
+}
+
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.3); }
+  50% { transform: scale(1.1); }
+  75% { transform: scale(1.2); }
+}
+
 /* 화살표 아이콘 */
 .arrow-icon {
   flex-shrink: 0;
@@ -354,5 +430,20 @@ const handleImageError = (event) => {
 
 :root.dark .ranking-list-item:hover .arrow-icon {
   color: #818cf8;
+}
+
+:root.dark .list-like-button {
+  background: #374151;
+  color: #6b7280;
+}
+
+:root.dark .list-like-button:hover {
+  background: #3f1f1f;
+  color: #fca5a5;
+}
+
+:root.dark .list-like-button.liked {
+  background: #3f1f1f;
+  color: #fca5a5;
 }
 </style>
