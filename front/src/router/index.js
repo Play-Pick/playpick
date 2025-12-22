@@ -103,14 +103,17 @@ router.beforeEach(async (to, from, next) => {
 
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
   const isAuthenticated = authStore.isAuthenticated
+  // Skip flag is user-scoped to avoid leaking between accounts
+  const skipKey = authStore.userId ? `onboarding_skipped_${authStore.userId}` : null
+  const skippedOnboarding = skipKey ? localStorage.getItem(skipKey) === '1' : false
 
   if (requiresAuth && !isAuthenticated) {
     // Not logged in, redirect to login
     next({ name: 'login', query: { redirect: to.fullPath } })
-  } else if (isAuthenticated && !authStore.user?.has_onboarded && to.name !== 'onboarding') {
+  } else if (isAuthenticated && !authStore.user?.has_onboarded && !skippedOnboarding && to.name !== 'onboarding') {
     // Logged in but not onboarded, force onboarding
     next({ name: 'onboarding' })
-  } else if (to.name === 'onboarding' && authStore.user?.has_onboarded) {
+  } else if (to.name === 'onboarding' && (authStore.user?.has_onboarded || skippedOnboarding)) {
     // Already onboarded, redirect to home
     next({ name: 'home' })
   } else {

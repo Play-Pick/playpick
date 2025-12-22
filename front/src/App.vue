@@ -4,6 +4,7 @@ import { onMounted, computed, ref } from 'vue'
 import { useAuthStore } from '@/stores/authStore'
 import { useThemeStore } from '@/stores/themeStore'
 import FloatingActionButtons from '@/components/Common/FloatingActionButtons.vue'
+import WelcomeOverlay from '@/components/WelcomeOverlay.vue'
 import logoLight from '@/assets/images/logo-light.png'
 import logoDark from '@/assets/images/logo-dark.png'
 
@@ -79,6 +80,9 @@ const closeMenu = () => {
 
     <!-- Floating Action Buttons -->
     <FloatingActionButtons />
+
+    <!-- Welcome Overlay (appears after onboarding) -->
+    <WelcomeOverlay />
   </div>
 </template>
 

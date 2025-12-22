@@ -25,6 +25,8 @@ export const useAuthStore = defineStore('auth', () => {
     error.value = null
 
     try {
+      // 새 계정 시작 전에 온보딩/웰컴 관련 로컬 상태 초기화
+      localStorage.removeItem('onboarding_skipped')
       const response = await authAPI.register(credentials)
 
       // 토큰 저장
@@ -35,6 +37,10 @@ export const useAuthStore = defineStore('auth', () => {
 
       // 사용자 정보 저장
       user.value = response.data.user
+
+      // 온보딩 스토어 초기화
+      const { useOnboardingStore } = await import('@/stores/onboardingStore')
+      useOnboardingStore().reset()
 
       return response.data
     } catch (err) {
@@ -50,6 +56,9 @@ export const useAuthStore = defineStore('auth', () => {
     error.value = null
 
     try {
+      // 계정 전환 시 글로벌 스킵 플래그 정리
+      localStorage.removeItem('onboarding_skipped')
+
       // JWT 토큰 발급
       const response = await authAPI.login(credentials)
 
@@ -61,6 +70,10 @@ export const useAuthStore = defineStore('auth', () => {
 
       // 사용자 정보 가져오기
       await fetchCurrentUser()
+
+      // 온보딩 스토어 초기화
+      const { useOnboardingStore } = await import('@/stores/onboardingStore')
+      useOnboardingStore().reset()
 
       return response.data
     } catch (err) {
@@ -83,6 +96,11 @@ export const useAuthStore = defineStore('auth', () => {
       refreshToken.value = null
       localStorage.removeItem('access_token')
       localStorage.removeItem('refresh_token')
+      localStorage.removeItem('onboarding_skipped')
+
+      // 온보딩 스토어 초기화
+      const { useOnboardingStore } = await import('@/stores/onboardingStore')
+      useOnboardingStore().reset()
     } catch (err) {
       error.value = err.message
       throw err
