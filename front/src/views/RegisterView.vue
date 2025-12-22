@@ -294,9 +294,7 @@ const handleRegister = async () => {
     }
 
     await authStore.register(submitData)
-
     // 회원가입 성공 시 홈으로 이동
-    alert('회원가입이 완료되었습니다!')
     router.push('/')
   } catch (error) {
     console.error('회원가입 실패:', error)

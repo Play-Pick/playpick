@@ -77,6 +77,17 @@ const handleLike = async () => {
   border-color: #3498db;
 }
 
+:root.dark .article-card {
+  background-color: #111827;
+  border-color: #1f2937;
+  box-shadow: none;
+}
+
+:root.dark .article-card:hover {
+  box-shadow: 0 2px 10px rgba(129, 140, 248, 0.25);
+  border-color: #6366f1;
+}
+
 .card-header {
   display: flex;
   justify-content: space-between;
@@ -107,6 +118,14 @@ const handleLike = async () => {
   color: #3498db;
 }
 
+:root.dark .article-title {
+  color: #f8fafc;
+}
+
+:root.dark .article-title:hover {
+  color: #c7d2fe;
+}
+
 .article-info {
   display: flex;
   align-items: center;
@@ -115,11 +134,19 @@ const handleLike = async () => {
   color: #666;
 }
 
+:root.dark .article-info {
+  color: #cbd5e1;
+}
+
 .performance-title {
   flex: 1;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+:root.dark .performance-title {
+  color: #e2e8f0;
 }
 
 .rating {
@@ -133,6 +160,10 @@ const handleLike = async () => {
   white-space: nowrap;
 }
 
+:root.dark .author {
+  color: #cbd5e1;
+}
+
 .like-section {
   display: flex;
   align-items: center;
@@ -143,6 +174,10 @@ const handleLike = async () => {
   font-size: 0.75rem;
   color: #e74c3c;
   font-weight: 600;
+}
+
+:root.dark .like-count {
+  color: #f87171;
 }
 
 .like-button {

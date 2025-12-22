@@ -6,14 +6,20 @@
           <span class="comment-author">{{ comment.username }}</span>
           <span class="comment-date">{{ formatDate(comment.created_at) }}</span>
         </div>
-        <p class="comment-content">{{ comment.content }}</p>
-        <button
-          v-if="canDelete(comment)"
-          @click="handleDelete(comment.id)"
-          class="delete-button"
-        >
-          삭제
-        </button>
+
+        <div v-if="isEditing(comment.id)" class="edit-area">
+          <textarea v-model="editContent" rows="3"></textarea>
+          <div class="edit-actions">
+            <button @click="saveEdit(comment.id)" class="btn-save">저장</button>
+            <button @click="cancelEdit" class="btn-cancel">취소</button>
+          </div>
+        </div>
+        <p v-else class="comment-content">{{ comment.content }}</p>
+
+        <div class="comment-actions" v-if="canManage(comment)">
+          <button @click="startEdit(comment)" class="edit-button">수정</button>
+          <button @click="handleDelete(comment.id)" class="delete-button">삭제</button>
+        </div>
       </div>
     </div>
     <p v-else class="no-comments">아직 댓글이 없습니다.</p>
@@ -21,7 +27,7 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 
 const props = defineProps({
   comments: {
@@ -34,16 +40,40 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['delete'])
+const emit = defineEmits(['delete', 'update'])
 
-const canDelete = (comment) => {
+const editingId = ref(null)
+const editContent = ref('')
+
+const canManage = (comment) => {
   return props.currentUsername && props.currentUsername === comment.username
+}
+
+const startEdit = (comment) => {
+  editingId.value = comment.id
+  editContent.value = comment.content
+}
+
+const cancelEdit = () => {
+  editingId.value = null
+  editContent.value = ''
+}
+
+const saveEdit = (commentId) => {
+  if (!editContent.value.trim()) {
+    alert('내용을 입력해주세요.')
+    return
+  }
+  emit('update', { id: commentId, content: editContent.value.trim() })
+  cancelEdit()
 }
 
 const handleDelete = (commentId) => {
   if (!confirm('댓글을 삭제하시겠습니까?')) return
   emit('delete', commentId)
 }
+
+const isEditing = (id) => editingId.value === id
 
 const formatDate = (dateString) => {
   const date = new Date(dateString)
@@ -152,19 +182,37 @@ const formatDate = (dateString) => {
   color: #d1d5db;
 }
 
-.comment-item .delete-button {
+.comment-actions {
   position: absolute;
   top: 1rem;
   right: 1rem;
-  padding: 0.4rem 1rem;
+  display: flex;
+  gap: 0.35rem;
+}
+
+.comment-item .edit-button,
+.comment-item .delete-button {
+  padding: 0.4rem 0.9rem;
   font-size: 0.85rem;
   font-weight: 600;
-  background-color: #e74c3c;
-  color: white;
   border: none;
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.3s;
+}
+
+.comment-item .edit-button {
+  background-color: #6366f1;
+  color: white;
+}
+
+.comment-item .edit-button:hover {
+  background-color: #4f46e5;
+}
+
+.comment-item .delete-button {
+  background-color: #e74c3c;
+  color: white;
 }
 
 .comment-item .delete-button:hover {
@@ -180,5 +228,58 @@ const formatDate = (dateString) => {
 :root.dark .comment-item .delete-button:hover {
   background-color: #b91c1c;
   box-shadow: 0 2px 4px rgba(220, 38, 38, 0.4);
+}
+
+.edit-area {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.edit-area textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  resize: vertical;
+  font-size: 0.95rem;
+  background: white;
+  color: #1f2937;
+}
+
+:root.dark .edit-area textarea {
+  background: #1f2937;
+  color: #f3f4f6;
+  border-color: #374151;
+}
+
+.edit-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-save,
+.btn-cancel {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn-save {
+  background: #10b981;
+  color: white;
+}
+
+.btn-cancel {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+:root.dark .btn-cancel {
+  background: #374151;
+  color: #e2e8f0;
 }
 </style>

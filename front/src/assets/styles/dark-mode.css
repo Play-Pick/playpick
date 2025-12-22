@@ -69,7 +69,7 @@
 :root.dark input,
 :root.dark textarea,
 :root.dark select,
-:root.dark button:not(.fab-button):not(.nav-btn):not(.cta-button):not(.view-more-button):not(.back-button):not(.main-tab):not(.genre-tab):not(.card-like-button) {
+:root.dark button:not(.fab-button):not(.nav-btn):not(.cta-button):not(.view-more-button):not(.back-button):not(.main-tab):not(.genre-tab):not(.card-like-button):not(.category-btn):not(.tab-btn):not(.chip) {
   background: var(--bg-secondary);
   color: var(--text-primary);
   border-color: var(--border-color);

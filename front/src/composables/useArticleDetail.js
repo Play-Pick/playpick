@@ -43,6 +43,16 @@ export const useArticleDetail = (articleId) => {
     }
   }
 
+  // 댓글 수정
+  const updateComment = async ({ id, content }) => {
+    try {
+      await communityStore.updateComment(id, { content })
+    } catch (err) {
+      console.error('댓글 수정 실패:', err)
+      alert('댓글 수정에 실패했습니다.')
+    }
+  }
+
   // 댓글 삭제
   const deleteComment = async (commentId) => {
     try {
@@ -53,7 +63,7 @@ export const useArticleDetail = (articleId) => {
     }
   }
 
-  // 게시글 수정
+  // 게시글 수정 (본인만)
   const editArticle = () => {
     router.push(`/community/${articleId}/edit`)
   }
@@ -100,6 +110,7 @@ export const useArticleDetail = (articleId) => {
     // Actions
     handleLike,
     submitComment,
+    updateComment,
     deleteComment,
     editArticle,
     deleteArticle,

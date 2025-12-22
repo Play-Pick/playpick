@@ -1,57 +1,93 @@
 <template>
-  <div class="article-detail">
-    <div v-if="loading" class="loading">로딩 중...</div>
+  <div class="page-wrapper">
+    <div class="detail-container">
+      <div v-if="loading" class="loading">로딩 중...</div>
 
-    <div v-else-if="error" class="error">
-      {{ error }}
-      <button @click="goBack" class="back-button">목록으로</button>
-    </div>
-
-    <div v-else-if="currentArticle" class="article-content">
-      <!-- 헤더 -->
-      <ArticleHeader
-        :article="currentArticle"
-        :like-loading="likeLoading"
-        @like="handleLike"
-      />
-
-      <!-- 공연 정보 -->
-      <div class="performance-section">
-        <h3>관련 공연</h3>
-        <div class="performance-info">
-          <p class="performance-title">{{ currentArticle.performance_name }}</p>
-          <button @click="goToPerformance" class="detail-button">상세보기 →</button>
-        </div>
-        <p v-if="currentArticle.rank" class="rating">평점: ⭐ {{ currentArticle.rank }}</p>
-      </div>
-
-      <!-- 본문 -->
-      <div class="article-body">
-        <p>{{ currentArticle.content }}</p>
-      </div>
-
-      <!-- 댓글 섹션 -->
-      <div class="comments-section">
-        <CommentForm
-          :is-authenticated="authStore.isAuthenticated"
-          :comment-count="comments?.length || 0"
-          :loading="commentLoading"
-          @submit="submitComment"
-        />
-
-        <CommentList
-          :comments="comments"
-          :current-username="authStore.user?.username"
-          @delete="deleteComment"
-        />
-      </div>
-
-      <!-- 하단 버튼 -->
-      <div class="actions">
+      <div v-else-if="error" class="error">
+        {{ error }}
         <button @click="goBack" class="back-button">목록으로</button>
-        <div v-if="authStore.user?.username === currentArticle.username" class="owner-actions">
-          <button @click="editArticle" class="edit-button">수정</button>
-          <button @click="deleteArticle" class="delete-button">삭제</button>
+      </div>
+
+      <div v-else-if="currentArticle">
+        <!-- 헤더 -->
+        <div class="card header-card">
+          <div class="header-row">
+            <div>
+              <div class="chip-row">
+                <span class="chip tone">{{ boardTypeLabel }}</span>
+                <span class="chip">{{ categoryLabel }}</span>
+              </div>
+              <h1 class="title">{{ currentArticle.title }}</h1>
+              <div class="meta">
+                <span class="author">{{ currentArticle.username }}</span>
+                <span class="divider">·</span>
+                <span class="date">{{ formatDate(currentArticle.created_at) }}</span>
+              </div>
+            </div>
+            <div class="like-box">
+              <button
+                class="like-button"
+                :disabled="likeLoading"
+                @click="handleLike"
+                aria-label="좋아요"
+              >
+                <i :class="currentArticle.is_liked ? 'fas fa-heart liked' : 'far fa-heart'"></i>
+              </button>
+              <span class="like-count">{{ currentArticle.like_count }}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 통합 카드: 공연정보 + 본문 + 댓글 -->
+        <div class="card content-card">
+          <div class="card-head perf-head">
+            <h3>관련 공연</h3>
+          </div>
+          <div class="perf-info">
+            <div class="side-text">
+              <p class="side-title">{{ currentArticle.performance_name }}</p>
+              <p v-if="currentArticle.performance_area" class="side-sub">{{ currentArticle.performance_area }}</p>
+              <p v-if="periodText" class="side-sub">{{ periodText }}</p>
+              <p v-if="currentArticle.rank" class="side-rating">평점 ★{{ currentArticle.rank }}</p>
+              <p v-if="!currentArticle.performance_area && !periodText && !currentArticle.rank" class="side-placeholder">
+                공연 정보가 없습니다.
+              </p>
+            </div>
+            <button @click="goToPerformance" class="link-button">공연상세보기</button>
+          </div>
+
+          <div class="divider-line"></div>
+
+          <div class="article-body">
+            <p>{{ currentArticle.content }}</p>
+          </div>
+
+          <div class="divider-line"></div>
+
+          <div class="comments-card">
+            <CommentForm
+              :is-authenticated="authStore.isAuthenticated"
+              :comment-count="comments?.length || 0"
+              :loading="commentLoading"
+              @submit="submitComment"
+            />
+            <div class="comment-list-wrapper">
+              <CommentList
+                :comments="comments"
+                :current-username="authStore.user?.username"
+                @update="updateComment"
+                @delete="deleteComment"
+              />
+            </div>
+          </div>
+
+          <div class="actions">
+            <button @click="goBack" class="back-button">목록으로</button>
+            <div v-if="authStore.user?.username === currentArticle.username" class="owner-actions">
+              <button @click="editArticle" class="edit-button">수정</button>
+              <button @click="deleteArticle" class="delete-button">삭제</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -59,15 +95,22 @@
 </template>
 
 <script setup>
-import { onMounted, watch } from 'vue'
+import { onMounted, watch, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/authStore'
 import { storeToRefs } from 'pinia'
 import { useCommunityStore } from '@/stores/communityStore'
-import ArticleHeader from '@/components/Community/ArticleHeader.vue'
 import CommentForm from '@/components/Community/CommentForm.vue'
 import CommentList from '@/components/Community/CommentList.vue'
 import { useArticleDetail } from '@/composables/useArticleDetail'
+
+const categoryMap = {
+  REVIEW: '관람후기',
+  EXPECTATION: '기대평',
+  QNA: '질문',
+  FREE: '자유게시판',
+  INFO: '정보공유'
+}
 
 const route = useRoute()
 const router = useRouter()
@@ -80,6 +123,7 @@ const {
   commentLoading,
   handleLike,
   submitComment,
+  updateComment,
   deleteComment,
   editArticle,
   deleteArticle,
@@ -87,19 +131,39 @@ const {
   loadArticleData
 } = useArticleDetail(route.params.id)
 
-// 관련 공연 상세 페이지로 이동
+const categoryLabel = computed(() => categoryMap[currentArticle.value?.category] || currentArticle.value?.category)
+const boardTypeLabel = computed(() =>
+  currentArticle.value?.board_type === 'GENERAL' ? '자유/정보' : '공연글'
+)
+const periodText = computed(() => {
+  const from = currentArticle.value?.prfpdfrom
+  const to = currentArticle.value?.prfpdto
+  if (from && to) return `${from} ~ ${to}`
+  return ''
+})
+
+const formatDate = (dateString) => {
+  if (!dateString) return ''
+  const date = new Date(dateString)
+  return date.toLocaleString('ko-KR', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit'
+  })
+}
+
 const goToPerformance = () => {
   if (currentArticle.value?.performance) {
     router.push(`/performances/${currentArticle.value.performance}`)
   }
 }
 
-// 컴포넌트 마운트 시 데이터 로드
 onMounted(() => {
   loadArticleData()
 })
 
-// 라우트 파라미터 변경 감지 (다른 게시글로 이동할 때)
 watch(
   () => route.params.id,
   (newId, oldId) => {
@@ -111,10 +175,21 @@ watch(
 </script>
 
 <style scoped>
-.article-detail {
-  max-width: 800px;
+.page-wrapper {
+  background: #f7f7fb;
+  min-height: 100vh;
+  padding: 2rem 0;
+  font-family: 'Pretendard', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+:root.dark .page-wrapper {
+  background: #0b1220;
+}
+
+.detail-container {
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0 1.5rem 3rem;
 }
 
 .loading,
@@ -122,11 +197,6 @@ watch(
   text-align: center;
   padding: 3rem;
   font-size: 1.2rem;
-  transition: color 0.3s;
-}
-
-:root.dark .loading {
-  color: #f3f4f6;
 }
 
 .error {
@@ -137,153 +207,263 @@ watch(
   color: #fca5a5;
 }
 
-.article-content {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s, box-shadow 0.3s;
+.card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(17, 24, 39, 0.06);
+  padding: 1.5rem;
+  transition: box-shadow 0.2s, transform 0.2s;
 }
 
-:root.dark .article-content {
-  background-color: #1f2937;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(17, 24, 39, 0.1);
 }
 
-.performance-section {
-  padding: 1.5rem 2rem;
-  background-color: #f8f9fa;
-  border-bottom: 1px solid #e0e0e0;
-  transition: background-color 0.3s, border-color 0.3s;
+:root.dark .card {
+  background: #0f172a;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
-:root.dark .performance-section {
-  background-color: #111827;
-  border-bottom-color: #374151;
+.header-card {
+  margin-bottom: 1.5rem;
+  text-align: left;
 }
 
-.performance-section h3 {
-  margin: 0 0 0.5rem 0;
-  font-size: 0.9rem;
-  color: #666;
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.chip-row {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.9rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  background: #eef2ff;
+  color: #4338ca;
+}
+
+.chip.tone {
+  background: #e0f2fe;
+  color: #075985;
+}
+
+:root.dark .chip {
+  background: #1f2937;
+  color: #c7d2fe;
+}
+
+.title {
+  margin: 0.75rem 0 0.35rem;
+  font-size: 2rem;
+  line-height: 1.3;
+  color: #0f172a;
+}
+
+:root.dark .title {
+  color: #f9fafb;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #6b7280;
   font-weight: 600;
-  transition: color 0.3s;
 }
 
-:root.dark .performance-section h3 {
+:root.dark .meta {
   color: #9ca3af;
 }
 
-.performance-info {
+.divider {
+  opacity: 0.6;
+}
+
+.like-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-left: auto;
+  padding: 0.25rem 0.7rem;
+  background: #fdf2f2;
+  border-radius: 9999px;
+  border: 1px solid #fecdd3;
+  transform: translateY(6px);
+}
+
+:root.dark .like-box {
+  background: #2b1414;
+  border-color: #7f1d1d;
+}
+
+.like-button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1.6rem;
+  padding: 0.15rem;
+  transition: transform 0.2s ease;
+  color: #ef4444;
+}
+
+.like-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.like-button:hover:not(:disabled) {
+  transform: translateY(1px) scale(1.08);
+}
+
+.like-count {
+  font-weight: 800;
+  color: #ef4444;
+  font-size: 1.05rem;
+}
+
+:root.dark .like-count {
+  color: #f87171;
+}
+
+.content-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.perf-head {
+  margin-bottom: 0.25rem;
+}
+
+.perf-info {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 1rem;
-  margin: 0.5rem 0;
+  flex-wrap: wrap;
+  padding: 0.25rem 0.75rem 0.5rem 0.75rem;
 }
 
-.performance-title {
+.card-head h3 {
   margin: 0;
-  font-size: 1.1rem;
-  color: #2c3e50;
-  font-weight: 600;
-  flex: 1;
-  transition: color 0.3s;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #1f2937;
 }
 
-:root.dark .performance-title {
-  color: #f3f4f6;
+:root.dark .card-head h3 {
+  color: #e5e7eb;
 }
 
-.detail-button {
-  padding: 0.4rem 1rem;
-  background-color: #3498db;
-  color: white;
+.link-button {
   border: none;
-  border-radius: 4px;
-  font-size: 0.85rem;
-  font-weight: 600;
+  background: #e5e7eb;
+  color: #111827;
+  border-radius: 10px;
+  padding: 0.5rem 0.9rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.2s;
   white-space: nowrap;
 }
 
-.detail-button:hover {
-  background-color: #2980b9;
+.link-button:hover {
+  background: #d1d5db;
 }
 
-:root.dark .detail-button {
-  background: linear-gradient(to right, #6366f1, #9333ea);
+:root.dark .link-button {
+  background: #1f2937;
+  color: #e2e8f0;
 }
 
-:root.dark .detail-button:hover {
-  background: linear-gradient(to right, #4f46e5, #7c3aed);
+:root.dark .link-button:hover {
+  background: #334155;
 }
 
-.rating {
-  margin: 0.5rem 0 0 0;
-  font-size: 1rem;
-  color: #f39c12;
-  font-weight: 600;
+.divider-line {
+  border-bottom: 1px solid #e5e7eb;
+  margin: 0.5rem 0 0.75rem;
+}
+
+:root.dark .divider-line {
+  border-color: #1f2937;
 }
 
 .article-body {
-  padding: 2rem;
   line-height: 1.8;
-  font-size: 1.05rem;
-  color: #333;
+  font-size: 1rem;
+  color: #1f2937;
   white-space: pre-wrap;
-  min-height: 200px;
-  transition: color 0.3s;
+  min-height: 120px;
+  padding: 0.75rem 0.75rem 0.5rem;
 }
 
 :root.dark .article-body {
   color: #d1d5db;
 }
 
-.comments-section {
-  padding: 2rem;
-  border-top: 2px solid #f0f0f0;
-  transition: border-color 0.3s;
+.comments-card {
+  padding-bottom: 1.5rem;
 }
 
-:root.dark .comments-section {
-  border-top-color: #374151;
+.comment-list-wrapper {
+  margin-top: 0.5rem;
+  padding: 0 0.75rem 0 0.75rem;
+}
+
+.comments-card :deep(.comment-item) {
+  padding: 1rem 0.75rem 1rem 1.25rem;
 }
 
 .actions {
-  padding: 1.5rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid #e0e0e0;
-  transition: border-color 0.3s;
-}
-
-:root.dark .actions {
-  border-top-color: #374151;
+  margin-top: 0.5rem;
 }
 
 .back-button {
-  padding: 0.6rem 1.5rem;
-  background-color: #95a5a6;
-  color: white;
+  padding: 0.7rem 1.4rem;
+  background: #e5e7eb;
+  color: #111827;
   border: none;
-  border-radius: 4px;
+  border-radius: 10px;
+  font-weight: 700;
   cursor: pointer;
-  font-size: 0.95rem;
-  font-weight: 600;
-  transition: all 0.3s;
+  transition: all 0.2s;
 }
 
 .back-button:hover {
-  background-color: #7f8c8d;
+  background: #d1d5db;
 }
 
 :root.dark .back-button {
-  background-color: #4b5563;
+  background: #1f2937;
+  color: #e2e8f0;
 }
 
 :root.dark .back-button:hover {
-  background-color: #374151;
+  background: #334155;
 }
 
 .owner-actions {
@@ -293,45 +473,58 @@ watch(
 
 .edit-button,
 .delete-button {
-  padding: 0.6rem 1.2rem;
-  color: white;
+  padding: 0.7rem 1.1rem;
   border: none;
-  border-radius: 4px;
+  border-radius: 10px;
+  font-weight: 700;
   cursor: pointer;
-  font-size: 0.95rem;
-  font-weight: 600;
-  transition: all 0.3s;
+  transition: all 0.2s;
+  color: white;
 }
 
 .edit-button {
-  background-color: #3498db;
+  background: #6366f1;
 }
 
 .edit-button:hover {
-  background-color: #2980b9;
+  background: #4f46e5;
 }
 
-:root.dark .edit-button {
-  background: linear-gradient(to right, #6366f1, #9333ea);
+.delete-button {
+  background: #ef4444;
 }
 
-:root.dark .edit-button:hover {
-  background: linear-gradient(to right, #4f46e5, #7c3aed);
+.delete-button:hover {
+  background: #dc2626;
 }
 
-.actions .delete-button {
-  background-color: #e74c3c;
+.side-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
 }
 
-.actions .delete-button:hover {
-  background-color: #c0392b;
+.side-title {
+  margin: 0;
+  font-weight: 800;
+  color: #0f172a;
 }
 
-:root.dark .actions .delete-button {
-  background-color: #dc2626;
+.side-sub,
+.side-rating,
+.side-placeholder {
+  margin: 0;
+  color: #6b7280;
+  font-weight: 600;
 }
 
-:root.dark .actions .delete-button:hover {
-  background-color: #b91c1c;
+:root.dark .side-title {
+  color: #e5e7eb;
+}
+
+:root.dark .side-sub,
+:root.dark .side-rating,
+:root.dark .side-placeholder {
+  color: #9ca3af;
 }
 </style>

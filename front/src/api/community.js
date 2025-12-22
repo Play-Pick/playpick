@@ -31,6 +31,13 @@ export default {
     return apiClient.post(`/articles/${id}/like/`)
   },
 
+  // 베스트 관람후기 조회
+  getBestReviews(limit = 4) {
+    return apiClient.get('/articles/best-reviews/', {
+      params: { limit }
+    })
+  },
+
   // 댓글 목록 조회
   getComments(articleId) {
     return apiClient.get('/comments/', {
@@ -41,6 +48,11 @@ export default {
   // 댓글 생성
   createComment(data) {
     return apiClient.post('/comments/', data)
+  },
+
+  // 댓글 수정
+  updateComment(id, data) {
+    return apiClient.put(`/comments/${id}/`, data)
   },
 
   // 댓글 삭제

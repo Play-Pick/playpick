@@ -196,6 +196,44 @@ class PerformanceViewSet(viewsets.ReadOnlyModelViewSet):
         genres = Performance.objects.values_list('genrenm', flat=True).distinct().order_by('genrenm')
         return Response({'genres': list(genres)})
 
+    @action(detail=False, methods=['get'], url_path='search-autocomplete')
+    def search_autocomplete(self, request):
+        """
+        공연 자동완성 검색 (커뮤니티 글 작성용)
+        GET /api/performances/search-autocomplete/?query=뮤지컬
+        """
+        query = request.query_params.get('query', '').strip()
+
+        if not query:
+            return Response({
+                'success': False,
+                'results': [],
+                'message': '검색어를 입력해주세요.'
+            })
+
+        # 공연명으로 검색 (최대 10개)
+        performances = Performance.objects.filter(
+            Q(prfnm__icontains=query) | Q(fcltynm__icontains=query)
+        ).select_related('detail')[:10]
+
+        # 간단한 정보만 반환
+        results = [{
+            'mt20id': p.mt20id,
+            'prfnm': p.prfnm,
+            'genrenm': p.genrenm,
+            'prfstate': p.prfstate,
+            'poster': p.poster,
+            'fcltynm': p.fcltynm,
+            'prfpdfrom': p.prfpdfrom,
+            'prfpdto': p.prfpdto,
+        } for p in performances]
+
+        return Response({
+            'success': True,
+            'results': results,
+            'count': len(results)
+        })
+
     @action(detail=False, methods=['get'], permission_classes=[IsAuthenticated], url_path='liked')
     def liked(self, request):
         """

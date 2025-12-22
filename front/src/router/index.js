@@ -25,6 +25,11 @@ const router = createRouter({
       component: () => import('@/views/CommunityView.vue'),
     },
     {
+      path: '/community/best',
+      name: 'community-best',
+      component: () => import('@/views/CommunityBestView.vue'),
+    },
+    {
       path: '/community/write',
       name: 'community-write',
       component: () => import('@/views/CommunityWriteView.vue'),
@@ -34,6 +39,12 @@ const router = createRouter({
       path: '/community/:id',
       name: 'article-detail',
       component: () => import('@/views/ArticleDetailView.vue'),
+    },
+    {
+      path: '/community/:id/edit',
+      name: 'article-edit',
+      component: () => import('@/views/EditArticleView.vue'),
+      meta: { requiresAuth: true },
     },
     {
       path: '/test-api',

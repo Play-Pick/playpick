@@ -5,15 +5,22 @@ from performances.models import Performance  # 공연 모델 import
 class Article(models.Model):
     """
     기존 Review 모델을 확장하여 리뷰, 질문, 잡담 등을 모두 포함하는 게시글(Article) 모델
+    board_type으로 공연글/일반글 구분
     """
 
-    # [3. 게시글 타입 정의]
+    # 게시판 타입
+    BOARD_TYPE_CHOICES = (
+        ('PERFORMANCE', '공연글'),
+        ('GENERAL', '일반글'),
+    )
+
+    # 카테고리 (board_type에 따라 허용되는 값이 다름)
     CATEGORY_CHOICES = (
-        ('REVIEW', '후기'),      # 별점 필수
-        ('QNA', '질문'),         # 별점 불필요
-        ('FREE', '자유게시판'),   # 별점 불필요
-        ('INFO', '정보공유'),
-        ('EXPECT', '기대평'),
+        ('REVIEW', '후기'),       # PERFORMANCE only, 별점 필수
+        ('EXPECTATION', '기대평'), # PERFORMANCE only, 별점 필수
+        ('QNA', '질문'),          # PERFORMANCE only
+        ('FREE', '자유게시판'),    # GENERAL only
+        ('INFO', '정보공유'),      # GENERAL only
     )
 
     user = models.ForeignKey(
@@ -22,19 +29,29 @@ class Article(models.Model):
         related_name='articles'
     )
 
+    # 게시판 타입 (PERFORMANCE or GENERAL)
+    board_type = models.CharField(
+        max_length=20,
+        choices=BOARD_TYPE_CHOICES,
+        default='PERFORMANCE',
+        verbose_name="게시판 타입"
+    )
+
     # [1. Performance 연결]
-    # 공연에 달린 글이므로 ForeignKey 연결
+    # PERFORMANCE 타입일 경우 필수, GENERAL일 경우 null
     # related_name='articles'로 설정하여, Performance 쪽에서 performance.articles.all()로 역참조 가능
     performance = models.ForeignKey(
         Performance,
-        on_delete=models.CASCADE, # 공연 삭제되면 리뷰도 삭제 (정책에 따라 SET_NULL 가능)
+        on_delete=models.CASCADE,  # 공연 삭제되면 리뷰도 삭제 (정책에 따라 SET_NULL 가능)
         related_name='articles',
-        verbose_name="관련 공연"
+        verbose_name="관련 공연",
+        null=True,  # GENERAL 타입에서는 null 허용
+        blank=True
     )
 
-    # [3. 글 타입 필드]
+    # 카테고리 (board_type에 따라 허용되는 값이 다름)
     category = models.CharField(
-        max_length=10,
+        max_length=20,
         choices=CATEGORY_CHOICES,
         default='REVIEW',
         verbose_name="카테고리"

@@ -12,6 +12,19 @@ export const useCommunityStore = defineStore('community', () => {
   const error = ref(null)
   const likeLoading = ref(false)
 
+  // Filter state
+  const filters = ref({
+    board_type: null,      // 'PERFORMANCE' or 'GENERAL'
+    category: null,        // REVIEW, EXPECTATION, QNA, FREE, INFO
+    performance_mt20id: null,
+    search: '',
+    ordering: '-created_at'  // -created_at, created_at, -like_count, like_count
+  })
+
+  // Best reviews state
+  const bestReviews = ref([])
+  const bestLoading = ref(false)
+
   // Getters
   const articleCount = computed(() => articles.value.length)
 
@@ -179,6 +192,17 @@ export const useCommunityStore = defineStore('community', () => {
     }
   }
 
+  const updateComment = async (id, data) => {
+    try {
+      const response = await communityAPI.updateComment(id, data)
+      comments.value = comments.value.map(c => (c.id === id ? response.data : c))
+      return response.data
+    } catch (err) {
+      error.value = err.message
+      throw err
+    }
+  }
+
   const deleteComment = async (id) => {
     try {
       await communityAPI.deleteComment(id)
@@ -186,6 +210,60 @@ export const useCommunityStore = defineStore('community', () => {
     } catch (err) {
       error.value = err.message
       throw err
+    }
+  }
+
+  // Filter actions
+  const setFilter = (key, value) => {
+    filters.value[key] = value
+  }
+
+  const setFilters = (newFilters) => {
+    filters.value = { ...filters.value, ...newFilters }
+  }
+
+  const resetFilters = () => {
+    filters.value = {
+      board_type: null,
+      category: null,
+      performance_mt20id: null,
+      search: '',
+      ordering: '-created_at'
+    }
+  }
+
+  const applyFilters = async () => {
+    const params = {}
+    if (filters.value.board_type) params.board_type = filters.value.board_type
+    if (filters.value.category) params.category = filters.value.category
+    if (filters.value.performance_mt20id) params.performance_mt20id = filters.value.performance_mt20id
+    if (filters.value.search) params.search = filters.value.search
+    if (filters.value.ordering) params.ordering = filters.value.ordering
+
+    await fetchArticles(params)
+  }
+
+  // Best reviews actions
+  const fetchBestReviews = async (limit = 4) => {
+    bestLoading.value = true
+    try {
+      const response = await communityAPI.getBestReviews(limit)
+      if (response.data.success) {
+        bestReviews.value = response.data.results
+      } else {
+        bestReviews.value = []
+      }
+      return response.data
+    } catch (err) {
+      // 401/404는 빈 배열, 기타는 에러
+      if (err.response && [401, 404].includes(err.response.status)) {
+        bestReviews.value = []
+      } else {
+        error.value = err.message
+        throw err
+      }
+    } finally {
+      bestLoading.value = false
     }
   }
 
@@ -197,6 +275,9 @@ export const useCommunityStore = defineStore('community', () => {
     loading,
     error,
     likeLoading,
+    filters,
+    bestReviews,
+    bestLoading,
     // Getters
     articleCount,
     // Actions
@@ -208,7 +289,15 @@ export const useCommunityStore = defineStore('community', () => {
     likeArticle,
     fetchComments,
     createComment,
+    updateComment,
     deleteComment,
+    // Filter actions
+    setFilter,
+    setFilters,
+    resetFilters,
+    applyFilters,
+    // Best reviews actions
+    fetchBestReviews,
     // 하위 호환성을 위한 별칭
     reviews: articles,
     currentReview: currentArticle,
