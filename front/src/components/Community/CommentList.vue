@@ -97,89 +97,64 @@ const formatDate = (dateString) => {
 
 <style scoped>
 .comments-wrapper {
-  margin-top: 2rem;
+  margin-top: var(--spacing-2xl);
 }
 
 .no-comments {
-  padding: 1.25rem;
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  color: #666;
+  padding: var(--spacing-lg);
+  background-color: var(--bg-card-secondary);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
   text-align: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--spacing-xl);
   font-weight: 500;
   transition: background-color 0.3s, color 0.3s;
-}
-
-:root.dark .no-comments {
-  background-color: #374151;
-  color: #9ca3af;
 }
 
 .comments-list {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: var(--spacing-lg);
 }
 
 .comment-item {
-  padding: 1.25rem;
-  background-color: #f8f9fa;
-  border-radius: 8px;
+  padding: var(--spacing-lg);
+  background-color: var(--bg-card-secondary);
+  border-radius: var(--radius-md);
   position: relative;
   transition: background-color 0.3s, box-shadow 0.3s;
 }
 
-:root.dark .comment-item {
-  background-color: #374151;
-}
-
 .comment-item:hover {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-
-:root.dark .comment-item:hover {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-sm);
 }
 
 .comment-header {
   display: flex;
-  gap: 1rem;
-  margin-bottom: 0.75rem;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
 }
 
 .comment-author {
   font-weight: 700;
-  color: #2c3e50;
+  color: var(--text-primary);
   font-size: 0.95rem;
   transition: color 0.3s;
 }
 
-:root.dark .comment-author {
-  color: #f3f4f6;
-}
-
 .comment-date {
-  color: #95a5a6;
+  color: var(--text-secondary);
   font-size: 0.85rem;
   font-weight: 500;
   transition: color 0.3s;
 }
 
-:root.dark .comment-date {
-  color: #9ca3af;
-}
-
 .comment-content {
   margin: 0;
-  color: #333;
+  color: var(--text-primary);
   line-height: 1.7;
   font-size: 0.95rem;
   transition: color 0.3s;
-}
-
-:root.dark .comment-content {
-  color: #d1d5db;
 }
 
 .comment-actions {
@@ -192,78 +167,70 @@ const formatDate = (dateString) => {
 
 .comment-item .edit-button,
 .comment-item .delete-button {
-  padding: 0.4rem 0.9rem;
+  padding: var(--spacing-sm) var(--spacing-lg);
   font-size: 0.85rem;
   font-weight: 600;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   cursor: pointer;
   transition: all 0.3s;
 }
 
 .comment-item .edit-button {
-  background-color: #6366f1;
+  background-color: var(--color-primary);
   color: white;
 }
 
 .comment-item .edit-button:hover {
-  background-color: #4f46e5;
+  background-color: var(--color-primary-hover);
 }
 
 .comment-item .delete-button {
-  background-color: #e74c3c;
+  background-color: var(--color-danger);
   color: white;
 }
 
 .comment-item .delete-button:hover {
-  background-color: #c0392b;
+  background-color: var(--color-danger-hover);
   transform: translateY(-1px);
   box-shadow: 0 2px 4px rgba(231, 76, 60, 0.3);
 }
 
-:root.dark .comment-item .delete-button {
-  background-color: #dc2626;
-}
-
-:root.dark .comment-item .delete-button:hover {
-  background-color: #b91c1c;
-  box-shadow: 0 2px 4px rgba(220, 38, 38, 0.4);
-}
-
 .edit-area {
-  margin-top: 0.5rem;
+  margin-top: var(--spacing-sm);
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: var(--spacing-sm);
 }
 
 .edit-area textarea {
   width: 100%;
-  padding: 0.75rem;
-  border-radius: 6px;
-  border: 1px solid #d1d5db;
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  border: 2px solid var(--border-color);
   resize: vertical;
   font-size: 0.95rem;
-  background: white;
-  color: #1f2937;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  transition: border-color 0.3s;
 }
 
-:root.dark .edit-area textarea {
-  background: #1f2937;
-  color: #f3f4f6;
-  border-color: #374151;
+.edit-area textarea:focus {
+  outline: none;
+  border-color: var(--border-color-focus);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
 }
 
 .edit-actions {
   display: flex;
-  gap: 0.5rem;
+  gap: var(--spacing-sm);
 }
 
 .btn-save,
 .btn-cancel {
-  padding: 0.5rem 1rem;
+  padding: var(--spacing-sm) var(--spacing-lg);
   border: none;
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   cursor: pointer;
   font-weight: 600;
 }
@@ -279,7 +246,7 @@ const formatDate = (dateString) => {
 }
 
 :root.dark .btn-cancel {
-  background: #374151;
+  background: var(--bg-card-secondary);
   color: #e2e8f0;
 }
 </style>

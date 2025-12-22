@@ -3,6 +3,18 @@ import LandingView from '@/views/LandingView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
+  scrollBehavior(to, from, savedPosition) {
+    // savedPosition이 있으면 (브라우저 뒤로가기) 해당 위치로
+    if (savedPosition) {
+      return savedPosition
+    }
+    // 앵커가 있으면 해당 앵커로
+    if (to.hash) {
+      return { el: to.hash, behavior: 'smooth' }
+    }
+    // 기본적으로 최상단으로
+    return { top: 0, behavior: 'smooth' }
+  },
   routes: [
     {
       path: '/',
@@ -12,38 +24,38 @@ const router = createRouter({
     {
       path: '/performances',
       name: 'performances',
-      component: () => import('@/views/PerformanceListView.vue'),
+      component: () => import('@/views/Performance/PerformanceListView.vue'),
     },
     {
       path: '/performances/:id',
       name: 'performance-detail',
-      component: () => import('@/views/PerformanceDetailView.vue'),
+      component: () => import('@/views/Performance/PerformanceDetailView.vue'),
     },
     {
       path: '/community',
       name: 'community',
-      component: () => import('@/views/CommunityView.vue'),
+      component: () => import('@/views/Community/CommunityView.vue'),
     },
     {
       path: '/community/best',
       name: 'community-best',
-      component: () => import('@/views/CommunityBestView.vue'),
+      component: () => import('@/views/Community/CommunityBestView.vue'),
     },
     {
       path: '/community/write',
       name: 'community-write',
-      component: () => import('@/views/CommunityWriteView.vue'),
+      component: () => import('@/views/Community/CommunityWriteView.vue'),
       meta: { requiresAuth: true },
     },
     {
       path: '/community/:id',
       name: 'article-detail',
-      component: () => import('@/views/ArticleDetailView.vue'),
+      component: () => import('@/views/Community/ArticleDetailView.vue'),
     },
     {
       path: '/community/:id/edit',
       name: 'article-edit',
-      component: () => import('@/views/EditArticleView.vue'),
+      component: () => import('@/views/Community/EditArticleView.vue'),
       meta: { requiresAuth: true },
     },
     {
@@ -54,51 +66,51 @@ const router = createRouter({
     {
       path: '/login',
       name: 'login',
-      component: () => import('@/views/LoginView.vue'),
+      component: () => import('@/views/Auth/LoginView.vue'),
     },
     {
       path: '/register',
       name: 'register',
-      component: () => import('@/views/RegisterView.vue'),
+      component: () => import('@/views/Auth/RegisterView.vue'),
     },
     {
       path: '/onboarding',
       name: 'onboarding',
-      component: () => import('@/views/OnboardingView.vue'),
+      component: () => import('@/views/Auth/OnboardingView.vue'),
       meta: { requiresAuth: true },
     },
     {
       path: '/mypage',
       name: 'mypage',
-      component: () => import('@/views/MyPageView.vue'),
+      component: () => import('@/views/User/MyPageView.vue'),
       meta: { requiresAuth: true },
     },
     {
       path: '/edit-account',
       name: 'edit-account',
-      component: () => import('@/views/EditAccountView.vue'),
+      component: () => import('@/views/User/EditAccountView.vue'),
       meta: { requiresAuth: true },
     },
     {
       path: '/admin',
       name: 'admin',
-      component: () => import('@/views/AdminDashboardView.vue'),
+      component: () => import('@/views/Admin/AdminDashboardView.vue'),
       meta: { requiresAuth: true, requiresAdmin: true },
     },
     {
       path: '/rankings',
       name: 'rankings',
-      component: () => import('@/views/RankingsView.vue'),
+      component: () => import('@/views/Ranking/RankingsView.vue'),
     },
     {
       path: '/rankings/all',
       name: 'ranking-all',
-      component: () => import('@/views/RankingAllView.vue'),
+      component: () => import('@/views/Ranking/RankingAllView.vue'),
     },
     {
       path: '/rankings/genre',
       name: 'ranking-genre',
-      component: () => import('@/views/RankingGenreView.vue'),
+      component: () => import('@/views/Ranking/RankingGenreView.vue'),
     },
     {
       path: '/recommands',
