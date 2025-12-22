@@ -4,7 +4,13 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import get_user_model
-from .serializers import UserSerializer, UserDetailSerializer, RegisterSerializer
+from .serializers import (
+    UserSerializer,
+    UserDetailSerializer,
+    RegisterSerializer,
+    PasswordVerifySerializer,
+    UserUpdateSerializer
+)
 
 User = get_user_model()
 
@@ -57,6 +63,63 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
             'is_following': is_following,
             'followers_count': target_user.followers.count(),
             'followings_count': target_user.followings.count()
+        })
+
+    @action(detail=False, methods=['post'], permission_classes=[IsAuthenticated])
+    def verify_password(self, request):
+        """비밀번호 확인 (회원정보 수정 전)"""
+        serializer = PasswordVerifySerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        user = request.user
+        password = serializer.validated_data['password']
+
+        if user.check_password(password):
+            return Response({'verified': True})
+        else:
+            return Response(
+                {'verified': False, 'error': '비밀번호가 일치하지 않습니다.'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+    @action(detail=False, methods=['patch'], permission_classes=[IsAuthenticated])
+    def update_profile(self, request):
+        """회원정보 수정"""
+        user = request.user
+        serializer = UserUpdateSerializer(user, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        return Response({
+            'message': '회원정보가 수정되었습니다.',
+            'user': UserDetailSerializer(user).data
+        })
+
+    @action(detail=False, methods=['delete'], permission_classes=[IsAuthenticated])
+    def delete_account(self, request):
+        """회원 탈퇴"""
+        user = request.user
+
+        # 비밀번호 확인
+        password = request.data.get('password')
+        if not password:
+            return Response(
+                {'error': '비밀번호를 입력해주세요.'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        if not user.check_password(password):
+            return Response(
+                {'error': '비밀번호가 일치하지 않습니다.'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        # 사용자 삭제
+        username = user.username
+        user.delete()
+
+        return Response({
+            'message': f'{username} 계정이 삭제되었습니다.'
         })
 
 

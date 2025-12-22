@@ -75,3 +75,64 @@ class RegisterSerializer(serializers.ModelSerializer):
             **validated_data
         )
         return user
+
+
+class PasswordVerifySerializer(serializers.Serializer):
+    """비밀번호 확인용 Serializer"""
+    password = serializers.CharField(write_only=True, required=True)
+
+
+class UserUpdateSerializer(serializers.ModelSerializer):
+    """회원정보 수정용 Serializer"""
+    password = serializers.CharField(
+        write_only=True,
+        required=False,
+        validators=[validate_password]
+    )
+    password2 = serializers.CharField(write_only=True, required=False)
+
+    class Meta:
+        model = User
+        fields = [
+            'email', 'nickname', 'birth_date', 'region',
+            'preference_tags', 'favorite_actors', 'profile_image',
+            'password', 'password2'
+        ]
+        extra_kwargs = {
+            'email': {'required': False},
+            'nickname': {'required': False},
+            'birth_date': {'required': False},
+            'region': {'required': False},
+            'preference_tags': {'required': False},
+            'favorite_actors': {'required': False},
+            'profile_image': {'required': False},
+        }
+
+    def validate(self, attrs):
+        """비밀번호 확인 (비밀번호 변경 시에만)"""
+        password = attrs.get('password')
+        password2 = attrs.get('password2')
+
+        if password or password2:
+            if password != password2:
+                raise serializers.ValidationError({
+                    "password2": "비밀번호가 일치하지 않습니다."
+                })
+
+        return attrs
+
+    def update(self, instance, validated_data):
+        """사용자 정보 업데이트"""
+        validated_data.pop('password2', None)
+        password = validated_data.pop('password', None)
+
+        # 일반 필드 업데이트
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+
+        # 비밀번호 변경이 있을 경우
+        if password:
+            instance.set_password(password)
+
+        instance.save()
+        return instance

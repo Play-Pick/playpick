@@ -33,9 +33,14 @@
             <div v-if="!isEditMode">
               <h1>{{ currentUser.nickname || currentUser.username }}</h1>
               <p class="username">@{{ currentUser.username }}</p>
-              <button @click="toggleEditMode" class="btn-edit">
-                <i class="fas fa-edit"></i> 프로필 수정
-              </button>
+              <div class="profile-actions">
+                <button @click="toggleEditMode" class="btn-edit">
+                  <i class="fas fa-edit"></i> 프로필 수정
+                </button>
+                <button @click="showEditAccountModal" class="btn-edit-account">
+                  <i class="fas fa-user-edit"></i> 회원정보 수정
+                </button>
+              </div>
             </div>
 
             <div v-else class="edit-form">
@@ -195,6 +200,36 @@
         </div>
       </div>
     </div>
+
+    <!-- 비밀번호 확인 모달 -->
+    <div v-if="showPasswordModal" class="modal-overlay" @click.self="closePasswordModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>비밀번호 확인</h2>
+          <button @click="closePasswordModal" class="modal-close">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>회원정보를 수정하려면 비밀번호를 입력해주세요.</p>
+          <input
+            v-model="passwordVerify"
+            type="password"
+            placeholder="비밀번호"
+            class="password-input"
+            @keyup.enter="verifyPassword"
+          />
+          <p v-if="passwordError" class="error-message">{{ passwordError }}</p>
+        </div>
+        <div class="modal-footer">
+          <button @click="verifyPassword" class="btn-confirm" :disabled="verifyLoading">
+            <i v-if="verifyLoading" class="fas fa-spinner fa-spin"></i>
+            <span v-else>확인</span>
+          </button>
+          <button @click="closePasswordModal" class="btn-cancel-modal">취소</button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -228,6 +263,12 @@ const editForm = ref({
   profileImage: null,
 })
 const imageInput = ref(null)
+
+// 비밀번호 확인 모달 관련
+const showPasswordModal = ref(false)
+const passwordVerify = ref('')
+const passwordError = ref('')
+const verifyLoading = ref(false)
 
 const initWishlist = async () => {
   try {
@@ -375,6 +416,48 @@ const formatDate = (dateString) => {
   if (!dateString) return ''
   const date = new Date(dateString)
   return date.toLocaleDateString('ko-KR')
+}
+
+// 비밀번호 확인 모달 열기
+const showEditAccountModal = () => {
+  showPasswordModal.value = true
+  passwordVerify.value = ''
+  passwordError.value = ''
+}
+
+// 비밀번호 확인 모달 닫기
+const closePasswordModal = () => {
+  showPasswordModal.value = false
+  passwordVerify.value = ''
+  passwordError.value = ''
+}
+
+// 비밀번호 검증
+const verifyPassword = async () => {
+  if (!passwordVerify.value) {
+    passwordError.value = '비밀번호를 입력해주세요.'
+    return
+  }
+
+  try {
+    verifyLoading.value = true
+    passwordError.value = ''
+
+    const response = await apiClient.post('/users/verify_password/', {
+      password: passwordVerify.value
+    })
+
+    if (response.data.verified) {
+      closePasswordModal()
+      // 회원정보 수정 페이지로 이동
+      router.push({ name: 'edit-account' })
+    }
+  } catch (err) {
+    console.error('비밀번호 확인 실패:', err)
+    passwordError.value = err.response?.data?.error || '비밀번호가 일치하지 않습니다.'
+  } finally {
+    verifyLoading.value = false
+  }
 }
 
 onMounted(() => {
@@ -993,6 +1076,234 @@ onMounted(() => {
   font-size: 4rem;
   margin-bottom: 1rem;
   display: block;
+}
+
+/* 프로필 액션 버튼 */
+.profile-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.btn-edit-account {
+  padding: 0.5rem 1.5rem;
+  background: #10b981;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-edit-account:hover {
+  background: #059669;
+}
+
+/* 모달 스타일 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  background: white;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 450px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s;
+  transition: background-color 0.3s;
+}
+
+:root.dark .modal-content {
+  background: #1f2937;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+  transition: border-color 0.3s;
+}
+
+:root.dark .modal-header {
+  border-bottom-color: #374151;
+}
+
+.modal-header h2 {
+  font-size: 1.5rem;
+  color: #1f2937;
+  margin: 0;
+  transition: color 0.3s;
+}
+
+:root.dark .modal-header h2 {
+  color: #f3f4f6;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #6b7280;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.modal-close:hover {
+  background: #f3f4f6;
+  color: #1f2937;
+}
+
+:root.dark .modal-close {
+  color: #9ca3af;
+}
+
+:root.dark .modal-close:hover {
+  background: #374151;
+  color: #f3f4f6;
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+.modal-body p {
+  margin-bottom: 1rem;
+  color: #4b5563;
+  transition: color 0.3s;
+}
+
+:root.dark .modal-body p {
+  color: #d1d5db;
+}
+
+.password-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: all 0.3s;
+  background: white;
+  color: #1f2937;
+}
+
+:root.dark .password-input {
+  background: #374151;
+  border-color: #4b5563;
+  color: #f3f4f6;
+}
+
+.password-input:focus {
+  outline: none;
+  border-color: #6366f1;
+}
+
+:root.dark .password-input:focus {
+  border-color: #818cf8;
+  background: #4b5563;
+}
+
+.error-message {
+  color: #ef4444;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+.modal-footer {
+  display: flex;
+  gap: 0.5rem;
+  padding: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+  justify-content: flex-end;
+  transition: border-color 0.3s;
+}
+
+:root.dark .modal-footer {
+  border-top-color: #374151;
+}
+
+.btn-confirm {
+  padding: 0.75rem 1.5rem;
+  background: #6366f1;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 500;
+  min-width: 80px;
+}
+
+.btn-confirm:hover:not(:disabled) {
+  background: #4f46e5;
+}
+
+.btn-confirm:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-cancel-modal {
+  padding: 0.75rem 1.5rem;
+  background: #f3f4f6;
+  color: #1f2937;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 500;
+}
+
+.btn-cancel-modal:hover {
+  background: #e5e7eb;
+}
+
+:root.dark .btn-cancel-modal {
+  background: #374151;
+  color: #f3f4f6;
+}
+
+:root.dark .btn-cancel-modal:hover {
+  background: #4b5563;
 }
 
 /* 반응형 */
