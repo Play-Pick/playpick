@@ -201,7 +201,7 @@ import MapModal from '@/components/PerformanceDetail/MapModal.vue'
 import RatingChart from '@/components/PerformanceDetail/RatingChart.vue'
 import ReviewList from '@/components/PerformanceDetail/ReviewList.vue'
 import YouTubeVideoSection from '@/components/PerformanceDetail/YouTubeVideoSection.vue'
-import apiClient from '@/api/axios'
+import communityAPI from '@/api/community';
 
 const route = useRoute()
 const router = useRouter()
@@ -255,13 +255,12 @@ const filteredReviews = (category) => {
 // 리뷰 데이터 로드
 const loadReviews = async () => {
   try {
-    const response = await apiClient.get('/articles/')
-    const allArticles = response.data.results || response.data
-
-    // 현재 공연의 리뷰만 필터링
-    reviews.value = allArticles.filter(
-      article => article.performance === route.params.id
-    )
+    const response = await communityAPI.getArticles({
+        performance_mt20id: route.params.id,
+        board_type: 'PERFORMANCE',
+        category: 'REVIEW'
+    })
+    reviews.value = response.data.results || response.data
   } catch (err) {
     console.error('리뷰 로드 실패:', err)
   }

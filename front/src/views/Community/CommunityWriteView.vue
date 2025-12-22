@@ -231,7 +231,7 @@ const submitArticle = async () => {
       articleData.rank = form.value.rank
     }
 
-    await apiClient.post('/articles/', articleData)
+    await apiClient.post('/community/articles/', articleData)
 
     alert('글이 작성되었습니다!')
 

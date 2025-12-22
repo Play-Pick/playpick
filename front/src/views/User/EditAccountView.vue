@@ -191,7 +191,7 @@ const deleteLoading = ref(false)
 const loadUserData = async () => {
   try {
     loading.value = true
-    const response = await apiClient.get('/users/me/')
+    const response = await apiClient.get('/accounts/users/me/')
     const user = response.data
 
     formData.value.email = user.email || ''

@@ -207,7 +207,7 @@ onMounted(async () => {
 const loadStats = async () => {
   try {
     loading.value = true
-    const response = await apiClient.get('/management/stats/')
+    const response = await apiClient.get('/performances/management/stats/')
     stats.value = response.data.data
   } catch (error) {
     console.error('통계 로드 실패:', error)
@@ -224,7 +224,7 @@ const collectBoxOffice = async () => {
     loading.value = true
     addLog('info', '박스오피스 데이터 수집 시작...')
 
-    const response = await apiClient.post('/management/collect-boxoffice/', {}, {
+    const response = await apiClient.post('/performances/management/collect-boxoffice/', {}, {
       timeout: 300000 // 5분
     })
 
@@ -253,7 +253,7 @@ const collectPerformances = async () => {
     loading.value = true
     addLog('info', '공연 정보 수집 시작... (최근 1개월)')
 
-    const response = await apiClient.post('/management/collect-performances/', {}, {
+    const response = await apiClient.post('/performances/management/collect-performances/', {}, {
       timeout: 600000 // 10분
     })
 
@@ -278,7 +278,7 @@ const collectDetails = async () => {
     loading.value = true
     addLog('info', '공연 상세 정보 수집 시작... (최대 100건)')
 
-    const response = await apiClient.post('/management/collect-details/', {}, {
+    const response = await apiClient.post('/performances/management/collect-details/', {}, {
       timeout: 600000 // 10분
     })
 
@@ -310,7 +310,7 @@ const collectAllDetails = async () => {
     while (hasMore) {
       addLog('info', `[${round}차 수집] 상세 정보 수집 중... (최대 100건)`)
 
-      const response = await apiClient.post('/management/collect-details/', {}, {
+      const response = await apiClient.post('/performances/management/collect-details/', {}, {
         timeout: 600000 // 10분
       })
 
@@ -355,7 +355,7 @@ const createTestBoxOffice = async () => {
     loading.value = true
     addLog('info', '테스트 박스오피스 데이터 생성 시작...')
 
-    const response = await apiClient.post('/management/create-test-boxoffice/')
+    const response = await apiClient.post('/performances/management/create-test-boxoffice/')
 
     if (response.data.success) {
       const data = response.data.data

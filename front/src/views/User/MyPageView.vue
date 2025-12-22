@@ -289,6 +289,11 @@ import { useWishlistStore } from '@/stores/wishlistStore'
 import { useWatchedStore } from '@/stores/watchedStore'
 import PerformanceCard from '@/components/Performance/PerformanceCard.vue'
 
+import authAPI from '@/api/auth'
+import communityAPI from '@/api/community'
+import wishlistAPI from '@/api/wishlist'
+import watchedAPI from '@/api/watched'
+
 const router = useRouter()
 const authStore = useAuthStore()
 const wishlistStore = useWishlistStore()
@@ -354,12 +359,12 @@ const loadData = async () => {
     currentUser.value = userRes.data
 
     // 내가 쓴 게시글
-    const articlesRes = await apiClient.get('/articles/')
+    const articlesRes = await apiClient.get('/community/articles/')
     const allArticles = articlesRes.data.results || articlesRes.data
     myArticles.value = allArticles.filter(a => a.user === currentUser.value.id)
 
     // 내가 쓴 댓글
-    const commentsRes = await apiClient.get('/comments/')
+    const commentsRes = await apiClient.get('/community/comments/')
     const allComments = commentsRes.data.results || commentsRes.data
     myComments.value = allComments.filter(c => c.user === currentUser.value.id)
 
@@ -508,7 +513,7 @@ const verifyPassword = async () => {
     verifyLoading.value = true
     passwordError.value = ''
 
-    const response = await apiClient.post('/users/verify_password/', {
+    const response = await apiClient.post('/accounts/users/verify_password/', {
       password: passwordVerify.value
     })
 
