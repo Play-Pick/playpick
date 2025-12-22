@@ -102,7 +102,7 @@ import { storeToRefs } from 'pinia'
 import { useCommunityStore } from '@/stores/communityStore'
 import CommentForm from '@/components/Community/CommentForm.vue'
 import CommentList from '@/components/Community/CommentList.vue'
-import { useArticleDetail } from '@/composables/useArticleDetail'
+import { useArticleDetail } from '@/composables/community/useArticleDetail'
 
 const categoryMap = {
   REVIEW: '관람후기',

@@ -27,7 +27,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
-import { useCategoryLabels } from '@/composables/useCategoryLabels'
+import { useCategoryLabels } from '@/composables/common/useCategoryLabels'
 
 const router = useRouter()
 

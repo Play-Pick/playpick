@@ -67,7 +67,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useAuthStore } from '@/stores/authStore'
-import { useArticleForm } from '@/composables/useArticleForm'
+import { useArticleForm } from '@/composables/community/useArticleForm'
 import communityAPI from '@/api/community'
 import performanceAPI from '@/api/performances'
 import PerformanceSelectCard from '@/components/Community/PerformanceSelectCard.vue'

@@ -7,7 +7,7 @@ export const useCategoryLabels = () => {
     'QNA': '질문',
     'FREE': '자유게시판',
     'INFO': '정보공유',
-    'EXPECT': '기대평'
+    'EXPECTATION': '기대평'
   }
 
   const getCategoryLabel = (category) => {
@@ -20,7 +20,7 @@ export const useCategoryLabels = () => {
       'QNA': '#e74c3c',
       'FREE': '#2ecc71',
       'INFO': '#f39c12',
-      'EXPECT': '#9b59b6'
+      'EXPECTATION': '#f7cc23ff'
     }
     return colors[category] || '#95a5a6'
   }

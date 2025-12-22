@@ -8,8 +8,8 @@
 
     <div v-if="reviews.length === 0" class="empty-state">
       <i class="fas fa-inbox"></i>
-      <p>아직 작성된 리뷰가 없습니다</p>
-      <p class="sub-text">첫 번째 리뷰를 작성해보세요!</p>
+      <p>아직 작성된 글이 없습니다</p>
+      <p class="sub-text">첫 번째 글을 작성해보세요!</p>
     </div>
 
     <div v-else class="reviews">
@@ -163,7 +163,7 @@ const paginatedReviews = computed(() => {
 const getCategoryLabel = (category) => {
   const labels = {
     REVIEW: '후기',
-    EXPECT: '기대평',
+    EXPECTATION: '기대평',
     INFO: '정보공유',
     QNA: '질문',
     FREE: '자유게시판',
@@ -381,7 +381,7 @@ const formatDate = (dateString) => {
   color: #1e40af;
 }
 
-.category-expect {
+.category-expectation {
   background: #fef3c7;
   color: #92400e;
 }

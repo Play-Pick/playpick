@@ -57,7 +57,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useCommunityStore } from '@/stores/communityStore'
-import { useArticleForm } from '@/composables/useArticleForm'
+import { useArticleForm } from '@/composables/community/useArticleForm'
 import communityAPI from '@/api/community'
 import CategoryDisplay from '@/components/Community/CategoryDisplay.vue'
 import ArticleFormFields from '@/components/Community/ArticleFormFields.vue'

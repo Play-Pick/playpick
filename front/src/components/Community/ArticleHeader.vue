@@ -21,7 +21,7 @@
 
 <script setup>
 import { computed } from 'vue'
-import { useCategoryLabels } from '@/composables/useCategoryLabels'
+import { useCategoryLabels } from '@/composables'
 
 const props = defineProps({
   article: {

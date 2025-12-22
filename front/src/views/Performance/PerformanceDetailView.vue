@@ -119,7 +119,7 @@
 
           <ReviewList
             :reviews="filteredReviews('관람 후기')"
-            @review-updated="loadReviews"
+            @review-updated="loadReviews('REVIEW')"
           />
         </div>
 
@@ -134,14 +134,14 @@
                 <i class="fas fa-eye"></i> 조회순
               </button>
             </div>
-            <button @click="goToWrite('EXPECT')" class="btn-write">
+            <button @click="goToWrite('EXPECTATION')" class="btn-write">
               <i class="fas fa-pen"></i> 기대평 작성
             </button>
           </div>
 
           <ReviewList
             :reviews="filteredReviews('기대평')"
-            @review-updated="loadReviews"
+            @review-updated="loadReviews('EXPECTAION')"
           />
         </div>
 
@@ -163,7 +163,7 @@
 
           <ReviewList
             :reviews="filteredReviews('질문')"
-            @review-updated="loadReviews"
+            @review-updated="loadReviews('QNA')"
           />
         </div>
       </div>
@@ -234,7 +234,7 @@ const filteredReviews = (category) => {
   // 카테고리 매핑: 한글 -> 영문 코드
   const categoryMap = {
     '관람 후기': 'REVIEW',
-    '기대평': 'EXPECT',
+    '기대평': 'EXPECTATION',
     '질문': 'QNA'
   }
 
@@ -253,12 +253,12 @@ const filteredReviews = (category) => {
 }
 
 // 리뷰 데이터 로드
-const loadReviews = async () => {
+const loadReviews = async (category) => {
   try {
     const response = await communityAPI.getArticles({
         performance_mt20id: route.params.id,
         board_type: 'PERFORMANCE',
-        category: 'REVIEW'
+        category: category
     })
     reviews.value = response.data.results || response.data
   } catch (err) {

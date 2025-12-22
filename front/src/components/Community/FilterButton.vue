@@ -46,7 +46,7 @@ const categories = [
   { value: 'QNA', label: '질문' },
   { value: 'FREE', label: '자유게시판' },
   { value: 'INFO', label: '정보공유' },
-  { value: 'EXPECT', label: '기대평' }
+  { value: 'EXPECTATION', label: '기대평' }
 ]
 
 const toggleFilter = () => {
