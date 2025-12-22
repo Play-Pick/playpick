@@ -48,12 +48,27 @@ export const useWatchedStore = defineStore('watched', () => {
     }
   }
 
-  const addToWatched = async (performanceId) => {
+  const addToWatched = async (performanceId, performanceData = null) => {
     errorMessage.value = ''
     try {
       await watchedAPI.addWatched(performanceId)
-      // 낙관적 업데이트: 전체 목록을 다시 불러오지 않고 클라이언트에서 추가
-      // 실제 데이터는 fetchWatched() 호출 시 서버에서 받아옴
+
+      // 프론트에서 공연 데이터를 받아 items에 추가 (실시간 동기화)
+      if (performanceData) {
+        const newItem = normalizePerformance(performanceData)
+
+        // 이미 존재하지 않는 경우에만 추가
+        const targetId = String(performanceId)
+        const exists = items.value.some((item) => {
+          const itemId = String(item.mt20id || item.id || '')
+          return itemId === targetId
+        })
+
+        if (!exists) {
+          items.value.unshift(newItem) // 최신 항목을 앞에 추가
+        }
+      }
+
       return true
     } catch (err) {
       const status = err?.response?.status
@@ -67,6 +82,15 @@ export const useWatchedStore = defineStore('watched', () => {
 
   const removeFromWatched = async (performanceId) => {
     errorMessage.value = ''
+
+    // 로컬 상태에서 먼저 제거 (낙관적 업데이트)
+    const targetId = String(performanceId)
+    const previousItems = [...items.value]
+    items.value = items.value.filter((item) => {
+      const itemId = String(item.mt20id || item.id || '')
+      return itemId !== targetId
+    })
+
     try {
       await watchedAPI.removeWatched(performanceId)
     } catch (err) {
@@ -75,16 +99,13 @@ export const useWatchedStore = defineStore('watched', () => {
         items.value = []
         return
       }
+
+      // API 호출 실패 시 이전 상태로 롤백
+      items.value = previousItems
+
       errorMessage.value = err?.response?.data?.detail || err?.message || '관람함 삭제에 실패했습니다.'
       throw err
     }
-
-    // 로컬 상태에서 제거
-    const targetId = String(performanceId)
-    items.value = items.value.filter((item) => {
-      const itemId = String(item.mt20id || item.id || '')
-      return itemId !== targetId
-    })
   }
 
   const isWatched = (performanceId) => {

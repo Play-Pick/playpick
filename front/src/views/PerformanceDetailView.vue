@@ -314,7 +314,8 @@ const handleToggleWatched = async () => {
       await watchedStore.removeFromWatched(currentPerformance.value.mt20id)
       currentPerformance.value.is_watched = false
     } else {
-      await watchedStore.addToWatched(currentPerformance.value.mt20id)
+      // 현재 공연 데이터를 함께 전달하여 실시간 동기화
+      await watchedStore.addToWatched(currentPerformance.value.mt20id, currentPerformance.value)
       currentPerformance.value.is_watched = true
     }
   } catch (err) {

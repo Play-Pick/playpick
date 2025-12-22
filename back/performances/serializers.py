@@ -46,6 +46,7 @@ class PerformanceDetailViewSerializer(serializers.ModelSerializer):
     has_detail = serializers.ReadOnlyField()
     is_liked = serializers.SerializerMethodField()
     like_count = serializers.IntegerField(source='like_users.count', read_only=True)
+    is_watched = serializers.SerializerMethodField()
 
     class Meta:
         model = Performance
@@ -54,7 +55,7 @@ class PerformanceDetailViewSerializer(serializers.ModelSerializer):
             'fcltynm', 'poster', 'area', 'genrenm',
             'prfstate', 'openrun', 'rnum',
             'has_detail', 'detail', 'intro_images',
-            'is_liked', 'like_count'
+            'is_liked', 'like_count', 'is_watched'
         ]
 
     def get_is_liked(self, obj):
@@ -62,6 +63,17 @@ class PerformanceDetailViewSerializer(serializers.ModelSerializer):
         request = self.context.get('request')
         if request and request.user.is_authenticated:
             return obj.like_users.filter(id=request.user.id).exists()
+        return False
+
+    def get_is_watched(self, obj):
+        """현재 사용자가 관람했는지 여부"""
+        request = self.context.get('request')
+        if request and request.user.is_authenticated:
+            from accounts.models import WatchedPerformance
+            return WatchedPerformance.objects.filter(
+                user=request.user,
+                performance=obj
+            ).exists()
         return False
 
 
