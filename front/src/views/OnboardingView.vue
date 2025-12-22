@@ -10,7 +10,7 @@
             <div class="progress-fill" :style="{ width: `${store.progress}%` }"></div>
           </div>
           <span class="progress-text">
-            {{ store.canComplete ? '완료 가능!' : `선택 ${store.likeCount} / 8` }}
+            {{ store.canComplete ? '완료 가능!' : `선택 ${store.selectionCount} / 8` }}
           </span>
         </div>
 
@@ -125,7 +125,7 @@
           </div>
           <h2 class="completion-title">모든 공연을 확인했어요!</h2>
           <p class="completion-subtitle">
-            총 {{ store.likeCount }}개의 공연을 선택하셨습니다.
+            총 {{ store.selectionCount }}개의 공연을 선택하셨습니다.
           </p>
 
           <button
@@ -139,7 +139,7 @@
           </button>
 
           <p v-else class="hint-text">
-            최소 8개를 선택해야 완료할 수 있어요. ({{ 8 - store.likeCount }}개 부족)
+            최소 8개를 선택해야 완료할 수 있어요. ({{ 8 - store.selectionCount }}개 부족)
           </p>
         </div>
       </div>

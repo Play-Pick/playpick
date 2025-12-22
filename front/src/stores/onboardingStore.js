@@ -17,8 +17,9 @@ export const useOnboardingStore = defineStore('onboarding', () => {
   const currentCard = computed(() => candidates.value[currentIndex.value] || null)
   const hasMore = computed(() => currentIndex.value < candidates.value.length - 1)
   const likeCount = computed(() => likes.value.length)
-  const canComplete = computed(() => likeCount.value >= 8)
-  const progress = computed(() => Math.min((likeCount.value / 8) * 100, 100))
+  const selectionCount = computed(() => likes.value.length + dislikes.value.length)
+  const canComplete = computed(() => selectionCount.value >= 8)
+  const progress = computed(() => Math.min((selectionCount.value / 8) * 100, 100))
   const totalResponses = computed(() => likes.value.length + dislikes.value.length + skips.value.length)
 
   const advanceCard = () => {
@@ -128,8 +129,8 @@ export const useOnboardingStore = defineStore('onboarding', () => {
   }
 
   const submit = async () => {
-    if (likeCount.value < 8) {
-      error.value = '최소 8개의 공연을 "보고싶어요"로 선택해주세요.'
+    if (selectionCount.value < 8) {
+      error.value = '최소 8개의 공연을 선택해주세요. (보고싶어요 또는 안볼래요)'
       return false
     }
 
@@ -196,6 +197,7 @@ export const useOnboardingStore = defineStore('onboarding', () => {
     currentCard,
     hasMore,
     likeCount,
+    selectionCount,
     canComplete,
     progress,
     totalResponses,
