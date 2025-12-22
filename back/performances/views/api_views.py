@@ -4,13 +4,13 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from django.db.models import Q
 from django_filters.rest_framework import DjangoFilterBackend
-from .models import Performance, BoxOfficeRanking, PerformanceDetail
-from .serializers import (
+from ..models import Performance, BoxOfficeRanking, PerformanceDetail
+from ..serializers import (
     PerformanceListSerializer,
     PerformanceDetailViewSerializer,
     BoxOfficeRankingSerializer
 )
-from .ai_search import AISearchEngine
+from ..services.ai_search import AISearchEngine
 
 
 class PerformanceViewSet(viewsets.ReadOnlyModelViewSet):
@@ -407,7 +407,7 @@ class PerformanceViewSet(viewsets.ReadOnlyModelViewSet):
         Get YouTube playlist videos for main page
         GET /api/performances/youtube/playlist/
         """
-        from .youtube_service import get_playlist_videos
+        from ..services.youtube_service import get_playlist_videos
 
         videos = get_playlist_videos(max_results=6)
 
@@ -423,7 +423,7 @@ class PerformanceViewSet(viewsets.ReadOnlyModelViewSet):
         Get performance-related YouTube video
         GET /api/performances/{id}/youtube/
         """
-        from .youtube_service import get_performance_video
+        from ..services.youtube_service import get_performance_video
 
         result = get_performance_video(pk)
         return Response(result)

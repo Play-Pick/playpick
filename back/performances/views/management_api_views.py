@@ -7,7 +7,7 @@ from rest_framework import status
 from rest_framework.permissions import IsAdminUser
 from django.core.management import call_command
 from datetime import datetime, timedelta
-from performances.models import Performance, BoxOfficeRanking, GENRE_DISPLAY_ORDER, GENRE_CODE_MAPPING
+from ..models import Performance, BoxOfficeRanking, GENRE_DISPLAY_ORDER, GENRE_CODE_MAPPING
 from datetime import date
 import io
 
@@ -107,7 +107,6 @@ class CollectPerformanceDetailAPIView(APIView):
             limit = request.data.get('limit', 100)
 
             # 수집 전 상세정보 없는 공연 수 확인
-            from performances.models import Performance
             before_count = Performance.objects.filter(detail__isnull=True).count()
 
             call_command(

@@ -2,7 +2,7 @@ import os
 import requests
 from django.conf import settings
 from django.core.cache import cache
-from .models import YouTubeVideoCache, Performance
+from ..models import YouTubeVideoCache, Performance
 from django.utils import timezone
 
 YOUTUBE_API_KEY = os.environ.get('YOUTUBE_API_KEY')
