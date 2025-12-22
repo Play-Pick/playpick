@@ -350,7 +350,7 @@ const loadData = async () => {
     error.value = null
 
     // 현재 사용자 정보
-    const userRes = await apiClient.get('/users/me/')
+    const userRes = await apiClient.get('/accounts/users/me/')
     currentUser.value = userRes.data
 
     // 내가 쓴 게시글
