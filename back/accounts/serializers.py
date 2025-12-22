@@ -93,13 +93,12 @@ class UserUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = [
-            'email', 'nickname', 'birth_date', 'region',
+            'email', 'birth_date', 'region',
             'preference_tags', 'profile_image',
             'password', 'password2'
         ]
         extra_kwargs = {
             'email': {'required': False},
-            'nickname': {'required': False},
             'birth_date': {'required': False},
             'region': {'required': False},
             'preference_tags': {'required': False},
