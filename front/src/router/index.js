@@ -3,6 +3,18 @@ import LandingView from '@/views/LandingView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
+  scrollBehavior(to, from, savedPosition) {
+    // savedPosition이 있으면 (브라우저 뒤로가기) 해당 위치로
+    if (savedPosition) {
+      return savedPosition
+    }
+    // 앵커가 있으면 해당 앵커로
+    if (to.hash) {
+      return { el: to.hash, behavior: 'smooth' }
+    }
+    // 기본적으로 최상단으로
+    return { top: 0, behavior: 'smooth' }
+  },
   routes: [
     {
       path: '/',
