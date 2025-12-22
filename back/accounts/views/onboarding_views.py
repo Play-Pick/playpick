@@ -4,8 +4,8 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from django.db import transaction
 
-from .models import UserPerformanceSignal
-from .onboarding_service import (
+from ..models import UserPerformanceSignal
+from ..services.onboarding_service import (
     get_onboarding_candidates,
     save_user_signals,
     complete_onboarding

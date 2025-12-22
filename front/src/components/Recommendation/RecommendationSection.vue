@@ -137,7 +137,7 @@ const placeholderRecommendations = [
   {
     mt20id: 'placeholder-1',
     prfnm: '당신을 위한 특별한 공연',
-    poster: 'https://via.placeholder.com/300x400?text=추천공연',
+    poster: '/no_poster.png',
     fcltynm: '맞춤 추천 장소',
     prfpdfrom: '2024-01-01',
     prfpdto: '2024-12-31',
@@ -147,7 +147,7 @@ const placeholderRecommendations = [
   {
     mt20id: 'placeholder-2',
     prfnm: '당신을 위한 특별한 공연',
-    poster: 'https://via.placeholder.com/300x400?text=추천공연',
+    poster: '/no_poster.png',
     fcltynm: '맞춤 추천 장소',
     prfpdfrom: '2024-01-01',
     prfpdto: '2024-12-31',
@@ -157,7 +157,7 @@ const placeholderRecommendations = [
   {
     mt20id: 'placeholder-3',
     prfnm: '당신을 위한 특별한 공연',
-    poster: 'https://via.placeholder.com/300x400?text=추천공연',
+    poster: '/no_poster.png',
     fcltynm: '맞춤 추천 장소',
     prfpdfrom: '2024-01-01',
     prfpdto: '2024-12-31',
@@ -167,7 +167,7 @@ const placeholderRecommendations = [
   {
     mt20id: 'placeholder-4',
     prfnm: '당신을 위한 특별한 공연',
-    poster: 'https://via.placeholder.com/300x400?text=추천공연',
+    poster: '/no_poster.png',
     fcltynm: '맞춤 추천 장소',
     prfpdfrom: '2024-01-01',
     prfpdto: '2024-12-31',
@@ -177,7 +177,7 @@ const placeholderRecommendations = [
   {
     mt20id: 'placeholder-5',
     prfnm: '당신을 위한 특별한 공연',
-    poster: 'https://via.placeholder.com/300x400?text=추천공연',
+    poster: '/no_poster.png',
     fcltynm: '맞춤 추천 장소',
     prfpdfrom: '2024-01-01',
     prfpdto: '2024-12-31',

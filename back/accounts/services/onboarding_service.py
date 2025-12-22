@@ -1,7 +1,7 @@
 import numpy as np
 from django.db.models import Q, Count
 from django.utils import timezone
-from .models import User, UserPreference, UserPerformanceSignal
+from ..models import User, UserPreference, UserPerformanceSignal
 from performances.models import Performance, PerformanceEmbedding
 
 

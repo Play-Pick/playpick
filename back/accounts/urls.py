@@ -1,11 +1,18 @@
-from django.urls import path
-from . import views
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views.api_views import UserViewSet, RegisterView
+from .views.onboarding_views import OnboardingViewSet
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+
+
 
 app_name = 'accounts'
+router = DefaultRouter()
+router.register(r'users', UserViewSet, basename='user')
+router.register(r'onboarding', OnboardingViewSet, basename='onboarding')
 urlpatterns = [
-    path('signup/', views.signup, name='signup'),
-    path('login/', views.login, name='login'),
-    path('logout/', views.logout, name='logout'),
-    path('profile/<username>/', views.profile, name='profile'),
-    path('<int:user_pk>/follow/', views.follow, name='follow'),
+    path('', include(router.urls)),
+    path('register/', RegisterView.as_view(), name='register'),
+    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),    
 ]

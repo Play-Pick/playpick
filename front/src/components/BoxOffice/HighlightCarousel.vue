@@ -227,7 +227,7 @@ const formatDate = (dateStr) => {
 
 // 이미지 에러 처리
 const handleImageError = (event) => {
-  event.target.src = 'https://via.placeholder.com/320x427?text=No+Image'
+  event.target.src = '/no_poster.png'
 }
 
 // 초기 로드 및 자동재생 시작

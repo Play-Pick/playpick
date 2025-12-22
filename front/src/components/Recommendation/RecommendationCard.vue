@@ -89,7 +89,7 @@ const formatDate = (dateStr) => {
 }
 
 const handleImageError = (event) => {
-  event.target.src = 'https://via.placeholder.com/300x400?text=No+Poster'
+  event.target.src = '/no_poster.png'
 }
 </script>
 
