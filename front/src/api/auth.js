@@ -21,5 +21,27 @@ export default {
     localStorage.removeItem('access_token')
     localStorage.removeItem('refresh_token')
     return Promise.resolve()
+  },
+
+  // 현재 사용자 정보 조회
+  getCurrentUser() {
+    return apiClient.get('/accounts/users/me/')
+  },
+
+  // 회원정보 수정
+  updateProfile(data) {
+    return apiClient.patch('/users/update_profile/', data)
+  },
+
+  // 회원 탈퇴
+  deleteAccount(password) {
+    return apiClient.delete('/users/delete_account/', {
+      data: { password }
+    })
+  },
+
+  // 비밀번호 확인
+  verifyPassword(password) {
+    return apiClient.post('/accounts/users/verify_password/', { password })
   }
 }

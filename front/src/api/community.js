@@ -40,9 +40,13 @@ export default {
 
   // 댓글 목록 조회
   getComments(articleId) {
-    return apiClient.get('/community/comments/', {
-      params: { article: articleId }
-    })
+    if (articleId) {
+      return apiClient.get('/community/comments/', {
+        params: { article: articleId }
+      })
+    }
+    // articleId가 없으면 전체 댓글 조회
+    return apiClient.get('/community/comments/')
   },
 
   // 댓글 생성

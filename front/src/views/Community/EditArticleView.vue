@@ -11,52 +11,38 @@
     <div v-else-if="error" class="error">{{ error }}</div>
 
     <form v-else class="edit-form" @submit.prevent="submit">
-      <div class="form-group">
-        <label>말머리</label>
-        <div class="pill">{{ boardTypeLabel }}</div>
-      </div>
+      <!-- 말머리 -->
+      <CategoryDisplay
+        label="말머리"
+        icon="fas fa-tag"
+        :text="boardTypeLabel"
+      />
 
-      <div class="form-group">
-        <label>카테고리</label>
-        <div class="pill">{{ categoryLabel }}</div>
-      </div>
+      <!-- 카테고리 -->
+      <CategoryDisplay
+        label="카테고리"
+        :icon="categoryIcon"
+        :text="categoryLabel"
+      />
 
-      <div class="form-group" v-if="form.board_type === 'PERFORMANCE'">
+      <!-- 연결된 공연 (공연글인 경우) -->
+      <div v-if="form.board_type === 'PERFORMANCE'" class="form-group">
         <label>연결된 공연</label>
-        <div class="pill">
+        <div class="performance-pill">
           {{ performanceDisplay }}
         </div>
       </div>
 
-      <div
-        class="form-group"
-        v-if="form.board_type === 'PERFORMANCE' && (form.category === 'REVIEW' || form.category === 'EXPECTATION')"
-      >
-        <label>별점</label>
-        <div class="rating-input">
-          <button
-            v-for="star in 5"
-            :key="star"
-            type="button"
-            :class="['star', { active: star <= form.rank }]"
-            @click="form.rank = star"
-          >
-            <i :class="star <= form.rank ? 'fas fa-star' : 'far fa-star'"></i>
-          </button>
-          <span class="rating-value">{{ form.rank.toFixed(1) }}</span>
-        </div>
-      </div>
+      <!-- 제목, 별점, 내용 -->
+      <ArticleFormFields
+        v-model:title="form.title"
+        v-model:content="form.content"
+        v-model:rating="form.rank"
+        :show-rating="showRating"
+        :rows="10"
+      />
 
-      <div class="form-group">
-        <label>제목</label>
-        <input v-model="form.title" type="text" required />
-      </div>
-
-      <div class="form-group">
-        <label>내용</label>
-        <textarea v-model="form.content" rows="10" required></textarea>
-      </div>
-
+      <!-- 버튼 -->
       <div class="actions">
         <button type="submit" class="btn-primary" :disabled="submitting">
           {{ submitting ? '수정 중...' : '수정 완료' }}
@@ -71,45 +57,57 @@
 import { ref, computed, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useCommunityStore } from '@/stores/communityStore'
+import { useArticleForm } from '@/composables/useArticleForm'
 import communityAPI from '@/api/community'
+import CategoryDisplay from '@/components/Community/CategoryDisplay.vue'
+import ArticleFormFields from '@/components/Community/ArticleFormFields.vue'
 
 const route = useRoute()
 const router = useRouter()
 const communityStore = useCommunityStore()
 
+// useArticleForm composable 사용
+const {
+  submitting,
+  getCategoryIcon,
+  getCategoryLabel,
+  getBoardTypeLabel,
+  needsRating,
+  goBack
+} = useArticleForm()
+
 const form = ref({
   board_type: '',
   category: '',
   performance: null,
+  performance_name: '',
   title: '',
   content: '',
   rank: 0,
 })
 
 const loading = ref(true)
-const submitting = ref(false)
 const error = ref(null)
 
-const boardTypeLabel = computed(() =>
-  form.value.board_type === 'GENERAL' ? '자유/정보' : '공연글'
-)
+// 말머리 라벨
+const boardTypeLabel = computed(() => getBoardTypeLabel(form.value.board_type))
 
-const categoryLabel = computed(() => {
-  const map = {
-    REVIEW: '관람후기',
-    EXPECTATION: '기대평',
-    QNA: '질문',
-    FREE: '자유게시판',
-    INFO: '정보공유',
-  }
-  return map[form.value.category] || form.value.category
-})
+// 카테고리 라벨 및 아이콘
+const categoryLabel = computed(() => getCategoryLabel(form.value.category))
+const categoryIcon = computed(() => getCategoryIcon(form.value.category))
 
+// 공연 표시
 const performanceDisplay = computed(() => {
   if (!form.value.performance_name) return '연결된 공연 없음'
   return `${form.value.performance_name} (${form.value.performance})`
 })
 
+// 별점 표시 여부
+const showRating = computed(() => {
+  return form.value.board_type === 'PERFORMANCE' && needsRating(form.value.category)
+})
+
+// 게시글 불러오기
 const loadArticle = async () => {
   loading.value = true
   error.value = null
@@ -131,6 +129,7 @@ const loadArticle = async () => {
   }
 }
 
+// 게시글 수정 제출
 const submit = async () => {
   submitting.value = true
   error.value = null
@@ -142,7 +141,7 @@ const submit = async () => {
       content: form.value.content,
     }
     if (form.value.performance) payload.performance = form.value.performance
-    if (form.value.board_type === 'PERFORMANCE' && (form.value.category === 'REVIEW' || form.value.category === 'EXPECTATION')) {
+    if (showRating.value) {
       payload.rank = form.value.rank || 0
     }
 
@@ -154,10 +153,6 @@ const submit = async () => {
   } finally {
     submitting.value = false
   }
-}
-
-const goBack = () => {
-  router.back()
 }
 
 onMounted(() => {
@@ -183,6 +178,12 @@ onMounted(() => {
   margin: 0;
   font-size: 1.75rem;
   font-weight: 800;
+  transition: color 0.3s;
+  color: #111827;
+}
+
+:root.dark .page-header h1 {
+  color: #f3f4f6;
 }
 
 .back-button {
@@ -216,7 +217,7 @@ onMounted(() => {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1.5rem;
   transition: background 0.3s, box-shadow 0.3s;
 }
 
@@ -234,86 +235,30 @@ onMounted(() => {
 .form-group label {
   font-weight: 700;
   color: #374151;
+  font-size: 1.0625rem;
+  transition: color 0.3s;
 }
 
 :root.dark .form-group label {
   color: #e2e8f0;
 }
 
-.pill {
+.performance-pill {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1.25rem;
   background: #f3f4f6;
   color: #374151;
   border-radius: 9999px;
   font-weight: 600;
+  font-size: 0.9375rem;
+  transition: all 0.3s;
 }
 
-:root.dark .pill {
+:root.dark .performance-pill {
   background: #1f2937;
   color: #e2e8f0;
-}
-
-.rating-input {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-}
-
-.star {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #d1d5db;
-  font-size: 1.5rem;
-}
-
-.star.active {
-  color: #fbbf24;
-}
-
-.rating-value {
-  margin-left: 0.5rem;
-  font-weight: 700;
-  color: #6366f1;
-}
-
-:root.dark .rating-value {
-  color: #c7d2fe;
-}
-
-input,
-textarea {
-  width: 100%;
-  padding: 0.85rem 1rem;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  font-size: 1rem;
-  background: #fff;
-  color: #111827;
-  transition: border-color 0.3s, box-shadow 0.3s, background 0.3s, color 0.3s;
-}
-
-:root.dark input,
-:root.dark textarea {
-  background: #0f172a;
-  color: #e2e8f0;
-  border-color: #334155;
-}
-
-input:focus,
-textarea:focus {
-  outline: none;
-  border-color: #6366f1;
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
-}
-
-:root.dark input:focus,
-:root.dark textarea:focus {
-  border-color: #818cf8;
-  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.25);
 }
 
 .actions {

@@ -187,7 +187,7 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/authStore'
-import apiClient from '@/api/axios'
+import usersAPI from '@/api/users'
 
 const router = useRouter()
 const authStore = useAuthStore()
@@ -239,7 +239,7 @@ const checkNicknameDuplicate = async () => {
       nicknameCheckResult.value = 'checking'
 
       // 모든 사용자 조회하여 닉네임 중복 확인
-      const response = await apiClient.get('/accounts/users/')
+      const response = await usersAPI.getUsers()
       const users = response.data.results || response.data
 
       const isDuplicate = users.some(user => user.nickname === nickname)
