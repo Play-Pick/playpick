@@ -15,8 +15,10 @@
       <HeaderSection
         :performance="currentPerformance"
         :like-loading="likeLoading"
+        :watched-loading="watchedLoading"
         @open-map="handleOpenMap"
         @toggle-like="handleToggleLike"
+        @toggle-watched="handleToggleWatched"
       >
         <template #rating-chart>
           <RatingChart :reviews="reviews" />
@@ -193,6 +195,7 @@ import { usePerformanceDetail } from '@/composables/usePerformanceDetail'
 import { useKakaoMap } from '@/composables/useKakaoMap'
 import { useUserTracking } from '@/composables/useUserTracking'
 import { usePerformanceStore } from '@/stores/performanceStore'
+import { useWatchedStore } from '@/stores/watchedStore'
 import HeaderSection from '@/components/PerformanceDetail/HeaderSection.vue'
 import MapModal from '@/components/PerformanceDetail/MapModal.vue'
 import RatingChart from '@/components/PerformanceDetail/RatingChart.vue'
@@ -207,6 +210,8 @@ const { showMapModal, openMapModal, closeMapModal, initMap } = useKakaoMap()
 const { logView } = useUserTracking()
 const performanceStore = usePerformanceStore()
 const { toggleLike, likeLoading } = performanceStore
+const watchedStore = useWatchedStore()
+const watchedLoading = ref(false)
 
 const reviews = ref([])
 
@@ -294,6 +299,33 @@ const handleToggleLike = async () => {
       console.error('찜하기 토글 실패:', err)
       alert(err.message || '찜하기 처리 중 오류가 발생했습니다.')
     }
+  }
+}
+
+// 관람함 토글 핸들러
+const handleToggleWatched = async () => {
+  if (!currentPerformance.value?.mt20id) return
+
+  watchedLoading.value = true
+  try {
+    const isCurrentlyWatched = watchedStore.isWatched(currentPerformance.value.mt20id)
+
+    if (isCurrentlyWatched) {
+      await watchedStore.removeFromWatched(currentPerformance.value.mt20id)
+      currentPerformance.value.is_watched = false
+    } else {
+      await watchedStore.addToWatched(currentPerformance.value.mt20id)
+      currentPerformance.value.is_watched = true
+    }
+  } catch (err) {
+    if (err.message === '로그인이 필요합니다.' || err?.response?.status === 401) {
+      alert('로그인이 필요한 기능입니다.')
+    } else {
+      console.error('관람함 토글 실패:', err)
+      alert(err.message || '관람함 처리 중 오류가 발생했습니다.')
+    }
+  } finally {
+    watchedLoading.value = false
   }
 }
 
