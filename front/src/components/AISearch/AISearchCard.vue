@@ -8,7 +8,7 @@
     <!-- Poster with overlays -->
     <div class="poster-container">
       <img
-        :src="performance.poster || 'https://via.placeholder.com/200x280'"
+        :src="performance.poster || '/no_poster.png'"
         :alt="`${performance.prfnm} 포스터`"
         class="poster"
         @error="handleImageError"
@@ -72,7 +72,7 @@ const formatDateRange = (from, to) => {
 }
 
 const handleImageError = (event) => {
-  event.target.src = 'https://via.placeholder.com/200x280?text=No+Poster'
+  event.target.src = '/no_poster.png'
 }
 
 const getRankClass = (rank) => {

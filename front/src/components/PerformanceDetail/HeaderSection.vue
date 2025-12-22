@@ -2,7 +2,7 @@
   <div class="header-section">
     <div class="poster-section">
       <img
-        :src="performance.poster || 'https://via.placeholder.com/400x560?text=No+Poster'"
+        :src="performance.poster || '/no_poster.png'"
         :alt="performance.prfnm"
         class="poster-large"
         @error="handleImageError"
@@ -130,7 +130,7 @@ const props = defineProps({
 const emit = defineEmits(['open-map', 'toggle-like', 'toggle-watched'])
 
 const handleImageError = (event) => {
-  event.target.src = 'https://via.placeholder.com/400x560?text=No+Poster'
+  event.target.src = '/no_poster.png'
 }
 </script>
 

@@ -22,7 +22,6 @@ from rest_framework.routers import DefaultRouter
 from performances.api_views import PerformanceViewSet, BoxOfficeRankingViewSet
 from community.api_views import ArticleViewSet, CommentViewSet
 # from accounts.views.api_views import UserViewSet, RegisterView
-from accounts.views.onboarding_views import OnboardingViewSet
 from recommendations.api_views import UserLogViewSet, RecommendationViewSet
 from performances.management_api_views import (
     CollectBoxOfficeAPIView,
@@ -39,7 +38,6 @@ router.register(r'boxoffice', BoxOfficeRankingViewSet, basename='boxoffice')
 router.register(r'articles', ArticleViewSet, basename='article')
 router.register(r'comments', CommentViewSet, basename='comment')
 # router.register(r'users', UserViewSet, basename='user')
-router.register(r'onboarding', OnboardingViewSet, basename='onboarding')
 router.register(r'recommendations/log', UserLogViewSet, basename='userlog')
 router.register(r'recommendations', RecommendationViewSet, basename='recommendation')
 

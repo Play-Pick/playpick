@@ -15,7 +15,7 @@ export default {
       params.exclude = excludeIds.join(',')
     }
 
-    return apiClient.get('/onboarding/candidates/', { params })
+    return apiClient.get('/accounts/onboarding/candidates/', { params })
   },
 
   /**
@@ -24,7 +24,7 @@ export default {
    * @returns {Promise}
    */
   saveSignals(signals) {
-    return apiClient.post('/onboarding/signals/', {
+    return apiClient.post('/accounts/onboarding/signals/', {
       signals
     })
   },
@@ -34,6 +34,6 @@ export default {
    * @returns {Promise}
    */
   completeOnboarding() {
-    return apiClient.post('/onboarding/complete/')
+    return apiClient.post('/accounts/onboarding/complete/')
   }
 }
