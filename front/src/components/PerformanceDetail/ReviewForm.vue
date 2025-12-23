@@ -92,7 +92,7 @@
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/authStore'
-import apiClient from '@/api/axios'
+import communityAPI from '@/api/community'
 
 const props = defineProps({
   performanceId: {
@@ -164,7 +164,7 @@ const submitReview = async () => {
       reviewData.rank = 2.5
     }
 
-    await apiClient.post('/articles/', reviewData)
+    await communityAPI.createArticle(reviewData)
 
     alert('리뷰가 작성되었습니다!')
     resetForm()

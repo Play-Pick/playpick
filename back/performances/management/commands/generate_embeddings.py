@@ -131,8 +131,37 @@ class Command(BaseCommand):
 
                 except Exception as e:
                     error_count += 1
+                    error_msg = str(e)
+
+                    # 에러 상황별 명확한 메시지 출력
+                    if 'api' in error_msg.lower() or 'openai' in error_msg.lower():
+                        self.stdout.write(
+                            self.style.ERROR(f"  [OpenAI API 에러] {performance.mt20id} - {performance.prfnm}: API 호출 실패 - {error_msg}")
+                        )
+                    elif 'rate limit' in error_msg.lower() or 'quota' in error_msg.lower():
+                        self.stdout.write(
+                            self.style.ERROR(f"  [API 할당량 초과] {performance.mt20id} - {performance.prfnm}: Rate Limit 또는 Quota 초과 - {error_msg}")
+                        )
+                    elif 'timeout' in error_msg.lower() or 'timed out' in error_msg.lower():
+                        self.stdout.write(
+                            self.style.ERROR(f"  [네트워크 타임아웃] {performance.mt20id} - {performance.prfnm}: 요청 시간 초과 - {error_msg}")
+                        )
+                    elif 'connection' in error_msg.lower():
+                        self.stdout.write(
+                            self.style.ERROR(f"  [연결 실패] {performance.mt20id} - {performance.prfnm}: 네트워크 연결 문제 - {error_msg}")
+                        )
+                    elif 'authentication' in error_msg.lower() or 'unauthorized' in error_msg.lower():
+                        self.stdout.write(
+                            self.style.ERROR(f"  [인증 실패] {performance.mt20id} - {performance.prfnm}: API 키 인증 오류 - {error_msg}")
+                        )
+                    else:
+                        self.stdout.write(
+                            self.style.ERROR(f"  [기타 에러] {performance.mt20id} - {performance.prfnm}: {error_msg}")
+                        )
+
+                    current_progress = i + batch.index(performance) + 1 if performance in batch else i + 1
                     self.stdout.write(
-                        self.style.ERROR(f"  [ERROR] {performance.mt20id} - {performance.prfnm}: {e}")
+                        self.style.WARNING(f"  ⚠️  해당 건을 스킵하고 계속 진행합니다... (진행률: {current_progress}/{total_count})")
                     )
 
                 # API Rate Limit 방지 (0.05초 대기)

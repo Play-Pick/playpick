@@ -184,7 +184,7 @@
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/authStore'
-import apiClient from '@/api/axios'
+import adminAPI from '@/api/admin'
 
 const router = useRouter()
 const authStore = useAuthStore()
@@ -207,7 +207,7 @@ onMounted(async () => {
 const loadStats = async () => {
   try {
     loading.value = true
-    const response = await apiClient.get('/performances/management/stats/')
+    const response = await adminAPI.getStats()
     stats.value = response.data.data
   } catch (error) {
     console.error('통계 로드 실패:', error)
@@ -224,9 +224,7 @@ const collectBoxOffice = async () => {
     loading.value = true
     addLog('info', '박스오피스 데이터 수집 시작...')
 
-    const response = await apiClient.post('/performances/management/collect-boxoffice/', {}, {
-      timeout: 300000 // 5분
-    })
+    const response = await adminAPI.collectBoxOffice()
 
     if (response.data.success) {
       const collected = response.data.data?.collected || 0
@@ -253,9 +251,7 @@ const collectPerformances = async () => {
     loading.value = true
     addLog('info', '공연 정보 수집 시작... (최근 1개월)')
 
-    const response = await apiClient.post('/performances/management/collect-performances/', {}, {
-      timeout: 600000 // 10분
-    })
+    const response = await adminAPI.collectPerformances()
 
     if (response.data.success) {
       addLog('success', response.data.message, response.data.output)
@@ -278,9 +274,7 @@ const collectDetails = async () => {
     loading.value = true
     addLog('info', '공연 상세 정보 수집 시작... (최대 100건)')
 
-    const response = await apiClient.post('/performances/management/collect-details/', {}, {
-      timeout: 600000 // 10분
-    })
+    const response = await adminAPI.collectDetails()
 
     if (response.data.success) {
       addLog('success', response.data.message, response.data.output)
@@ -310,9 +304,7 @@ const collectAllDetails = async () => {
     while (hasMore) {
       addLog('info', `[${round}차 수집] 상세 정보 수집 중... (최대 100건)`)
 
-      const response = await apiClient.post('/performances/management/collect-details/', {}, {
-        timeout: 600000 // 10분
-      })
+      const response = await adminAPI.collectDetails()
 
       if (response.data.success) {
         const collected = response.data.data?.collected || 0
@@ -355,7 +347,7 @@ const createTestBoxOffice = async () => {
     loading.value = true
     addLog('info', '테스트 박스오피스 데이터 생성 시작...')
 
-    const response = await apiClient.post('/performances/management/create-test-boxoffice/')
+    const response = await adminAPI.createTestBoxOffice()
 
     if (response.data.success) {
       const data = response.data.data
