@@ -229,32 +229,13 @@ SIMPLE_JWT = {
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
-    'formatters': {
-        'verbose': {
-            'format': '{levelname} {asctime} {module} {message}',
-            'style': '{',
-        },
-    },
     'handlers': {
         'console': {
             'class': 'logging.StreamHandler',
-            'formatter': 'verbose',
-        },
-        'file': {
-            'class': 'logging.FileHandler',
-            'filename': BASE_DIR / 'logs' / 'kopis_collection.log',
-            'formatter': 'verbose',
         },
     },
-    'loggers': {
-        'collect_performances': {
-            'handlers': ['console', 'file'],
-            'level': 'INFO',
-        },
-        'update_performances': {
-            'handlers': ['console', 'file'],
-            'level': 'INFO',
-        },
+    'root': {
+        'handlers': ['console'],
+        'level': 'INFO',
     },
 }
-
