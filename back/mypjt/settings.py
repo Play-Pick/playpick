@@ -39,6 +39,8 @@ CSRF_TRUSTED_ORIGINS = [
     'http://127.0.0.1:5173',
     'http://localhost:5174',
     'http://127.0.0.1:5174',
+    'http://13.210.134.120',  # 프론트엔드 AWS IP
+    'http://13.239.105.171',  # 백엔드 AWS IP
 ]
 
 # CSRF 예외 설정 (개발 중)
@@ -161,6 +163,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5173",
     "http://localhost:5174",  # Vue dev server (alternative port)
     "http://127.0.0.1:5174",
+    "http://13.210.134.120",  # 프론트엔드 AWS IP
 ]
 
 CORS_ALLOW_CREDENTIALS = True
