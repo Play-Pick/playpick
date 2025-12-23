@@ -42,7 +42,7 @@ export function useArticleForm() {
 
   // 별점이 필요한 카테고리인지 확인
   const needsRating = (category) => {
-    return category === 'REVIEW' || category === 'EXPECT' || category === 'EXPECTATION'
+    return category === 'REVIEW'
   }
 
   // 뒤로 가기

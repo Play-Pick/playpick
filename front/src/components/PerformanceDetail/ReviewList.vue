@@ -33,7 +33,7 @@
             <span class="category-badge" :class="getCategoryClass(review.category)">
               {{ getCategoryLabel(review.category) }}
             </span>
-            <div v-if="review.rank" class="rating">
+            <div v-if="review.rank && review.category !== 'EXPECTATION'" class="rating">
               <i
                 v-for="n in 5"
                 :key="n"
@@ -376,30 +376,42 @@ const formatDate = (dateString) => {
 }
 
 .category-badge {
-  padding: 0.25rem 0.75rem;
-  border-radius: 12px;
+  padding: 0.375rem 1rem;
+  border-radius: 16px;
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 600;
+  border: 1.5px solid transparent;
+  transition: all 0.3s;
 }
 
 .category-review {
-  background: #dbeafe;
-  color: #1e40af;
+  background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
 }
 
 .category-expectation {
-  background: #fef3c7;
-  color: #92400e;
+  background: linear-gradient(135deg, #9333ea 0%, #7e22ce 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(147, 51, 234, 0.3);
 }
 
 .category-info {
-  background: #d1fae5;
-  color: #065f46;
+  background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(243, 156, 18, 0.3);
 }
 
 .category-qna {
-  background: #fce7f3;
-  color: #9f1239;
+  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(231, 76, 60, 0.3);
+}
+
+.category-free {
+  background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(46, 204, 113, 0.3);
 }
 
 .rating {
