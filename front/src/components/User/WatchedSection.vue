@@ -32,6 +32,7 @@
         :key="item.mt20id || item.id"
         :performance="item"
         @click="$emit('click-performance', $event)"
+        @toggle-like="$emit('toggle-like', $event)"
       >
         <template #actions>
           <button @click.stop="$emit('remove', item.mt20id || item.id)"
@@ -63,7 +64,7 @@ defineProps({
   }
 })
 
-defineEmits(['browse', 'click-performance', 'remove'])
+defineEmits(['browse', 'click-performance', 'remove', 'toggle-like'])
 </script>
 
 <style scoped>
