@@ -48,7 +48,7 @@
               <p class="side-title">{{ currentArticle.performance_name }}</p>
               <p v-if="currentArticle.performance_area" class="side-sub">{{ currentArticle.performance_area }}</p>
               <p v-if="periodText" class="side-sub">{{ periodText }}</p>
-              <p v-if="currentArticle.rank" class="side-rating">평점 ★{{ currentArticle.rank }}</p>
+              <p v-if="categoryLabel==='관람후기'" class="side-rating">평점 ★{{ currentArticle.rank }}</p>
               <p v-if="!currentArticle.performance_area && !periodText && !currentArticle.rank" class="side-placeholder">
                 공연 정보가 없습니다.
               </p>
