@@ -19,14 +19,14 @@
         <label>카테고리</label>
         <select v-model="form.category" class="select-category">
           <option value="REVIEW">후기</option>
-          <option value="EXPECT">기대평</option>
+          <option value="EXPECTATION">기대평</option>
           <option value="INFO">정보공유</option>
           <option value="QNA">질문</option>
         </select>
       </div>
 
-      <!-- 별점 (후기/기대평만) -->
-      <div v-if="form.category === 'REVIEW' || form.category === 'EXPECT'" class="form-group">
+      <!-- 별점 (후기만) -->
+      <div v-if="form.category === 'REVIEW'" class="form-group">
         <label>별점</label>
         <div class="star-rating">
           <div
@@ -157,9 +157,11 @@ const submitReview = async () => {
       content: form.value.content,
     }
 
-    // 별점은 후기/기대평일 때만 포함
-    if (form.value.category === 'REVIEW' || form.value.category === 'EXPECT') {
+    // 별점은 후기일 때만 포함
+    if (form.value.category === 'REVIEW') {
       reviewData.rank = form.value.rank
+    } else if (form.value.category === 'EXPECTATION') {
+      reviewData.rank = 2.5
     }
 
     await apiClient.post('/articles/', reviewData)

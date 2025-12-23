@@ -337,9 +337,11 @@ onMounted(() => {
 }
 
 /* 카드 크기 조정: 5개가 딱 맞게 */
-.performances-scroll :deep(.performance-card) {
+.performances-scroll :deep(.performance-card),
+.performances-scroll :deep(.boxoffice-card) {
   flex-shrink: 0;
-  width: calc((100% - (1.2rem * 4)) / 5);
+  width: calc((100% - (1.2rem * 4)) / 5) !important;
+  max-width: calc((100% - (1.2rem * 4)) / 5) !important;
   min-width: 0;
 }
 
@@ -474,8 +476,10 @@ onMounted(() => {
     overflow-x: auto;
   }
 
-  .performances-scroll :deep(.performance-card) {
-    width: 15rem;
+  .performances-scroll :deep(.performance-card),
+  .performances-scroll :deep(.boxoffice-card) {
+    width: 15rem !important;
+    max-width: 15rem !important;
   }
 }
 
@@ -511,8 +515,10 @@ onMounted(() => {
     gap: 1rem;
   }
 
-  .performances-scroll :deep(.performance-card) {
-    width: 14rem;
+  .performances-scroll :deep(.performance-card),
+  .performances-scroll :deep(.boxoffice-card) {
+    width: 14rem !important;
+    max-width: 14rem !important;
   }
 }
 
@@ -530,8 +536,10 @@ onMounted(() => {
     font-size: 0.875rem;
   }
 
-  .performances-scroll :deep(.performance-card) {
-    width: 12rem;
+  .performances-scroll :deep(.performance-card),
+  .performances-scroll :deep(.boxoffice-card) {
+    width: 12rem !important;
+    max-width: 12rem !important;
   }
 }
 </style>

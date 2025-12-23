@@ -103,8 +103,8 @@
           </div>
         </div>
 
-        <!-- Rating (REVIEW, EXPECTATION only) -->
-        <div v-if="formData.category === 'REVIEW' || formData.category === 'EXPECTATION'" class="form-group">
+        <!-- Rating (REVIEW only) -->
+        <div v-if="formData.category === 'REVIEW'" class="form-group">
           <label>별점 *</label>
           <div class="rating-input">
             <button
@@ -205,8 +205,8 @@ const isFormValid = computed(() => {
     return false
   }
 
-  // REVIEW, EXPECTATION require rating
-  if ((formData.value.category === 'REVIEW' || formData.value.category === 'EXPECTATION') && !formData.value.rank) {
+  // REVIEW requires rating
+  if (formData.value.category === 'REVIEW' && !formData.value.rank) {
     return false
   }
 
@@ -283,9 +283,11 @@ const submitArticle = async () => {
       payload.performance = formData.value.performance
     }
 
-    // Add rank for REVIEW/EXPECTATION
-    if (formData.value.category === 'REVIEW' || formData.value.category === 'EXPECTATION') {
+    // Add rank for REVIEW only
+    if (formData.value.category === 'REVIEW') {
       payload.rank = formData.value.rank
+    } else if (formData.value.category === 'EXPECTATION') {
+      payload.rank = 2.5
     }
 
     await communityStore.createArticle(payload)

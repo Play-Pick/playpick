@@ -1,30 +1,34 @@
 <template>
   <div class="password-section">
-    <h3>비밀번호 변경 (선택사항)</h3>
-    <p class="section-description">비밀번호를 변경하지 않으려면 비워두세요.</p>
+    <h3 v-if="mode === 'edit'">비밀번호 변경 (선택사항)</h3>
+    <p v-if="mode === 'edit'" class="section-description">비밀번호를 변경하지 않으려면 비워두세요.</p>
 
     <div class="form-group">
-      <label for="password">새 비밀번호</label>
+      <label for="password">{{ mode === 'edit' ? '새 비밀번호' : '비밀번호' }} {{ mode === 'register' ? '*' : '' }}</label>
       <input
         id="password"
         :value="password"
         @input="$emit('update:password', $event.target.value)"
         type="password"
-        placeholder="새 비밀번호"
+        :placeholder="mode === 'edit' ? '새 비밀번호' : '비밀번호를 입력하세요'"
+        :required="mode === 'register'"
         class="form-input"
       />
+      <span v-if="errors.password" class="field-error">{{ errors.password }}</span>
     </div>
 
     <div class="form-group">
-      <label for="password2">새 비밀번호 확인</label>
+      <label for="password2">{{ mode === 'edit' ? '새 비밀번호 확인' : '비밀번호 확인' }} {{ mode === 'register' ? '*' : '' }}</label>
       <input
         id="password2"
         :value="password2"
         @input="$emit('update:password2', $event.target.value)"
         type="password"
-        placeholder="새 비밀번호 확인"
+        :placeholder="mode === 'edit' ? '새 비밀번호 확인' : '비밀번호를 다시 입력하세요'"
+        :required="mode === 'register'"
         class="form-input"
       />
+      <span v-if="errors.password2" class="field-error">{{ errors.password2 }}</span>
     </div>
   </div>
 </template>
@@ -38,6 +42,15 @@ defineProps({
   password2: {
     type: String,
     default: ''
+  },
+  mode: {
+    type: String,
+    default: 'edit', // 'edit' or 'register'
+    validator: (value) => ['edit', 'register'].includes(value)
+  },
+  errors: {
+    type: Object,
+    default: () => ({})
   }
 })
 
@@ -119,5 +132,18 @@ defineEmits(['update:password', 'update:password2'])
 :root.dark .form-input:focus {
   border-color: #818cf8;
   background: #4b5563;
+}
+
+.field-error {
+  color: #ef4444;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: color 0.3s;
+}
+
+:root.dark .field-error {
+  color: #fca5a5;
 }
 </style>

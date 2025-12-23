@@ -139,9 +139,11 @@ const submitArticle = async () => {
       articleData.performance = performanceId.value
     }
 
-    // 별점은 관람후기/기대평일 때만 포함
+    // 별점은 관람후기일 때만 포함
     if (needsRating(category.value)) {
       articleData.rank = form.value.rank
+    } else if (category.value === 'EXPECTATION') {
+      articleData.rank = 2.5
     }
 
     await communityAPI.createArticle(articleData)
