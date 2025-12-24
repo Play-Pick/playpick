@@ -6,11 +6,16 @@
       <input
         id="email"
         :value="formData.email"
-        @input="$emit('update:email', $event.target.value)"
+        @input="handleEmailInput"
+        @blur="validateEmail"
         type="email"
-        placeholder="이메일"
-        class="form-input"
+        placeholder="example@email.com"
+        :class="['form-input', { 'input-error': errors.email }]"
       />
+      <p v-if="errors.email" class="error-text">
+        <i class="fas fa-exclamation-circle"></i>
+        {{ errors.email }}
+      </p>
     </div>
 
     <!-- 생년월일 -->
@@ -19,7 +24,7 @@
       <input
         id="birth_date"
         :value="formData.birth_date"
-        @input="$emit('update:birthDate', $event.target.value)"
+        @input="emit('update:birthDate', $event.target.value)"
         type="date"
         class="form-input"
       />
@@ -31,7 +36,7 @@
       <select
         id="region"
         :value="formData.region"
-        @change="$emit('update:region', $event.target.value)"
+        @change="emit('update:region', $event.target.value)"
         class="form-input"
       >
         <option value="">선택하세요</option>
@@ -58,14 +63,56 @@
 </template>
 
 <script setup>
-defineProps({
+const props = defineProps({
   formData: {
     type: Object,
     required: true
+  },
+  errors: {
+    type: Object,
+    default: () => ({})
   }
 })
 
-defineEmits(['update:email', 'update:birthDate', 'update:region'])
+const emit = defineEmits(['update:email', 'update:birthDate', 'update:region'])
+
+// 이메일 입력 처리
+const handleEmailInput = (event) => {
+  const value = event.target.value
+  emit('update:email', value)
+
+  // 입력 중에는 에러 메시지 제거
+  if (props.errors.email) {
+    delete props.errors.email
+  }
+}
+
+// 이메일 유효성 검사
+const validateEmail = () => {
+  const email = props.formData.email.trim()
+
+  // 이메일이 비어있으면 검사하지 않음 (선택 필드)
+  if (!email) {
+    delete props.errors.email
+    return true
+  }
+
+  // 이메일 정규식 검사 (RFC 5322 기반)
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+
+  if (!emailRegex.test(email)) {
+    props.errors.email = '올바른 이메일 형식이 아닙니다. (예: example@email.com)'
+    return false
+  }
+
+  delete props.errors.email
+  return true
+}
+
+// 외부에서 호출 가능하도록 expose
+defineExpose({
+  validateEmail
+})
 </script>
 
 <style scoped>
@@ -130,5 +177,31 @@ select.form-input:focus {
 
 :root.dark .form-input::placeholder {
   color: #6b7280;
+}
+
+/* 에러 상태 */
+.input-error {
+  border-color: #ef4444 !important;
+}
+
+:root.dark .input-error {
+  border-color: #f87171 !important;
+}
+
+.error-text {
+  color: #ef4444;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  margin-top: -0.25rem;
+}
+
+:root.dark .error-text {
+  color: #fca5a5;
+}
+
+.error-text i {
+  font-size: 0.75rem;
 }
 </style>
