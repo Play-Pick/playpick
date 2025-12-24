@@ -160,15 +160,14 @@ python manage.py export_embeddings --import embeddings/performance_embeddings.np
 ### 전체 데이터 로드 (한 번에)
 ```bash
 cd ~/playpick/back && \
+python manage.py loaddata fixtures/accounts_user.json && \
 python manage.py loaddata fixtures/performances_performance.json && \
 python manage.py loaddata fixtures/performances_performancedetail.json && \
 python manage.py loaddata fixtures/performances_performanceimage.json && \
 python manage.py loaddata fixtures/performances_boxofficeranking.json && \
-python manage.py loaddata fixtures/accounts_user.json && \
 python manage.py loaddata fixtures/community_article.json && \
 python manage.py loaddata fixtures/community_comment.json && \
-python manage.py export_embeddings --import embeddings/performance_embeddings.npz && \
-echo "✅ 모든 데이터 로드 완료!"
+echo "✅ 모든 fixtures 로드 완료!"
 ```
 
 ---
