@@ -30,12 +30,12 @@ export default {
 
   // 회원정보 수정
   updateProfile(data) {
-    return apiClient.patch('/users/update_profile/', data)
+    return apiClient.patch('/accounts/users/update_profile/', data)
   },
 
   // 회원 탈퇴
   deleteAccount(password) {
-    return apiClient.delete('/users/delete_account/', {
+    return apiClient.delete('/accounts/users/delete_account/', {
       data: { password }
     })
   },
