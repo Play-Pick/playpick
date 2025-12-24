@@ -1,1 +1,1 @@
-web: gunicorn <프로젝트폴더명>.wsgi --log-file -
+web: gunicorn mypjt.wsgi --log-file - --timeout 120 --workers 2
