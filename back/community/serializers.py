@@ -7,15 +7,17 @@ User = get_user_model()
 
 class CommentSerializer(serializers.ModelSerializer):
     username = serializers.CharField(source='user.username', read_only=True)
+    nickname = serializers.CharField(source='user.nickname', read_only=True)
 
     class Meta:
         model = Comment
-        fields = ['id', 'content', 'article', 'user', 'username', 'created_at', 'updated_at']
+        fields = ['id', 'content', 'article', 'user', 'username', 'nickname', 'created_at', 'updated_at']
         read_only_fields = ['user']
 
 
 class ArticleListSerializer(serializers.ModelSerializer):
     username = serializers.CharField(source='user.username', read_only=True)
+    nickname = serializers.CharField(source='user.nickname', read_only=True)
     like_count = serializers.IntegerField(source='like_users.count', read_only=True)
     is_liked = serializers.SerializerMethodField()
     performance_name = serializers.CharField(source='performance.prfnm', read_only=True)
@@ -32,7 +34,7 @@ class ArticleListSerializer(serializers.ModelSerializer):
             'id', 'title', 'board_type', 'category', 'rank', 'performance', 'performance_name',
             'performance_poster', 'performance_area', 'prfpdfrom', 'prfpdto',
             'content', 'created_at', 'updated_at',
-            'user', 'username', 'like_count', 'is_liked', 'like_users', 'comments'
+            'user', 'username', 'nickname', 'like_count', 'is_liked', 'like_users', 'comments'
         ]
         read_only_fields = ['user']
 
@@ -87,6 +89,7 @@ class ArticleListSerializer(serializers.ModelSerializer):
 
 class ArticleDetailSerializer(serializers.ModelSerializer):
     username = serializers.CharField(source='user.username', read_only=True)
+    nickname = serializers.CharField(source='user.nickname', read_only=True)
     comments = CommentSerializer(many=True, read_only=True)
     like_count = serializers.IntegerField(source='like_users.count', read_only=True)
     is_liked = serializers.SerializerMethodField()
@@ -103,7 +106,7 @@ class ArticleDetailSerializer(serializers.ModelSerializer):
             'id', 'title', 'board_type', 'category', 'rank', 'performance', 'performance_name',
             'performance_poster', 'performance_area', 'prfpdfrom', 'prfpdto',
             'content', 'created_at', 'updated_at',
-            'user', 'username', 'like_count', 'is_liked', 'like_users', 'comments'
+            'user', 'username', 'nickname', 'like_count', 'is_liked', 'like_users', 'comments'
         ]
         read_only_fields = ['user']
 

@@ -19,7 +19,7 @@
     <div class="article-info">
       <span class="performance-title">{{ article.performance_name }}</span>
       <span v-if="categoryLabel==='후기'" class="rating">⭐ {{ article.rank }}</span>
-      <span class="author">{{ article.username }}</span>
+      <span class="author">{{ article.nickname || article.username }}</span>
     </div>
   </div>
 </template>

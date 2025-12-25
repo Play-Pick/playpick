@@ -3,7 +3,7 @@
     <div v-if="comments && comments.length > 0" class="comments-list">
       <div v-for="comment in comments" :key="comment.id" class="comment-item">
         <div class="comment-header">
-          <span class="comment-author">{{ comment.username }}</span>
+          <span class="comment-author">{{ comment.nickname || comment.username }}</span>
           <span class="comment-date">{{ formatDate(comment.created_at) }}</span>
         </div>
 
