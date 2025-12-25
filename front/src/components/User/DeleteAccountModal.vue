@@ -1,0 +1,297 @@
+<template>
+  <div v-if="show" class="modal-overlay" @click.self="$emit('close')">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>회원 탈퇴</h2>
+        <button @click="$emit('close')" class="modal-close">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="warning-text">
+          <i class="fas fa-exclamation-triangle"></i>
+          정말로 탈퇴하시겠습니까? 모든 데이터가 삭제되며 복구할 수 없습니다.
+        </p>
+        <div class="form-group">
+          <label for="delete-password">비밀번호를 입력하여 확인해주세요</label>
+          <input
+            id="delete-password"
+            v-model="password"
+            type="password"
+            placeholder="비밀번호"
+            class="form-input"
+            @keyup.enter="handleDelete"
+          />
+        </div>
+        <p v-if="error" class="error-message">{{ error }}</p>
+      </div>
+      <div class="modal-footer">
+        <button @click="handleDelete" class="btn-delete-confirm" :disabled="loading">
+          <i v-if="loading" class="fas fa-spinner fa-spin"></i>
+          <span v-else>탈퇴하기</span>
+        </button>
+        <button @click="$emit('close')" class="btn-cancel-modal">취소</button>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref, watch } from 'vue'
+
+const props = defineProps({
+  show: {
+    type: Boolean,
+    default: false
+  },
+  loading: {
+    type: Boolean,
+    default: false
+  },
+  error: {
+    type: String,
+    default: ''
+  }
+})
+
+const emit = defineEmits(['close', 'delete'])
+
+const password = ref('')
+
+// 모달이 닫힐 때 비밀번호 초기화
+watch(() => props.show, (newVal) => {
+  if (!newVal) {
+    password.value = ''
+  }
+})
+
+const handleDelete = () => {
+  if (!password.value) {
+    return
+  }
+  emit('delete', password.value)
+}
+</script>
+
+<style scoped>
+/* 모달 스타일 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  background: white;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 450px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s;
+  transition: background-color 0.3s;
+}
+
+:root.dark .modal-content {
+  background: #1f2937;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+  transition: border-color 0.3s;
+}
+
+:root.dark .modal-header {
+  border-bottom-color: #374151;
+}
+
+.modal-header h2 {
+  font-size: 1.5rem;
+  color: #1f2937;
+  margin: 0;
+  transition: color 0.3s;
+}
+
+:root.dark .modal-header h2 {
+  color: #f3f4f6;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #6b7280;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.modal-close:hover {
+  background: #f3f4f6;
+  color: #1f2937;
+}
+
+:root.dark .modal-close {
+  color: #9ca3af;
+}
+
+:root.dark .modal-close:hover {
+  background: #374151;
+  color: #f3f4f6;
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+.warning-text {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #dc2626;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: #374151;
+  transition: color 0.3s;
+}
+
+:root.dark .form-group label {
+  color: #d1d5db;
+}
+
+.form-input {
+  padding: 0.75rem 1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: all 0.3s;
+  background: white;
+  color: #1f2937;
+}
+
+:root.dark .form-input {
+  background: #374151;
+  border-color: #4b5563;
+  color: #f3f4f6;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #6366f1;
+}
+
+:root.dark .form-input:focus {
+  border-color: #818cf8;
+  background: #4b5563;
+}
+
+.error-message {
+  color: #ef4444;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+.modal-footer {
+  display: flex;
+  gap: 0.5rem;
+  padding: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+  justify-content: flex-end;
+  transition: border-color 0.3s;
+}
+
+:root.dark .modal-footer {
+  border-top-color: #374151;
+}
+
+.btn-delete-confirm {
+  padding: 0.75rem 1.5rem;
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 500;
+  min-width: 100px;
+}
+
+.btn-delete-confirm:hover:not(:disabled) {
+  background: #dc2626;
+}
+
+.btn-delete-confirm:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-cancel-modal {
+  padding: 0.75rem 1.5rem;
+  background: #f3f4f6;
+  color: #1f2937;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 500;
+}
+
+.btn-cancel-modal:hover {
+  background: #e5e7eb;
+}
+
+:root.dark .btn-cancel-modal {
+  background: #374151;
+  color: #f3f4f6;
+}
+
+:root.dark .btn-cancel-modal:hover {
+  background: #4b5563;
+}
+</style>

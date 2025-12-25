@@ -1,0 +1,52 @@
+[
+  {
+    "model": "accounts.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$QAcxUMa02lp2JBSgbndOrT$z7cvMZaovkHzvX3hZ2QShxuEIG+lZS+YsGT7aIhNabA=",
+      "last_login": "2025-12-18T23:55:22.060Z",
+      "is_superuser": true,
+      "username": "admin",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2025-12-18T23:54:46.072Z",
+      "nickname": null,
+      "profile_image": "",
+      "region": null,
+      "preference_tags": [],
+      "favorite_actors": [],
+      "birth_date": null,
+      "groups": [],
+      "user_permissions": [],
+      "followings": []
+    }
+  },
+  {
+    "model": "accounts.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$Cjkg3Dw6VSx3W0yrD3ZiKw$RSf3syFD24o5DXTJGsQ+yG92hR5EAvFUqa5oG3exnK0=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "test",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2025-12-19T00:26:28.190Z",
+      "nickname": "test",
+      "profile_image": "",
+      "region": null,
+      "preference_tags": [],
+      "favorite_actors": [],
+      "birth_date": "1995-08-25",
+      "groups": [],
+      "user_permissions": [],
+      "followings": []
+    }
+  }
+]
