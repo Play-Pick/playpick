@@ -220,7 +220,7 @@ const submitComment = async (review) => {
   }
 
   try {
-    await apiClient.post('/comments/', {
+    await communityAPI.createComment({
       article: review.id,
       content: content.trim(),
     })
