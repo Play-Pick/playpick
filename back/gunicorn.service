@@ -1,0 +1,20 @@
+[Unit]
+Description=Gunicorn daemon for Play Pick Django application
+After=network.target
+
+[Service]
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=/home/ubuntu/playpick/back
+Environment="PATH=/home/ubuntu/playpick/.venv/bin"
+ExecStart=/home/ubuntu/playpick/.venv/bin/gunicorn \
+          --workers 2 \
+          --timeout 120 \
+          --bind 0.0.0.0:8000 \
+          mypjt.wsgi:application
+
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

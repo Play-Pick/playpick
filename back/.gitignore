@@ -1,6 +1,6 @@
 # Created by https://www.toptal.com/developers/gitignore/api/django,python
 # Edit at https://www.toptal.com/developers/gitignore?templates=django,python
-
+발표/
 ### Django ###
 *.log
 *.pot
