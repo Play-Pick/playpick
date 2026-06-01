@@ -15,14 +15,20 @@ export function useAllRanking() {
 
     try {
       const { data } = await performanceApi.getBoxOfficeAll()
-      if (data.success) {
-        allRankings.value = data.data
-      } else {
-        error.value = '전체 랭킹 데이터를 불러올 수 없습니다.'
-      }
+
+      // success 여부와 관계없이 data 배열을 설정 (빈 배열도 정상 처리)
+      allRankings.value = data.data || []
+      // 데이터가 없는 경우는 에러가 아님
     } catch (e) {
       console.error('Error loading all rankings:', e)
-      error.value = '오류가 발생했습니다.'
+      // 네트워크 에러 등 실제 오류만 error로 표시
+      if (e.response && e.response.status >= 500) {
+        error.value = '서버 오류가 발생했습니다. 잠시 후 다시 시도해주세요.'
+      } else if (e.message === 'Network Error' || !e.response) {
+        error.value = '네트워크 연결을 확인해주세요.'
+      } else {
+        error.value = '데이터를 불러오는 중 오류가 발생했습니다.'
+      }
     } finally {
       loading.value = false
     }
@@ -35,14 +41,20 @@ export function useAllRanking() {
 
     try {
       const { data } = await performanceApi.getBoxOfficeHighlight()
-      if (data.success) {
-        highlightPerformances.value = data.data
-      } else {
-        error.value = '하이라이트 데이터를 불러올 수 없습니다.'
-      }
+
+      // success 여부와 관계없이 data 배열을 설정 (빈 배열도 정상 처리)
+      highlightPerformances.value = data.data || []
+      // 데이터가 없는 경우는 에러가 아님
     } catch (e) {
       console.error('Error loading highlight performances:', e)
-      error.value = '오류가 발생했습니다.'
+      // 네트워크 에러 등 실제 오류만 error로 표시
+      if (e.response && e.response.status >= 500) {
+        error.value = '서버 오류가 발생했습니다. 잠시 후 다시 시도해주세요.'
+      } else if (e.message === 'Network Error' || !e.response) {
+        error.value = '네트워크 연결을 확인해주세요.'
+      } else {
+        error.value = '데이터를 불러오는 중 오류가 발생했습니다.'
+      }
     } finally {
       loading.value = false
     }

@@ -45,6 +45,7 @@
         @browse="goToPerformances"
         @click-performance="goToPerformance"
         @remove="handleWatchedRemove"
+        @toggle-like="handleWishlistToggle"
       />
 
       <!-- 게시글 / 댓글 탭 -->

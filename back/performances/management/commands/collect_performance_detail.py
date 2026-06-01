@@ -115,11 +115,31 @@ class Command(BaseCommand):
                     error_msg = error_msg[:100] + '...'
                 logger.log_error(f'{performance.mt20id} 수집 실패', e)
 
-                # 주요 에러만 출력
-                if 'API' in error_msg or 'XML' in error_msg:
+                # 에러 상황별 명확한 메시지 출력
+                if 'API' in error_msg:
                     self.stdout.write(
-                        self.style.WARNING(f'  [WARN] [{idx}] {performance.mt20id}: {error_msg}')
+                        self.style.ERROR(f'  [API 에러] [{idx}/{total_count}] {performance.mt20id}: KOPIS API 호출 실패 - {error_msg}')
                     )
+                elif 'XML' in error_msg:
+                    self.stdout.write(
+                        self.style.ERROR(f'  [XML 파싱 에러] [{idx}/{total_count}] {performance.mt20id}: 응답 데이터 파싱 실패 - {error_msg}')
+                    )
+                elif 'timeout' in error_msg.lower() or 'timed out' in error_msg.lower():
+                    self.stdout.write(
+                        self.style.ERROR(f'  [네트워크 타임아웃] [{idx}/{total_count}] {performance.mt20id}: 요청 시간 초과 - {error_msg}')
+                    )
+                elif 'connection' in error_msg.lower():
+                    self.stdout.write(
+                        self.style.ERROR(f'  [연결 실패] [{idx}/{total_count}] {performance.mt20id}: 네트워크 연결 문제 - {error_msg}')
+                    )
+                else:
+                    self.stdout.write(
+                        self.style.WARNING(f'  [기타 에러] [{idx}/{total_count}] {performance.mt20id}: {error_msg}')
+                    )
+
+                self.stdout.write(
+                    self.style.WARNING(f'  ⚠️  해당 건을 스킵하고 계속 진행합니다... (진행률: {idx}/{total_count})')
+                )
                 continue
 
         # 최종 결과

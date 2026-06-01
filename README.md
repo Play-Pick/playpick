@@ -177,7 +177,8 @@ Data & External Services
 | `back/performances/` | 공연 데이터, 랭킹, 찜, AI 검색, YouTube 캐시, KOPIS 수집 | `models.py`, `views/`, `services/`, `management/commands/` |
 | `back/recommendations/` | 행동 로그, 추천 캐시, 하이브리드 추천 엔진 | `models.py`, `services/engine.py` |
 | `back/community/` | 게시글, 댓글, 좋아요, 베스트 리뷰 | `models.py`, `views/api_views.py` |
-| `docs/`, `명세서/` | 기능 명세, API 가이드, 설계 문서 | 프로젝트 문서 모음 |
+| `docs/final-submission/` | 최종 제출용 프로젝트 개요, 기술 문서, 기능 명세, API 문서, 배포 가이드 | 제출 문서 모음 |
+| `docs/development-archive/` | 개발 중 작성한 가이드, 리팩토링 기록, 테스트/실험 문서 | 개발 아카이브 |
 
 ---
 
@@ -239,12 +240,12 @@ final-pjt/
 │   │   └── views/                # 화면 단위 페이지
 │   ├── package.json
 │   └── vite.config.js
-├── docs/                         # 프론트엔드 분석 문서
-├── 명세서/                       # 기능/API/구현 명세
-├── BACKEND_README.md
-├── FRONTEND_README.md
-├── PROJECT_DOCUMENTATION.md
-├── 실행방법.md
+├── docs/
+│   ├── final-submission/         # 최종 제출 문서
+│   ├── development-archive/      # 개발 과정 문서
+│   └── project-files/            # 제출용 첨부 파일
+├── back/README.md
+├── front/README.md
 └── README.md
 ```
 
@@ -302,7 +303,7 @@ python manage.py collect_boxoffice
 python manage.py generate_embeddings
 ```
 
-초기 데이터 로드와 배포 서버 실행 방법은 [실행방법.md](실행방법.md)를 참고합니다.
+초기 데이터 로드와 배포 서버 실행 방법은 [AWS 배포 실행방법](docs/final-submission/05-배포-가이드/01-AWS-배포-실행방법.md)을 참고합니다.
 
 ---
 
@@ -310,14 +311,16 @@ python manage.py generate_embeddings
 
 | 문서 | 설명 |
 |---|---|
-| [PROJECT_DOCUMENTATION.md](PROJECT_DOCUMENTATION.md) | 전체 기능, 구조, API, 데이터베이스 설명 |
-| [BACKEND_README.md](BACKEND_README.md) | Django 백엔드 상세 문서 |
-| [FRONTEND_README.md](FRONTEND_README.md) | Vue 프론트엔드 상세 문서 |
-| [실행방법.md](실행방법.md) | AWS 배포 서버 실행과 데이터 로드 가이드 |
-| [명세서/추천알고리즘.md](명세서/추천알고리즘.md) | 추천 알고리즘 설계 |
-| [명세서/AI_SEARCH_구현완료.md](명세서/AI_SEARCH_구현완료.md) | AI 검색 구현 정리 |
-| [명세서/온보딩_기능_명세서.md](명세서/온보딩_기능_명세서.md) | 온보딩 기능 명세 |
-| [명세서/YouTube-Integration-Spec.md](명세서/YouTube-Integration-Spec.md) | YouTube 연동 명세 |
+| [프로젝트 종합문서](docs/final-submission/01-프로젝트-개요/01-프로젝트-종합문서.md) | 전체 기능, 구조, API, 데이터베이스 설명 |
+| [백엔드 개요](docs/final-submission/01-프로젝트-개요/02-백엔드-개요.md) | Django 백엔드 상세 문서 |
+| [프론트엔드 개요](docs/final-submission/01-프로젝트-개요/03-프론트엔드-개요.md) | Vue 프론트엔드 상세 문서 |
+| [AWS 배포 실행방법](docs/final-submission/05-배포-가이드/01-AWS-배포-실행방법.md) | AWS 배포 서버 실행과 데이터 로드 가이드 |
+| [추천 알고리즘](docs/final-submission/02-기술-문서/01-추천알고리즘.md) | 추천 알고리즘 설계 |
+| [AI 검색 엔진](docs/final-submission/02-기술-문서/02-AI-검색엔진.md) | AI 검색 구현 정리 |
+| [온보딩 시스템](docs/final-submission/03-기능-명세/01-온보딩시스템.md) | 온보딩 기능 명세 |
+| [YouTube 연동](docs/final-submission/02-기술-문서/05-YouTube-연동.md) | YouTube 연동 명세 |
+| [백엔드 README](back/README.md) | 백엔드 실행/구조 요약 |
+| [프론트엔드 README](front/README.md) | 프론트엔드 실행/구조 요약 |
 
 ---
 

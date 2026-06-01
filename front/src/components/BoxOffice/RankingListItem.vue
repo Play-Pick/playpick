@@ -208,6 +208,7 @@ const handleImageError = (event) => {
   color: #9ca3af;
   font-size: 0.75rem;
   flex-shrink: 0;
+  margin-right: 0.25rem;
 }
 
 .meta-divider {

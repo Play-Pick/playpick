@@ -458,9 +458,10 @@ onBeforeUnmount(() => {
 .onboarding-content {
   flex: 1;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   padding: 2rem;
+  padding-top: 2rem;
   overflow-y: auto;
 }
 
@@ -527,11 +528,11 @@ onBeforeUnmount(() => {
 /* Card area */
 .card-area {
   width: 100%;
-  max-width: 480px;
+  max-width: 420px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 /* Performance card */
@@ -569,6 +570,7 @@ onBeforeUnmount(() => {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top center;
 }
 
 .card-info {

@@ -7,7 +7,7 @@
     </div>
     <h1 class="article-title">{{ article.title }}</h1>
     <div class="article-meta">
-      <span class="author">{{ article.username }}</span>
+      <span class="author">{{ article.nickname || article.username }}</span>
       <span class="date">{{ formattedDate }}</span>
       <div class="like-section">
         <button @click="handleLike" class="like-button" :disabled="likeLoading">

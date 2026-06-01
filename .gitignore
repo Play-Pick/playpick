@@ -5,6 +5,7 @@
 *.log
 *.pot
 *.pyc
+*.pem
 __pycache__/
 local_settings.py
 db.sqlite3
@@ -133,6 +134,7 @@ celerybeat.pid
 
 # Environments
 .env
+.env.production
 .venv
 env/
 venv/
@@ -295,6 +297,7 @@ front/.vite-cache/
 # Environment variables
 front/.env
 front/.env.local
+front/.env.production
 front/.env.*.local
 
 # Logs

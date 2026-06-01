@@ -3,6 +3,7 @@ import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/authStore'
 import { useWishlistStore } from '@/stores/wishlistStore'
 import { useWatchedStore } from '@/stores/watchedStore'
+import { usePerformanceStore } from '@/stores/performanceStore'
 import authAPI from '@/api/auth'
 import communityAPI from '@/api/community'
 
@@ -11,6 +12,7 @@ export function useMyPage() {
   const authStore = useAuthStore()
   const wishlistStore = useWishlistStore()
   const watchedStore = useWatchedStore()
+  const performanceStore = usePerformanceStore()
 
   const loading = ref(true)
   const error = ref(null)
@@ -206,9 +208,16 @@ export function useMyPage() {
   // Wishlist & Watched 처리
   const handleWishlistToggle = async (performanceId) => {
     try {
-      await wishlistStore.removeFromWishlist(performanceId)
+      // performanceStore의 toggleLike를 사용하여 전역 상태 업데이트
+      await performanceStore.toggleLike(performanceId)
+      // 찜 목록도 새로고침
+      await wishlistStore.fetchWishlist()
     } catch (err) {
-      // Error message is handled in store
+      if (err.message === '로그인이 필요합니다.') {
+        alert('로그인이 필요한 기능입니다.')
+      } else {
+        console.error('찜하기 실패:', err)
+      }
     }
   }
 

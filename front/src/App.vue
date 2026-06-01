@@ -75,7 +75,13 @@ const closeMenu = () => {
     </main>
 
     <footer class="footer">
-      <p>&copy; 2025 공연 추천 커뮤니티</p>
+      <div class="footer-content">
+        <p class="copyright">&copy; 2025 PlayPick. All rights reserved.</p>
+        <p class="data-provider">
+          <i class="fas fa-database"></i>
+          공연 정보 제공: <a href="http://www.kopis.or.kr" target="_blank" rel="noopener noreferrer">KOPIS (공연예술통합전산망)</a>
+        </p>
+      </div>
     </footer>
 
     <!-- Floating Action Buttons -->
@@ -282,15 +288,77 @@ body {
 .footer {
   background-color: #f3f4f6;
   color: #111827;
-  text-align: center;
-  padding: 1rem 0;
+  padding: 2rem 0;
   margin-top: 2rem;
   transition: background-color 0.3s, color 0.3s;
+  border-top: 1px solid #e5e7eb;
 }
 
 :root.dark .footer {
   background-color: #1a1a1a;
   color: #f3f4f6;
+  border-top-color: #374151;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.copyright {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+:root.dark .copyright {
+  color: #9ca3af;
+}
+
+.data-provider {
+  font-size: 0.8125rem;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+}
+
+:root.dark .data-provider {
+  color: #9ca3af;
+}
+
+.data-provider i {
+  color: #9ca3af;
+  font-size: 0.75rem;
+}
+
+:root.dark .data-provider i {
+  color: #6b7280;
+}
+
+.data-provider a {
+  color: #6366f1;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+:root.dark .data-provider a {
+  color: #818cf8;
+}
+
+.data-provider a:hover {
+  color: #4f46e5;
+  text-decoration: underline;
+}
+
+:root.dark .data-provider a:hover {
+  color: #6366f1;
 }
 
 /* Responsive: Offcanvas nav */

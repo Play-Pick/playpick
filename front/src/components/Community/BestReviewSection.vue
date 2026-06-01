@@ -51,7 +51,7 @@
                 <i class="fas fa-heart"></i>
                 {{ review.like_count || 0 }}
               </span>
-              <span class="author">{{ review.username }}</span>
+              <span class="author">{{ review.nickname || review.username }}</span>
               <span class="date">{{ formatDate(review.created_at) }}</span>
             </div>
           </div>

@@ -22,7 +22,9 @@
           />
 
           <AccountInfoForm
+            ref="accountInfoFormRef"
             :form-data="formData"
+            :errors="errors"
             @update:email="formData.email = $event"
             @update:birth-date="formData.birth_date = $event"
             @update:region="formData.region = $event"
@@ -132,6 +134,9 @@ const checkNicknameDuplicate = async () => {
   }, 500)
 }
 
+// AccountInfoForm ref
+const accountInfoFormRef = ref(null)
+
 const handleRegister = async () => {
   loading.value = true
   errorMessage.value = ''
@@ -148,6 +153,15 @@ const handleRegister = async () => {
     errors.value.nickname = '이미 사용 중인 닉네임입니다.'
     loading.value = false
     return
+  }
+
+  // 이메일 유효성 검사 (이메일이 입력된 경우)
+  if (formData.value.email && accountInfoFormRef.value) {
+    const isEmailValid = accountInfoFormRef.value.validateEmail()
+    if (!isEmailValid) {
+      loading.value = false
+      return
+    }
   }
 
   if (formData.value.password !== formData.value.password2) {

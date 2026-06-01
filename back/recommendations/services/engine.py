@@ -16,10 +16,10 @@ class RecommendationEngine:
 
     # 가중치 설정 (총합 = 1.0)
     WEIGHTS = {
-        'f1_click': 0.20,         # 클릭/관심 로그 기반 (감소)
+        'f1_click': 0.10,         # 클릭/관심 로그 기반 (감소)
         'f2_preference': 0.15,    # 취향 매칭 (감소)
-        'f3_location': 0.10,      # 위치 근접성 (감소)
-        'f4_popularity': 0.15,    # 대중성
+        'f3_location': 0.25,      # 위치 근접성 (감소)
+        'f4_popularity': 0.10,    # 대중성
         'f5_recency': 0.10,       # 최신성
         'f6_collaborative': 0.10, # 협업 필터링 (감소)
         'f7_embedding': 0.20      # 임베딩 유사도 (NEW)
@@ -184,16 +184,16 @@ class RecommendationEngine:
             # preference_tags는 JSON 리스트: ["뮤지컬", "로맨틱"]
             for tag in self.user.preference_tags:
                 if tag in performance.genrenm:
-                    score += 0.6
+                    score += 1
                     break
 
         # 2. 배우 매칭 (40%)
-        if self.user.favorite_actors and performance.cast_search_text:
-            # favorite_actors는 JSON 리스트: ["조승우", "옥주현"]
-            for actor in self.user.favorite_actors:
-                if actor in performance.cast_search_text:
-                    score += 0.4
-                    break
+        # if self.user.favorite_actors and performance.cast_search_text:
+        #     # favorite_actors는 JSON 리스트: ["조승우", "옥주현"]
+        #     for actor in self.user.favorite_actors:
+        #         if actor in performance.cast_search_text:
+        #             score += 0.4
+        #             break
 
         return min(score, 1.0)
 
@@ -372,15 +372,18 @@ class RecommendationEngine:
 
         top_reason = max(scores, key=scores.get)
 
-        # 사유별 메시지 생성
+        # 총합 점수 (가중치 적용된 최종 점수)
+        total_score_percent = round(breakdown['total'] * 100, 1)
+
+        # 사유별 메시지 생성 - 총합 점수만 표시
         reason_messages = {
-            'click': f"👁️ 최근 {performance.genrenm} 장르를 자주 보셨어요!",
-            'preference': "❤️ 취향 저격 공연이에요!",
-            'location': f"🏠 {self.user.region}에서 공연해요!",
-            'popularity': "🔥 지금 가장 핫한 공연이에요!",
-            'recency': "⏰ 곧 시작하는 공연이에요!",
-            'collaborative': "👥 비슷한 취향의 사람들이 좋아해요!",
-            'embedding': "✨ AI가 선택한 당신의 완벽한 공연!"
+            'click': f"{total_score_percent}%",
+            'preference': f"{total_score_percent}%",
+            'location': f"{total_score_percent}%",
+            'popularity': f"{total_score_percent}%",
+            'recency': f"{total_score_percent}%",
+            'collaborative': f"{total_score_percent}%",
+            'embedding': f"{total_score_percent}%",
         }
 
         return top_reason, reason_messages.get(top_reason, "추천 공연입니다!")

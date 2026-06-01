@@ -179,6 +179,18 @@ export const usePerformanceStore = defineStore('performance', () => {
       const aiSearchStore = module.useAISearchStore()
       updateArray(aiSearchStore.searchResults)
     })
+
+    // 7. wishlistStore의 items 업데이트
+    import('@/stores/wishlistStore').then(module => {
+      const wishlistStore = module.useWishlistStore()
+      updateArray(wishlistStore.items)
+    })
+
+    // 8. watchedStore의 items 업데이트
+    import('@/stores/watchedStore').then(module => {
+      const watchedStore = module.useWatchedStore()
+      updateArray(watchedStore.items)
+    })
   }
 
   return {

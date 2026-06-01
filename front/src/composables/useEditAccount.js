@@ -1,4 +1,4 @@
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/authStore'
 import authAPI from '@/api/auth'
@@ -7,15 +7,17 @@ export function useEditAccount() {
   const router = useRouter()
   const authStore = useAuthStore()
 
-  const loading = ref(true)
+  const loading = ref(false) // 초기값을 false로 변경
   const submitting = ref(false)
   const errorMessage = ref('')
   const successMessage = ref('')
 
+  // authStore에서 사용자 정보를 즉시 가져와 초기화
+  const currentUser = authStore.user
   const formData = ref({
-    email: '',
-    birth_date: '',
-    region: '',
+    email: currentUser?.email || '',
+    birth_date: currentUser?.birth_date || '',
+    region: currentUser?.region || '',
     password: '',
     password2: ''
   })
@@ -25,7 +27,7 @@ export function useEditAccount() {
   const deleteError = ref('')
   const deleteLoading = ref(false)
 
-  // 현재 사용자 정보 불러오기
+  // 현재 사용자 정보 불러오기 (필요시에만 호출)
   const loadUserData = async () => {
     try {
       loading.value = true
@@ -73,16 +75,15 @@ export function useEditAccount() {
 
       await authAPI.updateProfile(updateData)
 
-      successMessage.value = '회원정보가 성공적으로 수정되었습니다.'
+      // authStore의 사용자 정보 업데이트
+      if (authStore.user) {
+        if (updateData.email) authStore.user.email = updateData.email
+        if (updateData.birth_date) authStore.user.birth_date = updateData.birth_date
+        if (updateData.region) authStore.user.region = updateData.region
+      }
 
-      // 비밀번호 필드 초기화
-      formData.value.password = ''
-      formData.value.password2 = ''
-
-      // 2초 후 마이페이지로 이동
-      setTimeout(() => {
-        router.push({ name: 'mypage' })
-      }, 2000)
+      // 즉시 마이페이지로 이동 (성공 메시지는 마이페이지에서 토스트로 표시 가능)
+      router.push({ name: 'mypage' })
     } catch (err) {
       console.error('회원정보 수정 실패:', err)
       errorMessage.value = err.response?.data?.error || err.response?.data?.password2?.[0] || '회원정보 수정에 실패했습니다.'
@@ -134,10 +135,8 @@ export function useEditAccount() {
     router.push({ name: 'mypage' })
   }
 
-  // 마운트 시 데이터 로드
-  onMounted(() => {
-    loadUserData()
-  })
+  // onMounted 제거 - authStore에서 즉시 데이터를 가져오므로 불필요
+  // 필요한 경우에만 loadUserData()를 수동으로 호출 가능
 
   return {
     // State

@@ -24,7 +24,7 @@
               <i class="fas fa-user"></i>
             </div>
             <div class="user-details">
-              <div class="username">{{ review.username }}</div>
+              <div class="username">{{ review.nickname || review.username }}</div>
               <div class="date">{{ formatDate(review.created_at) }}</div>
             </div>
           </div>
@@ -76,7 +76,7 @@
               </div>
               <div class="comment-content">
                 <div class="comment-header">
-                  <span class="comment-username">{{ comment.username }}</span>
+                  <span class="comment-username">{{ comment.nickname || comment.username }}</span>
                   <span class="comment-date">{{ formatDate(comment.created_at) }}</span>
                 </div>
                 <p class="comment-text">{{ comment.content }}</p>
@@ -220,7 +220,7 @@ const submitComment = async (review) => {
   }
 
   try {
-    await apiClient.post('/comments/', {
+    await communityAPI.createComment({
       article: review.id,
       content: content.trim(),
     })

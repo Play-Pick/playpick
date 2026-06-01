@@ -177,6 +177,7 @@ const formatNumber = (num) => {
 .info-item i {
   width: 1rem;
   text-align: center;
+  margin-right: 0.5rem;
 }
 
 /* 반응형 */
