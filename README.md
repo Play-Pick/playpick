@@ -1,10 +1,8 @@
 <div align="center">
 
-# 픽플레이 (PlayPick)
-
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="front/src/assets/images/logo-dark.png" />
-  <img src="front/src/assets/images/logo-light.png" width="190" alt="Play Pick 로고" />
+  <img src="front/src/assets/images/logo-light.png" width="190" alt="플레이픽 (PlayPick) 로고" />
 </picture>
 
 **공연 탐색부터 취향 학습, 개인화 추천까지 연결하는 공연 큐레이션 커뮤니티**<br />
