@@ -1,385 +1,254 @@
 <div align="center">
 
-# PlayPick
+# 픽플레이 (PlayPick)
 
-<img src="front/src/assets/images/logo-light.png" width="180" alt="PlayPick logo" />
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="front/src/assets/images/logo-dark.png" />
+  <img src="front/src/assets/images/logo-light.png" width="190" alt="Play Pick 로고" />
+</picture>
 
-**공연 데이터를 수집하고, 사용자의 취향을 학습해 AI 검색과 개인화 추천으로 공연 발견을 돕는 커뮤니티 플랫폼**
+**공연 탐색부터 취향 학습, 개인화 추천까지 연결하는 공연 큐레이션 커뮤니티**<br />
+**KOPIS 공연 데이터와 사용자 신호를 바탕으로, 보고 싶은 공연을 더 쉽게 발견합니다.**
 
-<br>
+<br />
 
-![Vue](https://img.shields.io/badge/Vue_3.5-4FC08D?style=for-the-badge&logo=vue.js&logoColor=white)
-![Vite](https://img.shields.io/badge/Vite_7-646CFF?style=for-the-badge&logo=vite&logoColor=white)
-![Pinia](https://img.shields.io/badge/Pinia_3-FFD859?style=for-the-badge&logo=pinia&logoColor=111111)
-![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS_3-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
-![Django](https://img.shields.io/badge/Django_5.2-092E20?style=for-the-badge&logo=django&logoColor=white)
-![DRF](https://img.shields.io/badge/DRF_3.16-A30000?style=for-the-badge&logo=django&logoColor=white)
-![OpenAI](https://img.shields.io/badge/OpenAI_Embedding-412991?style=for-the-badge&logo=openai&logoColor=white)
-![KOPIS](https://img.shields.io/badge/KOPIS_API-1F2937?style=for-the-badge)
+![Vue](https://img.shields.io/badge/Vue_3-4FC08D?style=flat-square&logo=vuedotjs&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white)
+![Pinia](https://img.shields.io/badge/Pinia-FFD859?style=flat-square&logo=pinia&logoColor=111111)
+![Django](https://img.shields.io/badge/Django-092E20?style=flat-square&logo=django&logoColor=white)
+![DRF](https://img.shields.io/badge/Django_REST_Framework-A30000?style=flat-square&logo=django&logoColor=white)
+![OpenAI](https://img.shields.io/badge/OpenAI_Embeddings-412991?style=flat-square&logo=openai&logoColor=white)
+![KOPIS](https://img.shields.io/badge/KOPIS_API-1F2937?style=flat-square)
 
 </div>
 
 ---
 
-## 프로젝트 소개
+## 서비스 소개
 
-PlayPick은 공연을 고를 때 생기는 정보 탐색 비용을 줄이기 위한 공연 큐레이션 서비스입니다.
+공연을 고를 때는 작품 정보, 일정, 지역, 취향을 함께 살펴봐야 합니다. PlayPick은 KOPIS 기반 공연·박스오피스 데이터를 모으고, 온보딩과 탐색 행동에서 남긴 신호를 활용해 **의미 기반 검색**과 **개인화 추천**으로 탐색 흐름을 돕는 서비스입니다.
 
-공연 정보는 KOPIS 데이터를 기반으로 수집하고, 사용자는 장르, 배우, 지역, 관람 이력, 찜, 조회 로그, 온보딩 반응을 통해 자신의 취향을 서비스에 남깁니다. PlayPick은 이 데이터를 기반으로 자연어 의미 검색, 임베딩 유사도, 박스오피스 랭킹, 지역/취향/행동 로그를 함께 고려한 추천 결과를 제공합니다.
+공연 목록과 랭킹에서 후보를 살펴본 뒤, 자연어로 원하는 분위기를 검색하고, 찜·관람 기록·커뮤니티 활동으로 취향을 이어갈 수 있습니다.
 
-서비스는 다음 흐름을 목표로 합니다.
-
-1. 사용자가 온보딩에서 보고 싶은 공연과 보고 싶지 않은 공연을 선택한다.
-2. 선택 신호를 1536차원 선호도 벡터로 변환한다.
-3. 공연 목록, 랭킹, 지도, YouTube 영상으로 공연 정보를 탐색한다.
-4. AI 검색과 하이브리드 추천으로 취향에 맞는 공연을 발견한다.
-5. 찜, 관람함, 리뷰, 댓글, 팔로우로 공연 경험을 기록하고 공유한다.
+**프로젝트 기간** · 2025.12.13 – 2025.12.23 · **2인 팀 프로젝트**
 
 ---
 
-## 핵심 기능
+## 주요 화면과 기능
 
-### AI 의미 기반 공연 검색
+<table>
+  <tr>
+    <td align="center" valign="top" width="50%">
+      <img src="img/%EC%98%A8%EB%B3%B4%EB%94%A9%ED%8E%98%EC%9D%B4%EC%A7%80.png" alt="공연 카드로 선호를 수집하는 온보딩 화면" width="100%" />
+      <br /><strong>취향 온보딩</strong>
+      <br /><sub>공연 카드에 남긴 반응으로 초기 선호도 벡터를 만듭니다.</sub>
+    </td>
+    <td align="center" valign="top" width="50%">
+      <img src="img/Ai%EC%9D%98%EB%AF%B8%EA%B8%B0%EB%B0%98%20%EA%B2%80%EC%83%89%EC%B0%BD.png" alt="자연어 AI 공연 추천 검색 화면" width="100%" />
+      <br /><strong>AI 의미 기반 검색</strong>
+      <br /><sub>상황과 감정을 문장으로 입력해 관련 공연을 찾습니다.</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top" width="50%">
+      <img src="img/%EB%A9%94%EC%9D%B8%ED%8E%98%EC%9D%B4%EC%A7%80_%EB%A1%9C%EA%B7%B8%EC%9D%B8.png" alt="개인화 추천과 랭킹을 보여주는 메인 화면" width="100%" />
+      <br /><strong>추천·랭킹·영상 탐색</strong>
+      <br /><sub>개인화 추천, 박스오피스, YouTube 영상을 한 흐름에서 살펴봅니다.</sub>
+    </td>
+    <td align="center" valign="top" width="50%">
+      <img src="img/%EA%B3%B5%EC%97%B0%20%EC%83%81%EC%84%B8%20%ED%8E%98%EC%9D%B4%EC%A7%80.png" alt="공연 정보와 공연장 위치를 보여주는 상세 화면" width="100%" />
+      <br /><strong>공연 상세와 지도</strong>
+      <br /><sub>작품 정보와 일정, 공연장 위치를 함께 확인합니다.</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top" width="50%">
+      <img src="img/%EC%BB%A4%EB%AE%A4%EB%8B%88%ED%8B%B0%20%ED%8E%98%EC%9D%B4%EC%A7%80.png" alt="공연 후기와 게시글을 공유하는 커뮤니티 화면" width="100%" />
+      <br /><strong>공연 커뮤니티</strong>
+      <br /><sub>후기와 기대평을 나누고 댓글·좋아요로 소통합니다.</sub>
+    </td>
+    <td align="center" valign="top" width="50%">
+      <img src="img/%EB%A7%88%EC%9D%B4%ED%8E%98%EC%9D%B4%EC%A7%80.png" alt="찜한 공연과 관람 기록을 관리하는 마이페이지 화면" width="100%" />
+      <br /><strong>마이페이지와 관람 기록</strong>
+      <br /><sub>찜·관람함·작성 활동과 선호도를 한곳에서 관리합니다.</sub>
+    </td>
+  </tr>
+</table>
 
-- OpenAI `text-embedding-3-small` 임베딩으로 자연어 질의를 벡터화한다.
-- 공연명, 장르, 출연진, 줄거리 기반 공연 임베딩과 코사인 유사도를 계산한다.
-- "우울할 때 위로가 되는 공연", "아이와 보기 좋은 뮤지컬" 같은 문장형 검색을 지원한다.
-- 검색 결과 상위 공연에는 LLM 기반 추천 문구를 생성한다.
-- 구현 위치: `back/performances/services/ai_search.py`, `front/src/stores/aiSearchStore.js`
+| 영역 | 제공 기능 |
+|---|---|
+| 공연 탐색 | KOPIS 기반 목록·상세·박스오피스 랭킹, 장르 필터, 공연장 위치, YouTube 관련 영상 |
+| AI 검색 | `text-embedding-3-small` 임베딩과 코사인 유사도로 자연어 질의에 맞는 공연 검색 |
+| 개인화 | 온보딩 반응, 조회·찜·검색 로그, 지역·인기도·최신성·유사 공연을 결합한 추천 |
+| 기록과 소통 | 찜, 관람함, 평점·후기, 댓글, 좋아요, 팔로우, 작성 활동 관리 |
 
-### 하이브리드 개인화 추천
+---
 
-PlayPick의 추천 엔진은 단일 기준이 아니라 7개 점수 함수를 가중 합산해 공연을 추천합니다.
+## 추천과 검색 설계
 
-| 점수 함수 | 가중치 | 기준 |
+### 7개 신호를 결합한 하이브리드 추천
+
+추천 엔진은 공연중·공연예정 후보를 대상으로 다음 점수를 계산해 가중 합산합니다. 최근 행동에는 시간 감쇠를 적용합니다. 아래 가중치는 [`RecommendationEngine.WEIGHTS`](back/recommendations/services/engine.py)의 구현 기준입니다.
+
+| 점수 | 가중치 | 반영 내용 |
 |---|---:|---|
-| `f1_click` | 20% | 최근 조회, 찜, 검색 로그와 시간 감쇠 |
-| `f2_preference` | 15% | 선호 장르/태그, 선호 배우 매칭 |
-| `f3_location` | 10% | 사용자 지역과 공연 지역 일치 |
-| `f4_popularity` | 15% | 박스오피스와 사전 계산된 대중성 지표 |
-| `f5_recency` | 10% | 공연 시작일 기준 최신성/임박도 |
-| `f6_collaborative` | 10% | 찜한 공연과 유사한 공연 |
-| `f7_embedding` | 20% | 사용자 선호도 벡터와 공연 임베딩 유사도 |
+| `f1_click` | 10% | 최근 조회·찜·검색 로그와 장르 일치 |
+| `f2_preference` | 15% | 저장한 선호 태그와 공연 장르 매칭 |
+| `f3_location` | 25% | 사용자 지역과 공연 지역의 일치도 |
+| `f4_popularity` | 10% | 공연 대중성 지표 또는 박스오피스 순위 |
+| `f5_recency` | 10% | 시작일 기준 최신성·임박도 |
+| `f6_collaborative` | 10% | 찜한 공연과 유사 공연의 관계 |
+| `f7_embedding` | 20% | 사용자 선호 벡터와 공연 임베딩의 코사인 유사도 |
 
-- 추천 결과는 `RecommendationCache`에 저장해 반복 계산 비용을 줄인다.
-- 추천 사유는 가장 높은 점수를 만든 요인을 기준으로 생성한다.
-- 구현 위치: `back/recommendations/services/engine.py`, `front/src/components/Recommendation/`
+추천 결과에는 개별 점수가 가장 높은 항목의 사유 코드와 가중 합산 점수를 함께 반환합니다. 이 점수는 서비스 내부의 추천 점수이며, 추천 정확도나 만족도를 측정한 지표가 아닙니다.
 
-### Tinder 스타일 온보딩
+### 온보딩에서 검색까지
 
-- 온보딩 후보는 인기 공연, 최신 공연, 다양한 장르 샘플을 섞어 구성한다.
-- 사용자는 공연 카드에 대해 `보고싶어요(1.5)`, `모르겠어요(0.0)`, `안보고싶어요(-1.0)` 신호를 남긴다.
-- 각 공연의 임베딩에 사용자 반응 가중치를 곱해 합산하고 L2 정규화해 선호도 벡터를 만든다.
-- 온보딩을 끝내지 않은 사용자는 주요 화면 진입 전 온보딩으로 유도된다.
-- 구현 위치: `back/accounts/services/onboarding_service.py`, `front/src/views/Auth/OnboardingView.vue`
+온보딩은 인기·최신·다양한 장르 후보를 섞어 보여 주고, 사용자가 남긴 `보고싶어요(1.5)`, `모르겠어요(0.0)`, `안보고싶어요(-1.0)` 신호를 공연 임베딩에 반영합니다. 가중 합산한 뒤 L2 정규화하여 **1536차원 선호도 벡터**를 만들고, 이후 추천의 임베딩 점수에 사용합니다. AI 검색은 같은 차원의 `text-embedding-3-small` 임베딩으로 질의와 공연 정보를 비교합니다.
 
-### 공연 정보, 랭킹, 외부 API 연동
+AI 검색은 유사도 상위 공연을 반환하고 `gpt-4o-mini`로 추천 문구를 생성합니다. 문구 생성에 실패하면 기본 문구를 반환합니다.
 
-- KOPIS API로 공연 목록, 공연 상세, 박스오피스 데이터를 수집한다.
-- 장르별/전체 박스오피스 랭킹과 하이라이트 캐러셀을 제공한다.
-- Kakao Map으로 공연장 위치를 표시한다.
-- YouTube Data API로 공연 관련 영상과 추천 플레이리스트를 제공하고, DB 캐시로 호출 비용을 줄인다.
-- 구현 위치: `back/performances/`, `front/src/views/Performance/`, `front/src/views/Ranking/`
+- [온보딩 구현](back/accounts/services/onboarding_service.py) · [AI 검색 구현](back/performances/services/ai_search.py)
 
-### 커뮤니티와 사용자 활동
+### 화면 상태와 API 연결
 
-- 공연글과 일반글을 구분해 후기, 기대평, Q&A, 자유글, 정보공유 카테고리를 제공한다.
-- 게시글 CRUD, 댓글, 좋아요, 별점, 베스트 리뷰를 지원한다.
-- 찜한 공연, 관람한 공연, 작성 글/댓글, 선호도 수정, 팔로우를 마이페이지에서 관리한다.
-- 구현 위치: `back/community/`, `front/src/views/Community/`, `front/src/views/User/`
-
-### Vue 3 프론트엔드 구조
-
-- Vue 3 Composition API와 Pinia 기반으로 화면 상태와 API 호출을 분리했다.
-- `usePerformanceDetail`, `useKakaoMap`, `useArticleForm`, `useMyPage` 같은 composable로 화면 로직을 재사용한다.
-- 다크모드, 반응형 레이아웃, 낙관적 UI 업데이트를 적용했다.
-- 구현 위치: `front/src/components/`, `front/src/composables/`, `front/src/stores/`
+Vue 3 Composition API와 Pinia로 화면 상태와 API 호출을 분리하고, `usePerformanceDetail`, `useKakaoMap`, `useArticleForm`, `useMyPage` 같은 composable에서 화면 로직을 재사용합니다. Vue Router의 온보딩 가드와 Axios JWT 인터셉터로 로그인 이후의 탐색 흐름을 연결합니다.
 
 ---
 
 ## 시스템 아키텍처
 
-```text
-User Browser
-    |
-    | Vue 3 + Vite
-    | - Vue Router
-    | - Pinia Store
-    | - Composables
-    | - Axios JWT Interceptor
-    v
-Django REST Framework API
-    |
-    +--> accounts
-    |     +--> JWT Auth
-    |     +--> Onboarding Signal
-    |     +--> User Preference Vector
-    |
-    +--> performances
-    |     +--> KOPIS Data Collection
-    |     +--> Performance / Detail / Ranking
-    |     +--> AI Semantic Search
-    |     +--> YouTube Cache
-    |
-    +--> recommendations
-    |     +--> UserLog
-    |     +--> Hybrid Recommendation Engine
-    |     +--> RecommendationCache
-    |
-    +--> community
-          +--> Article / Comment / Like
-
-Data & External Services
-    |
-    +--> SQLite / PostgreSQL-compatible Django ORM
-    +--> KOPIS API
-    +--> OpenAI-compatible GMS API
-    +--> Kakao Maps API
-    +--> YouTube Data API
+```mermaid
+flowchart LR
+    U[사용자] --> V[Vue 3 · Pinia · Vue Router]
+    V <-->|REST API · JWT| API[Django REST Framework]
+    V --> K[Kakao Maps JavaScript API]
+    API --> A[인증 · 온보딩 · 커뮤니티]
+    API --> R[개인화 추천 · AI 검색]
+    A --> D[(사용자 · 공연 · 임베딩 · 캐시)]
+    R --> D
+    R --> G[GMS · OpenAI 호환 API]
+    API --> Y[YouTube Data API]
+    C[KOPIS 데이터 수집] --> D
 ```
 
-### 데이터 흐름
-
-```text
-사용자 행동
-  -> Vue Component
-  -> Pinia Store / Composable
-  -> Axios API Module
-  -> Django ViewSet
-  -> Serializer / Service
-  -> Model / External API
-  -> 추천, 검색, 랭킹, 커뮤니티 UI 갱신
-```
+| 모듈 | 역할 |
+|---|---|
+| `back/accounts/` | JWT 인증, 온보딩 신호, 사용자 선호도 벡터, 관람 기록 |
+| `back/performances/` | 공연·랭킹·찜, KOPIS 수집, AI 검색, YouTube 캐시 |
+| `back/recommendations/` | 사용자 로그, 추천 캐시, 7개 점수 기반 추천 엔진 |
+| `back/community/` | 게시글, 댓글, 좋아요, 베스트 리뷰 |
 
 ---
 
 ## 기술 스택
 
-| 구분 | 스택 |
+| 구분 | 기술 |
 |---|---|
-| Frontend | Vue 3.5.25, Vite 7.2.4, Pinia 3.0.4, Vue Router 4.6.3, Axios 1.13.2 |
-| Styling | Tailwind CSS 3.4.0, PostCSS, Autoprefixer |
-| Backend | Python, Django 5.2.8, Django REST Framework 3.16.1 |
-| Auth | djangorestframework-simplejwt 5.5.1, JWT Access/Refresh Token |
-| Data / ML | SQLite, NumPy 2.3.5, scikit-learn 1.8.0, SciPy 1.16.3 |
-| AI | OpenAI SDK 2.14.0, `text-embedding-3-small`, GPT 기반 추천 문구 생성 |
-| External API | KOPIS API, Kakao Maps API, YouTube Data API |
-| Deploy | Gunicorn, WhiteNoise, AWS EC2 배포 문서 |
-
----
-
-## 모듈별 역할
-
-| 모듈 | 주요 역할 | 핵심 파일 |
-|---|---|---|
-| `front/` | Vue SPA, 화면, 상태 관리, API 클라이언트 | `src/router`, `src/stores`, `src/components` |
-| `back/accounts/` | 사용자, JWT 인증, 온보딩, 선호도 벡터, 관람함 | `models.py`, `views/`, `services/onboarding_service.py` |
-| `back/performances/` | 공연 데이터, 랭킹, 찜, AI 검색, YouTube 캐시, KOPIS 수집 | `models.py`, `views/`, `services/`, `management/commands/` |
-| `back/recommendations/` | 행동 로그, 추천 캐시, 하이브리드 추천 엔진 | `models.py`, `services/engine.py` |
-| `back/community/` | 게시글, 댓글, 좋아요, 베스트 리뷰 | `models.py`, `views/api_views.py` |
-| `docs/final-submission/` | 최종 제출용 프로젝트 개요, 기술 문서, 기능 명세, API 문서, 배포 가이드 | 제출 문서 모음 |
-| `docs/development-archive/` | 개발 중 작성한 가이드, 리팩토링 기록, 테스트/실험 문서 | 개발 아카이브 |
-
----
-
-## 주요 API
-
-| 영역 | 엔드포인트 | 설명 |
-|---|---|---|
-| Auth | `POST /api/accounts/register/` | 회원가입 |
-| Auth | `POST /api/accounts/token/` | JWT 로그인 |
-| Auth | `POST /api/accounts/token/refresh/` | Access Token 갱신 |
-| User | `GET /api/accounts/users/me/` | 내 정보 조회 |
-| User | `PATCH /api/accounts/users/update_profile/` | 프로필 수정 |
-| User | `POST /api/accounts/users/{id}/follow/` | 팔로우/언팔로우 |
-| Onboarding | `GET /api/accounts/onboarding/candidates/` | 온보딩 후보 공연 조회 |
-| Onboarding | `POST /api/accounts/onboarding/signals/` | 온보딩 반응 저장 |
-| Onboarding | `POST /api/accounts/onboarding/complete/` | 선호도 벡터 생성 및 온보딩 완료 |
-| Performance | `GET /api/performances/` | 공연 목록 조회 |
-| Performance | `GET /api/performances/{id}/` | 공연 상세 조회 |
-| Performance | `POST /api/performances/{id}/like/` | 공연 찜하기/취소 |
-| Performance | `POST /api/performances/ai-search/` | AI 의미 검색 |
-| Performance | `GET /api/performances/youtube/playlist/` | YouTube 추천 영상 목록 |
-| Ranking | `GET /api/performances/boxoffice-all/` | 전체 박스오피스 랭킹 |
-| Ranking | `GET /api/performances/boxoffice-genre/` | 장르별 박스오피스 랭킹 |
-| Community | `GET /api/community/articles/` | 게시글 목록 |
-| Community | `POST /api/community/articles/` | 게시글 작성 |
-| Community | `POST /api/community/articles/{id}/like/` | 게시글 좋아요/취소 |
-| Community | `GET /api/community/articles/best-reviews/` | 베스트 리뷰 |
-| Recommendation | `GET /api/recommendations/` | 개인화 추천 목록 |
-| Recommendation | `POST /api/recommendations/log/` | 사용자 행동 로그 저장 |
+| Frontend | Vue 3.5, Vite 7, Pinia 3, Vue Router 4, Axios, Tailwind CSS 3 |
+| Backend | Python, Django 5.2, Django REST Framework 3.16, Simple JWT |
+| Data / AI | SQLite, NumPy, scikit-learn, OpenAI SDK, `text-embedding-3-small` |
+| External API | KOPIS, Kakao Maps JavaScript API, YouTube Data API |
+| Deployment | Gunicorn, WhiteNoise, AWS EC2 배포 가이드 |
 
 ---
 
 ## 저장소 구조
 
 ```text
-final-pjt/
+.
+├── front/                         # Vue SPA, Pinia 상태, 화면·컴포넌트·API 모듈
 ├── back/
-│   ├── accounts/                 # 사용자, 인증, 온보딩, 선호도 벡터
-│   ├── community/                # 게시글, 댓글, 좋아요
-│   ├── performances/             # 공연, 랭킹, AI 검색, KOPIS/YouTube 연동
-│   │   ├── management/commands/   # 데이터 수집과 임베딩 생성 커맨드
-│   │   ├── services/              # ai_search, youtube_service
-│   │   └── views/                 # 공연 API, 관리자 수집 API
-│   ├── recommendations/          # 추천 로그, 캐시, 추천 엔진
-│   ├── mypjt/                    # Django 설정
-│   ├── fixtures/                 # 초기/테스트 데이터
-│   ├── embeddings/               # 임베딩 파일
-│   ├── manage.py
-│   └── requirements.txt
-├── front/
-│   ├── public/
-│   ├── src/
-│   │   ├── api/                  # Axios API 모듈
-│   │   ├── assets/               # 로고, 스타일
-│   │   ├── components/           # 기능별 재사용 컴포넌트
-│   │   ├── composables/          # Composition API 재사용 로직
-│   │   ├── router/               # Vue Router와 가드
-│   │   ├── stores/               # Pinia 상태 관리
-│   │   └── views/                # 화면 단위 페이지
-│   ├── package.json
-│   └── vite.config.js
-├── docs/
-│   ├── final-submission/         # 최종 제출 문서
-│   ├── development-archive/      # 개발 과정 문서
-│   └── project-files/            # 제출용 첨부 파일
-├── back/README.md
-├── front/README.md
-└── README.md
+│   ├── accounts/                  # 인증, 온보딩, 선호도 벡터, 관람함
+│   ├── performances/              # 공연·랭킹·AI 검색·외부 API 수집
+│   ├── recommendations/           # 행동 로그, 캐시, 추천 엔진
+│   ├── community/                 # 게시글, 댓글, 좋아요
+│   └── mypjt/                     # Django 설정
+├── img/                           # README 서비스 화면
+└── docs/final-submission/         # 제출용 기술·기능·API·배포 문서
 ```
 
 ---
 
-## 실행 방법
+## 문서와 실행 안내
 
-### 사전 준비
+| 목적 | 문서 |
+|---|---|
+| 프로젝트 전체 구조 | [프로젝트 종합문서](docs/final-submission/01-프로젝트-개요/01-프로젝트-종합문서.md) · [프로젝트 구조](docs/final-submission/01-프로젝트-개요/04-프로젝트-구조.md) |
+| 핵심 기술 | [추천 알고리즘](docs/final-submission/02-기술-문서/01-추천알고리즘.md) · [AI 검색 엔진](docs/final-submission/02-기술-문서/02-AI-검색엔진.md) · [온보딩 시스템](docs/final-submission/03-기능-명세/01-온보딩시스템.md) |
+| API | [공연 정보 API](docs/final-submission/04-API-문서/01-공연정보-API.md) · [커뮤니티 API](docs/final-submission/04-API-문서/02-커뮤니티-API.md) · [추천 API](docs/final-submission/04-API-문서/03-추천-API.md) |
+| 실행·배포 | [로컬 환경 설정](docs/final-submission/05-배포-가이드/02-로컬-환경-설정.md) · [AWS 배포 실행방법](docs/final-submission/05-배포-가이드/01-AWS-배포-실행방법.md) · [Backend README](back/README.md) · [Frontend README](front/README.md) |
 
-- Python 3.x
-- Node.js `^20.19.0` 또는 `>=22.12.0`
-- KOPIS API Key
-- GMS/OpenAI-compatible API Key
-- Kakao Maps JavaScript API Key
-- YouTube Data API Key
+<details>
+<summary><strong>로컬 실행 요약</strong></summary>
 
-### 백엔드 실행
+사전 준비: `back/requirements.txt`의 패키지를 지원하는 Python 환경, Node.js `^20.19.0` 또는 `>=22.12.0`, KOPIS·GMS·Kakao Map·YouTube API 키.
 
-```bash
+백엔드 — Windows PowerShell 기준:
+
+```powershell
 cd back
 python -m venv venv
-venv\Scripts\activate
+.\venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
 ```
 
-기본 API 주소는 `http://127.0.0.1:8000/api/`입니다.
+macOS/Linux에서는 `source venv/bin/activate`로 가상환경을 활성화합니다.
 
-### 프론트엔드 실행
+프론트엔드 — 저장소 루트에서 별도 터미널로 실행:
 
-```bash
+```sh
 cd front
 npm install
 npm run dev
 ```
 
-기본 프론트엔드 주소는 `http://localhost:5173`입니다.
+기본 주소는 API `http://127.0.0.1:8000/api/`, 프론트엔드 `http://localhost:5173`입니다.
 
-### 환경 변수
-
-| 위치 | 변수 |
+| 위치 | 환경 변수 |
 |---|---|
 | `back/.env` | `SECRET_KEY`, `KOPIS_API`, `KOPIS_URL`, `GMS_KEY`, `YOUTUBE_API_KEY`, `YOUTUBE_PLAYLIST_ID_MAIN` |
 | `front/.env` | `VITE_API_BASE_URL`, `VITE_KAKAO_MAP_API_KEY` |
 | `front/.env.production` | `VITE_API_BASE_URL` |
 
-### 데이터 수집과 임베딩 생성
+백엔드에서 공연 데이터와 임베딩을 준비합니다.
 
-```bash
-cd back
+```sh
 python manage.py collect_performances
 python manage.py collect_performance_detail
 python manage.py collect_boxoffice
 python manage.py generate_embeddings
 ```
 
-초기 데이터 로드와 배포 서버 실행 방법은 [AWS 배포 실행방법](docs/final-submission/05-배포-가이드/01-AWS-배포-실행방법.md)을 참고합니다.
+환경 설정과 초기 데이터 로드·배포 절차는 [로컬 환경 설정](docs/final-submission/05-배포-가이드/02-로컬-환경-설정.md) 및 [AWS 배포 실행방법](docs/final-submission/05-배포-가이드/01-AWS-배포-실행방법.md)을 참고하세요.
+</details>
 
 ---
 
-## 주요 문서
-
-| 문서 | 설명 |
-|---|---|
-| [프로젝트 종합문서](docs/final-submission/01-프로젝트-개요/01-프로젝트-종합문서.md) | 전체 기능, 구조, API, 데이터베이스 설명 |
-| [백엔드 개요](docs/final-submission/01-프로젝트-개요/02-백엔드-개요.md) | Django 백엔드 상세 문서 |
-| [프론트엔드 개요](docs/final-submission/01-프로젝트-개요/03-프론트엔드-개요.md) | Vue 프론트엔드 상세 문서 |
-| [AWS 배포 실행방법](docs/final-submission/05-배포-가이드/01-AWS-배포-실행방법.md) | AWS 배포 서버 실행과 데이터 로드 가이드 |
-| [추천 알고리즘](docs/final-submission/02-기술-문서/01-추천알고리즘.md) | 추천 알고리즘 설계 |
-| [AI 검색 엔진](docs/final-submission/02-기술-문서/02-AI-검색엔진.md) | AI 검색 구현 정리 |
-| [온보딩 시스템](docs/final-submission/03-기능-명세/01-온보딩시스템.md) | 온보딩 기능 명세 |
-| [YouTube 연동](docs/final-submission/02-기술-문서/05-YouTube-연동.md) | YouTube 연동 명세 |
-| [백엔드 README](back/README.md) | 백엔드 실행/구조 요약 |
-| [프론트엔드 README](front/README.md) | 프론트엔드 실행/구조 요약 |
-
----
-
-## 협업 방식
-
-### 브랜치 전략
-
-| 브랜치 | 역할 |
-|---|---|
-| `master` | 최종 검증된 배포 버전 |
-| `develop` | 기능 통합과 QA 기준 브랜치 |
-| `feature/<feature-name>` | 기능 단위 개발 브랜치 |
-
-### 커밋 타입
-
-```text
-<type>: <subject>
-```
-
-| 타입 | 용도 |
-|---|---|
-| `feat` | 새 기능 |
-| `fix` | 버그 수정 |
-| `refactor` | 리팩토링 |
-| `docs` | 문서 수정 |
-| `style` | 포맷팅, 스타일 수정 |
-| `test` | 테스트 코드 |
-| `chore` | 빌드, 설정, 기타 작업 |
-
----
-
-## 팀원
+## 팀원 소개
 
 <table>
   <tr>
-    <td align="center" width="180">
-      <strong>이재호</strong><br>
-      <sub>팀장</sub><br><br>
-      <img src="https://img.shields.io/badge/FrontEnd-2F80ED?style=flat-square&logo=vue.js&logoColor=white" /><br>
-      <img src="https://img.shields.io/badge/Design-FF4D8D?style=flat-square&logo=figma&logoColor=white" /><br>
-      <img src="https://img.shields.io/badge/Docs-1F5F8B?style=flat-square&logo=readthedocs&logoColor=white" /><br>
-      <img src="https://img.shields.io/badge/발표-8E24AA?style=flat-square" />
+    <td align="center" valign="top" width="50%">
+      <strong>이재호</strong><br />
+      <sub>팀장</sub><br /><br />
+      <img src="https://img.shields.io/badge/Frontend-4285F4?style=flat-square&logo=vuedotjs&logoColor=white" alt="Frontend" />
+      <img src="https://img.shields.io/badge/UI%2FUX-E91E63?style=flat-square" alt="UI/UX" />
+      <img src="https://img.shields.io/badge/Docs-555555?style=flat-square" alt="Docs" />
     </td>
-    <td align="center" width="180">
-      <strong>임경수</strong><br>
-      <sub>팀원</sub><br><br>
-      <img src="https://img.shields.io/badge/Backend-43A047?style=flat-square&logo=django&logoColor=white" /><br>
-      <img src="https://img.shields.io/badge/AI-1565C0?style=flat-square&logo=openai&logoColor=white" /><br>
-      <img src="https://img.shields.io/badge/Infra-F9A825?style=flat-square&logo=amazonaws&logoColor=white" /><br>
-      <img src="https://img.shields.io/badge/FullStack-37474F?style=flat-square" />
+    <td align="center" valign="top" width="50%">
+      <strong>임경수</strong><br />
+      <sub>팀원</sub><br /><br />
+      <img src="https://img.shields.io/badge/Backend-092E20?style=flat-square&logo=django&logoColor=white" alt="Backend" />
+      <img src="https://img.shields.io/badge/AI-412991?style=flat-square" alt="AI" />
+      <img src="https://img.shields.io/badge/Deploy-FF9900?style=flat-square" alt="Deploy" />
     </td>
   </tr>
 </table>
 
-| 이름 | 주요 담당 |
+| 이름 | 역할 |
 |---|---|
-| 이재호 | 프론트엔드 화면 구현, UI/UX 디자인, 발표 자료 및 발표, 커뮤니티 페이지, 온보딩/YouTube/마이페이지 연동, 문서 정리 |
-| 임경수 | Django API, KOPIS 데이터 수집, AI 검색/추천 시스템, 임베딩 테이블 분리, 배포 설정, 프론트엔드 리팩토링 |
-
-## 프로젝트 기간
-
-2025.12.13 - 2025.12.23
+| 이재호 · 팀장 | 프론트엔드 화면 구현, UI/UX 디자인, 커뮤니티 페이지, 온보딩·YouTube·마이페이지 연동, 문서 정리, 발표 자료·발표 |
+| 임경수 · 팀원 | Django API, KOPIS 데이터 수집, AI 검색·추천 시스템, 임베딩 테이블 분리, 프론트엔드 리팩토링, 배포 설정 |
